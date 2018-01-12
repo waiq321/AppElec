@@ -666,8 +666,7 @@ ul.tab_list{
 /*-- //wlcome --*/
 /*-- footer --*/
 .footer{
-	background:#515c8e;
-	padding:4em 0;
+	background:#515c8e;	
 	}
 .footer h3{
 	color:#fff;
@@ -747,8 +746,7 @@ ul.tab_list{
 .footer-grid ul li a:hover{
 	color:#fff;
 }
-.footer-copy{
-	margin:2em 0 0;
+.footer-copy{	
 	padding:2em 0;
 	border-top:1px solid #464646;
 	border-bottom:1px solid #464646;
