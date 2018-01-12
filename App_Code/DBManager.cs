@@ -56,7 +56,7 @@ public class DBManager
         return _dataTable;
     }
 
-    public DataTable ExecuteDataTableWithQuery(string query,  SqlParameter[] prms)
+    public DataTable ExecuteDataTableWithQuery(string query, List<SqlParameter> prms)
     {
         try
         {
@@ -81,7 +81,7 @@ public class DBManager
         return _dataTable;
     }
 
-    public DataSet ExecuteDataSet(string ProcedureName,  SqlParameter[] prms)
+    public DataSet ExecuteDataSet(string ProcedureName, List<SqlParameter> prms)
     {
         try
         {
@@ -107,7 +107,7 @@ public class DBManager
         return _dataSet;
     }
 
-    public void ExecuteNonQuery(string ProcedureName,  SqlParameter[] prms)
+    public void ExecuteNonQuery(string ProcedureName, List<SqlParameter> prms)
     {
         try
         {

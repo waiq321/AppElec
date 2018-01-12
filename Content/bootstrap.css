@@ -109,8 +109,8 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-button,
-input,
+
+input[type=text],
 optgroup,
 select,
 textarea {
@@ -120,6 +120,7 @@ textarea {
   border-radius:10px;
   line-height:5px;padding:3px;
   border:solid 1px #ccc;
+  width:90%;
 }
 button {
   overflow: visible;

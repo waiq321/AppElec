@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h1>Add/Edit Candidate</h1>
+    <h1>Add/Edit Candidate
+      <span style="padding-left:100px">  
+          <asp:Label ID="lblMsg" runat="server"  Text=""></asp:Label>
+          </span>
+    </h1>
      <table class="table-form">
         <tr>
             <td class="label">Name:</td>
@@ -28,14 +32,14 @@
             </td>               
         </tr>
         <tr>
+            <td  class="label">Education:</td>
+            <td>
+                <asp:TextBox ID="txtEducation" runat="server"></asp:TextBox>
+            </td>
             <td  class="label">Relation With Military:</td>
             <td>
                 <asp:TextBox ID="txtRWM" runat="server"></asp:TextBox>
-            </td>
-            <td  class="label">Relation With Politics:</td>
-            <td>
-                <asp:TextBox ID="txtRWP" runat="server"></asp:TextBox>
-            </td>
+            </td>            
         </tr>
         <tr>
             <td  class="label">Relation With Bureaucracy:</td>
@@ -49,26 +53,37 @@
             
         </tr>
         <tr>
+            <td  class="label">Relation With Politics:</td>
+            <td>
+                <asp:TextBox ID="txtRWP" runat="server"></asp:TextBox>
+            </td>
             <td  class="label">Moral Characteristics:</td>
             <td>
                 <asp:TextBox ID="txtMC" runat="server"></asp:TextBox>
-            </td>
-            <td  class="label">Financial Characteristics:</td>
-            <td>
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-            </td>
+            </td>           
         </tr>
           <tr>
+               <td  class="label">Financial Characteristics:</td>
+            <td>
+                <asp:TextBox ID="txtFC" runat="server"></asp:TextBox>
+            </td>
               <td  class="label">View About Establishment:</td>
             <td>
                 <asp:TextBox ID="txtVAE" runat="server"></asp:TextBox>
-            </td>
-            <td  class="label">Important Appointments:</td>
+            </td>                    
+        </tr>         
+         <tr>
+              <td  class="label">Important Appointments:</td>
             <td>
                 <asp:TextBox ID="txtImpApp" runat="server"></asp:TextBox>
-            </td>           
-        </tr>
+            </td> 
+              <td  class="label">Scandles:</td>
+            <td>
+                <asp:TextBox ID="txtScandles" runat="server"></asp:TextBox>
+            </td>
+         </tr>
          <tr>
+              
             <td  class="label">Present Address:</td>
             <td>
                 <asp:TextBox ID="txtPresentAdd" runat="server"></asp:TextBox>
@@ -79,15 +94,9 @@
             </td>
         </tr>
          <tr>
-              <td  class="label">Scandles:</td>
-            <td>
-                <asp:TextBox ID="txtScandles" runat="server"></asp:TextBox>
-            </td>
-         </tr>
-         <tr>
             <td  class="label">Other Observations:</td>
             <td colspan="3">
-                <asp:TextBox ID="TextBox1" runat="server" style="width:100%; height:100px;"></asp:TextBox>                
+                <asp:TextBox ID="txtObservations" runat="server" style="width:100%; height:100px;"></asp:TextBox>                
             </td>
             
         </tr>

@@ -2913,3 +2913,10 @@ p.est span{
 .label{
     text-align:right; padding-right:5px;
 }
+
+.error{
+    color:red;font-size:12px; font-weight:bold; 
+}
+.success{
+    color:green;font-size:12px; font-weight:bold; 
+}
