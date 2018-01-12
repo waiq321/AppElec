@@ -1,28 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AppElec", "E:\waqas\Projects\AppElec\", "{1C05D48C-181A-47D1-A8E6-ECFCD914911F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AppElec", ".", "{55B43A67-649C-46A3-905F-7206836A13B5}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_7892"
-		Debug.AspNetCompiler.PhysicalPath = "E:\waqas\Projects\AppElec\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7892\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_31195"
+		Debug.AspNetCompiler.PhysicalPath = "E:\Projects\AppElec\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_31195\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_7892"
-		Release.AspNetCompiler.PhysicalPath = "E:\waqas\Projects\AppElec\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7892\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_31195"
+		Release.AspNetCompiler.PhysicalPath = "E:\Projects\AppElec\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_31195\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "7892"
-		SlnRelativePath = "E:\waqas\Projects\AppElec\"
-		DefaultWebSiteLanguage = "Visual C#"
+		VWDPort = "31195"
 	EndProjectSection
 EndProject
 Global
@@ -30,8 +28,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C05D48C-181A-47D1-A8E6-ECFCD914911F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C05D48C-181A-47D1-A8E6-ECFCD914911F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B43A67-649C-46A3-905F-7206836A13B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B43A67-649C-46A3-905F-7206836A13B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
