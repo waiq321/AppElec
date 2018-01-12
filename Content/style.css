@@ -666,7 +666,7 @@ ul.tab_list{
 /*-- //wlcome --*/
 /*-- footer --*/
 .footer{
-	background:#000;
+	background:#515c8e;
 	padding:4em 0;
 	}
 .footer h3{
@@ -1223,10 +1223,7 @@ li.list-group-item1 {
 	background:none;
 	margin-top:50px;
 }
-.label {
-  font-weight: 300 !important;
-  border-radius:4px;
-}  
+
 .grid_5{
 	background:none;
 	padding:2em 0;
@@ -1290,14 +1287,7 @@ section#tables  p {
   display: block;
   visibility: visible;
 }
-.label {
-  font-weight: 300 !important;
-}
-.label {
-  padding: 4px 6px;
-  border: none;
-  text-shadow: none;
-}
+
 .nav-tabs {
   margin-bottom: 1em;
 }
@@ -1374,9 +1364,7 @@ h2.typoh2{
 	.table h3 {
 		font-size: 20px;
 	}
-	.label {
-		font-size: 53%;
-	}
+	
 	.alert,p {
 		font-size: 14px;
 	}
@@ -2907,4 +2895,19 @@ p.est span{
 	.footer-grid:nth-child(4) {
 		margin: 0em 0 1em;
 	}
+}
+.main-content
+{
+    background-color:#fff; padding:2%;
+}
+.table-form
+{
+    width:100%;
+}
+.table-form tr
+{
+    line-height:30px;
+}
+.label{
+    text-align:right; padding-right:5px;
 }

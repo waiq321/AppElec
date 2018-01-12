@@ -1097,8 +1097,7 @@ button,
 select,
 textarea {
   font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+  font-size: inherit;  
 }
 a {
   color: #337ab7;
@@ -4742,15 +4741,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   cursor: not-allowed;
   background-color: #fff;
 }
-.label {
-  display: inline;
-  padding: .2em .6em .3em;
+.label {    
   font-size: 75%;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
+  font-weight: bold;    
   vertical-align: baseline;
   border-radius: .25em;
 }

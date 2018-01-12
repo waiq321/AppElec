@@ -3,26 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table>
+    <table class="table-form">
         <tr>
-            <td>Name:</td>
+            <td class="label">Name:</td>
             <td>
-                <input type="text"  id="txtName"/>
+               <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
             </td>            
             <td colspan="2" rowspan="3">
+                <asp:FileUpload ID="picUpload" runat="server" />
                 <asp:Image ID="picture" runat="server" />
             </td>
         </tr>
         <tr>
-            <td>NIC#:</td>
-            <td><input type="text"  id="txtNIC"/></td>            
+            <td  class="label">NIC#:</td>
+            <td>
+                <asp:TextBox ID="txtNic" runat="server"></asp:TextBox>
+
+            </td>            
         </tr>
         <tr>
-            <td>Party:</td>
+            <td  class="label">Party:</td>
             <td>
-                <select id="ddlParty"></select>
+                <asp:DropDownList ID="ddlParty" runat="server"></asp:DropDownList>
+                
             </td>   
-            <td>Relation With Judiciary:</td>
+            <td  class="label">Relation With Judiciary:</td>
             <td></td>
         </tr>
 
