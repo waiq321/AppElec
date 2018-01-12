@@ -9,6 +9,11 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddlParty.DataSource = objCommonFunctions.GetParties();
+        
+        ddlParty.DataTextField = "PartyName";
+        ddlParty.DataValueField = "Partyid";
+        ddlParty.DataBind();
     }
 }
