@@ -119,6 +119,7 @@ textarea {
   color: inherit;
   border-radius:10px;
   line-height:5px;padding:3px;
+  border:solid 1px #ccc;
 }
 button {
   overflow: visible;
@@ -2988,11 +2989,12 @@ select[multiple].form-group-lg .form-control {
   }
 }
 .btn {
+    color:#fff;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 15px;
+  font-weight: bold;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -3006,7 +3008,8 @@ select[multiple].form-group-lg .form-control {
           user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 15px;
+  background:#008d4c;
 }
 .btn:focus,
 .btn:active:focus,
@@ -3021,7 +3024,7 @@ select[multiple].form-group-lg .form-control {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
+  background: #515c8e;
   text-decoration: none;
 }
 .btn:active,

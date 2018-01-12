@@ -14,8 +14,12 @@ p{
 }
 h1,h2,h3,h4,h5,h6,a{
 	font-family: 'Raleway', sans-serif;
-	font-weight:300;
+	font-weight:bold;
+    font-size:18px;
 	margin:0;
+    color:#515c8e;
+    border-bottom: solid 1px;
+    padding: 0 5px;
 }
 ul,label{
 	margin:0;
@@ -26,7 +30,7 @@ body a:hover{
 }   
 /* start header */
 .header_bg{
-	background:#515c8e;
+	background:#008d4c;
 	position: relative;
 }
 .logo{
@@ -2904,7 +2908,7 @@ p.est span{
 }
 .table-form tr
 {
-    line-height:30px;
+    line-height:40px;
 }
 .label{
     text-align:right; padding-right:5px;
