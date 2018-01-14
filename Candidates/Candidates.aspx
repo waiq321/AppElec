@@ -61,15 +61,24 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         
+                        <asp:TemplateField HeaderText="Add Relations">
+                            <ItemTemplate>
+                                   <span class="link"  onclick="lnkClick(this,'Father')">Add Father</span> &nbsp;&nbsp;
+                                <span  class="link" onclick="lnkClick(this,'Spouse')">Add Spouse</span>                        
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        
                          <asp:TemplateField HeaderText="Action" HeaderStyle-Width="200px" >
                       <ItemTemplate>
-                          <span class="icon-edit" title="Edit" onclick="editCandidate(this)"></span>
-                          <span class="icon-details" title="Details" onclick="detailsCandidate(this)"></span>
+                          <span class="icon-edit" title="Edit" onclick="lnkClick(this,'Edit')"></span>
+                          <span class="icon-details" title="Details" onclick="lnkClick(this,'Details')"></span>
 
                           <%--<asp:LinkButton ID="lnkEdit" CommandArgument='<%#Bind("CandidateId") %>' OnClick="lnkEdit_Click" runat="server">Edit</asp:LinkButton>--%>
-                          &nbsp;&nbsp;                         
-                          <asp:Label ID="lblCandidateId" Visible="false" CssClass="lblCandidateId" runat="server" Text='<%#Bind("CandidateId") %>'></asp:Label>
+                          &nbsp;&nbsp;                                                   
+                          <asp:HiddenField ID="hdnCandidateId" runat="server" Value='<%#Bind("CandidateId") %>'></asp:HiddenField>
                       </ItemTemplate>
+                             <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
@@ -77,14 +86,19 @@
                     </div>
 
     <script type="text/javascript">
-        function editCandidate(elem) {            
-            var candidateId = $.trim($(elem).closest("tr").find(".lblCandidateId").html());
-            window.open("../Candidates/AddCandidates.aspx?CandId=" + candidateId, "_blank");
+        function lnkClick(elem,callFrom) {
+            
+            var candidateId = $.trim($(elem).closest("tr").find("[id*='hdnCandidateId']").val());
+            if (callFrom == "Father")
+                window.open("../Candidates/Father.aspx?CandId=" + candidateId, "_blank");
+            else if (callFrom == "Spouse")
+                window.open("../Candidates/Spouse.aspx?CandId=" + candidateId, "_blank");
+            else if (callFrom == "Edit")
+                window.open("../Candidates/AddCandidates.aspx?CandId=" + candidateId, "_blank");
+            else if (callFrom == "Details")
+                window.open("../Candidates/CandidateDetails.aspx?CandId=" + candidateId, "_blank");
         }
-        function detailsCandidate() {
-            var candidateId = $.trim($(elem).closest("tr").find(".lblCandidateId").html());
-            window.open("../Candidates/AddCandidates.aspx?CandId=" + candidateId, "_blank");
-        }
+        
     </script>
 </asp:Content>
 

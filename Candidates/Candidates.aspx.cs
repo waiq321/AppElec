@@ -47,19 +47,5 @@ public partial class Candidates_Candidates : System.Web.UI.Page
             throw;
         }
     }
-    protected void lnkEdit_Click(object sender, EventArgs e)
-    {
-        LinkButton lb = (LinkButton)sender;
-
-        Response.Redirect("~/Candidates/AddCandidates.aspx");
-        
-    }
-    protected void lnkDetails_Click(object sender, EventArgs e)
-    {
-        LinkButton lb = (LinkButton)sender;
-        Response.Redirect("~/Candidates/AddCandidates.aspx");
-
-        bindGrd();
-    }
-
+    
 }
