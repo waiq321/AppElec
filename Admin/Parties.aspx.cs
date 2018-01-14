@@ -72,6 +72,19 @@ public partial class Admin_Parties : System.Web.UI.Page
             con.Close();
         }
     }
+    protected void deleteRecord(object sender, EventArgs e)
+    {
+        LinkButton btn = sender as LinkButton;
+        SqlConnection con = new SqlConnection(_str);
+        con.Open();
+        
+        SqlCommand cmd = new SqlCommand("usp_deletePartiesRecord", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@Partyid", btn.CommandName);
+        cmd.ExecuteNonQuery();
+        FillGridView();
+        con.Close();
+    }
     private void FillGridView()
     {
         using (SqlConnection connection = new SqlConnection(_str))
@@ -82,6 +95,87 @@ public partial class Admin_Parties : System.Web.UI.Page
             sda.Fill(dt);
             GridView1.DataSource = dt;
             GridView1.DataBind();
+        }
+    }
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        SqlConnection con = new SqlConnection(_str);
+        con.Open();
+        SqlCommand cmd = new SqlCommand("usp_UpdateParties", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@PartyName", txtPartyName.Text);
+        cmd.Parameters.AddWithValue("@Chairmain", TxtChairman.Text);
+        cmd.Parameters.AddWithValue("@RegistrationDate", txtRegistrationDate.Text);
+        cmd.Parameters.AddWithValue("@PartyNo", txtRegNo.Text);
+        cmd.Parameters.AddWithValue("@PartyOff", Partyoff.Text);
+
+        cmd.Parameters.AddWithValue("@Partyid", hdID.Value);
+
+        if (picUpload.HasFile)
+        {
+            byte[] imgByteOne = picUpload.FileBytes;
+            cmd.Parameters.AddWithValue("@file", imgByteOne);
+        }
+        else
+        {
+            cmd.Parameters.Add("@file", SqlDbType.VarBinary, -1);
+            cmd.Parameters["@file"].Value = DBNull.Value;
+        }
+       
+
+        cmd.ExecuteNonQuery();
+        btn_save.Visible = true;
+        btnUpdate.Visible = false;
+        FillGridView();
+        ClearField();
+        con.Close();
+
+    }
+    void ClearField()
+    {
+
+        txtPartyName.Text = string.Empty;
+        TxtChairman.Text = string.Empty;
+        txtRegistrationDate.Text = string.Empty;
+        txtRegNo.Text = string.Empty;
+        Partyoff.Text = string.Empty;
+
+
+    }
+
+
+    protected void lnkbtnedit_Click(object sender, EventArgs e)
+    {
+        LinkButton lnkBTN = sender as LinkButton;
+        try
+        {
+            SqlConnection con = new SqlConnection(_str);
+            con.Open();
+            btn_save.Visible = false;
+            btnUpdate.Visible = true;
+            SqlCommand cmd = new SqlCommand("select * from Parties where Partyid=" + lnkBTN.CommandName + "", con);
+            cmd.CommandType = CommandType.Text;
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    txtPartyName.Text = rdr["PartyName"].ToString();
+                    TxtChairman.Text = rdr["Chairmain"].ToString();
+                    txtRegistrationDate.Text = rdr["RegistrationDate"].ToString();
+                    txtRegNo.Text = rdr["PartyNo"].ToString();
+                    Partyoff.Text = rdr["PartyOff"].ToString();
+                    
+                    hdID.Value = lnkBTN.CommandName;
+                }
+            }
+
+        }
+        catch (Exception)
+        {
+
+            throw;
         }
     }
 }

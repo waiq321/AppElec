@@ -8,7 +8,7 @@
        <tr>
             <td  class="label">Election Year:</td>
             <td colspan="3">
-                <asp:TextBox ID="txtElecYear" runat="server"></asp:TextBox>                
+                <asp:TextBox ID="txtElecYear" runat="server" Width="250px"></asp:TextBox>                
             </td>
             
         </tr>

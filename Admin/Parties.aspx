@@ -36,14 +36,21 @@
             <td class="label">Logo:</td>
             <td>
                 <asp:FileUpload ID="picUpload" runat="server" />
+                 <%--<asp:Image Visible="false" ID="imgLeft" runat="server" Height="50px" Width="50px" />
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" Display="Dynamic" ValidationGroup="validate" ValidationExpression="(.*png$)|(.*PNG$)|(.*jpg$)|(.*JPG$)|(.*jpeg$)|(.*JPEG$)"
+                        ControlToValidate="picUpload" runat="server" ForeColor="Red" ErrorMessage="Select Only JPEG or PNG file." />
+                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="picUpload" ErrorMessage="Required" Display="Dynamic" ValidationGroup="validate"></asp:RequiredFieldValidator>
+               --%>
             </td>
 
         </tr>
 
 
+
         <tr>
             <td colspan="4" style="text-align: center;">
                 <asp:Button ID="btn_save" Text="Save" CssClass="btn" runat="server" OnClick="btn_save_Click" />
+                 <asp:Button CausesValidation="false"  ID="btnUpdate" Visible="false" ValidationGroup="validate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
                 <asp:Label ID="LblMeg" runat="server" Text=""></asp:Label>
             </td>
         </tr>
@@ -89,14 +96,28 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Party Logo">
-                            <ItemTemplate>
-                                <asp:Label ID="lblLogo" runat="server" Text='<%#Bind("Logo") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Party Logo">
+                                 <ItemTemplate>
+                                    <asp:Image ID="lblLogo" Width="50px" Height="50px" ImageUrl='<%# Bind("Logo") %>' runat="server" />
+                                      <asp:HiddenField ID="hfvalue" runat="server" Value='<%# Bind("Partyid") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
+                         <asp:TemplateField HeaderText="Edit Record">
+                               <ItemTemplate>
+                                 <asp:LinkButton CausesValidation="false" ID="lnkbtnedit" Text="Edit" CommandName='<%# Bind("Partyid") %>' runat="server" OnClick="lnkbtnedit_Click" > </asp:LinkButton>
+                           </ItemTemplate>
+                              </asp:TemplateField>
+           
+                               <asp:TemplateField HeaderText="Delete Record">
+                  <ItemTemplate>
+                    <asp:LinkButton ID="del" CausesValidation="false" Text="Delete" CommandName='<%# Bind("Partyid") %>' runat="server" OnClick="deleteRecord" > </asp:LinkButton>
+                </ItemTemplate>
+           
+                 </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                    <asp:HiddenField ID="hdID" runat="server" />
                     </div>
             </td>
         </tr>
