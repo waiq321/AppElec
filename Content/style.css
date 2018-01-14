@@ -2920,3 +2920,19 @@ p.est span{
 .success{
     color:green;font-size:12px; font-weight:bold; 
 }
+.icon-edit {    width: 30px;height: 26px;background: url(../images/edit.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+.icon-delete {    width: 25px;height: 25px;background: url(../images/cross-red.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+.icon-details {    width: 25px;height: 25px;background: url(../images/details.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+
+fieldset
+{
+    border:solid 1px #0798BC; border-radius:5px; padding:5px 5px 5px 25px;margin: 5px 0;
+}
+legend
+{         
+    padding: 0;
+    font-size: 15px; color:#0b9444 !important;               
+}
