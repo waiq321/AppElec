@@ -142,6 +142,44 @@ public partial class Admin_Parties : System.Web.UI.Page
 
 
     }
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+
+        if (DataControlRowType.DataRow == e.Row.RowType)
+        {
+            HiddenField PK = e.Row.FindControl("hfvalue") as HiddenField;
+            Image img1 = e.Row.FindControl("lblLogo") as Image;
+          
+
+            SqlConnection con = new SqlConnection(_str);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Logo  from Parties where Partyid=" + PK.Value + "", con);
+            cmd.CommandType = CommandType.Text;
+
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+
+
+                if (!Convert.IsDBNull(reader["Logo"]))
+                {
+                    byte[] byt = (byte[])reader["Logo"];
+                    string imageString1 = Convert.ToBase64String(byt);
+                    img1.ImageUrl = "data:Image/png;base64," + imageString1;
+                }
+               
+
+
+            }
+
+            con.Close();
+        }
+        
+
+    }
 
 
     protected void lnkbtnedit_Click(object sender, EventArgs e)

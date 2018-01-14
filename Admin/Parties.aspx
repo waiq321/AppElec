@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <table class="table-form">
+   <h1>Add/Edit Parties
+      <span style="padding-left:100px">  
+          <asp:Label ID="lblMsg" runat="server"  Text=""></asp:Label>
+          </span>
+    </h1>
+     <table class="table-form">
 
         <tr>
             <td class="label" style="width: 20%">Party Name:</td>
@@ -58,7 +63,7 @@
 
             <td align="center" colspan="4">
                 <div style="padding-top:10px;">
-                <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" Width="100%">
+                <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" Width="100%" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderText="Sr #">
                             <ItemTemplate>
