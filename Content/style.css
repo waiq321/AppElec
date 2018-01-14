@@ -18,9 +18,10 @@ h1,h2,h3,h4,h5,h6,a{
     font-size:18px;
 	margin:0;
     color:#515c8e;
-    border-bottom: solid 1px;
+    border-bottom: dotted 1px;
     padding: 0 5px;
 }
+
 ul,label{
 	margin:0;
 	padding:0;
@@ -37,11 +38,11 @@ body a:hover{
 	position: absolute;
 	left: 0%;
 	right:2%;
-	z-index: 999;
-	top:-25px;
+	z-index: 999;	
 	text-align: center;
 	width:14%;
 	margin: 0 auto;
+    background-image:url('../images/logo.png');width:100px;height:96px;
 }
 .logo a img {
     width: 100%;
@@ -2915,8 +2916,69 @@ p.est span{
 }
 
 .error{
-    color:red;font-size:12px; font-weight:bold; 
+    color:red;font-size:20px; font-weight:bold; 
 }
 .success{
-    color:green;font-size:12px; font-weight:bold; 
+    color:green;font-size:20px; font-weight:bold; 
+}
+.icon-edit {    width: 30px;height: 26px;background: url(../images/edit.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+.icon-delete {    width: 25px;height: 25px;background: url(../images/cross-red.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+.icon-details {    width: 33px;height: 31px;background: url(../images/details.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+}
+
+fieldset
+{
+    border:solid 1px #0798BC; border-radius:5px; padding:5px 5px 5px 25px;margin: 5px 0;
+}
+legend
+{         
+    padding: 0;
+    font-size: 15px; color:#0b9444 !important;               
+}
+.table-form span
+{
+    font-weight:bold;padding-left:5px;
+}
+.table-bordered tr:first-child
+{
+    line-height:30px; background-color:#515c8e !important;color:#fff !important;font-weight:bold;
+}
+.table-bordered th {
+    text-align:center !important;
+}
+.picture{
+    border-radius:50px;
+}
+.link
+{
+    color:blue;font-weight:bold;text-decoration:underline;cursor:pointer;
+}
+
+.div-top-heading{
+    width:100%;
+    font-family: 'Raleway', sans-serif;
+	font-weight:bold;
+    font-size:18px;
+	margin:0;
+    color:#515c8e;
+    border-bottom: dotted 1px;
+    padding: 0 5px;    float: left;
+    margin-bottom: 10px;
+}
+.div-heading{
+    float:left;width:40%;
+}
+.div-msg{
+    padding-left:20px;float:left; width:40%
+}
+
+.top-link{
+        float: right;
+    margin-top: -20px;width:20%;text-align:right;
+}
+table tbody
+{
+    width:100% !important;
 }

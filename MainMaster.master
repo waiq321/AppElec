@@ -12,9 +12,10 @@
     <link href='fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <link href='fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="Content/style.css">
-    <link rel="stylesheet" href="Content/flexslider.css" type="text/css" media="screen" />
-    <!---strat-slider---->
-    <script type="text/javascript" src="Scripts/jquery-1.11.1.min.js"></script>
+    
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.11.1.min.js")%>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/bootstrap-3.1.1.min.js")%>"></script>        
+     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/easing.js") %>"></script>
 
 </head>
 <body>
@@ -25,9 +26,7 @@
             <div class="container">
                 <!-----start-header----->
                 <div class="header">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="~/images/logo.png" alt=" " /></a>
+                    <div class="logo">                        
                     </div>
                     <nav class="navbar navbar-default">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,17 +42,46 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="act"><a href="index.html">Election Years</a></li>
-                                <li class="act"><a href="index.html">Parties</a></li>
+                                <li class="act"><a href="../Admin/ElectionYears.aspx">Election Years</a></li>
+                                <li class="act"><a href="../Admin/Parties.aspx">Parties</a></li>
                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidates<b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="party">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="../Candidates/Candidates.aspx">Candidate</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li> 
+                                                    <li><a href="../Candidates/ElectionCandidates.aspx">Elec. Candidates</a></li>                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                  <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NA<b class="caret"></b></a>
                                     <ul class="dropdown-menu multi-column columns-3">
                                         <div class="row">
                                             <div class="party">
                                                 <ul class="multi-column-dropdown">
-                                                    <li><a href="about.html">NA</a></li>
+                                                    <li><a href="../Admin/NAList.aspx">NA List</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="about.html">NA Results</a></li>                                                    
+                                                    <li><a href="../Admin/AddNA.aspx">Add NA</a></li>                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PA<b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="party">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="../Admin/NAList.aspx">PA List</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="../Admin/AddNA.aspx">Add PA</a></li>                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -86,25 +114,7 @@
             </div>
         </div>
     </form>
-    <script type="text/javascript" src="Scripts/move-top.js"></script>
-    <script type="text/javascript" src="Scripts/easing.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
 
-            var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-            };
-
-
-            $().UItoTop({ easingType: 'easeOutQuart' });
-
-        });
-    </script>
-    <a href="#" id="toTop" style="display: block;">
-        <span id="toTopHover" style="opacity: 1;"></span></a>
-    <script type="text/javascript" src="Scripts/bootstrap-3.1.1.min.js"></script>
+    
 </body>
 </html>
