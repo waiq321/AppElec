@@ -36,4 +36,11 @@ public class CommonFunctions
         List<SqlParameter> parm = new List<SqlParameter> { };
         return ObjDBManager.ExecuteDataTable("GetDistrict", parm);
     }
+
+    public DataTable GetNA()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetNa", parm);
+    }
 }
