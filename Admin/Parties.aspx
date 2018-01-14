@@ -41,11 +41,7 @@
             <td class="label">Logo:</td>
             <td>
                 <asp:FileUpload ID="picUpload" runat="server" />
-                 <%--<asp:Image Visible="false" ID="imgLeft" runat="server" Height="50px" Width="50px" />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" Display="Dynamic" ValidationGroup="validate" ValidationExpression="(.*png$)|(.*PNG$)|(.*jpg$)|(.*JPG$)|(.*jpeg$)|(.*JPEG$)"
-                        ControlToValidate="picUpload" runat="server" ForeColor="Red" ErrorMessage="Select Only JPEG or PNG file." />
-                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="picUpload" ErrorMessage="Required" Display="Dynamic" ValidationGroup="validate"></asp:RequiredFieldValidator>
-               --%>
+                
             </td>
 
         </tr>
