@@ -69,7 +69,7 @@
 
             <td align="center" colspan="4">
                 <div style="padding-top:10px;">
-                <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" Width="100%">
+                <asp:GridView ID="GridView1" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="Sr #">
                             <ItemTemplate>
