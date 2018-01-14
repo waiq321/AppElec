@@ -22,4 +22,10 @@ public class CommonFunctions
         List<SqlParameter> parm = new List<SqlParameter>{};
         return ObjDBManager.ExecuteDataTable("GetParties", parm);
     }
+    public DataTable GetDistrict()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetParties", parm);
+    }
 }

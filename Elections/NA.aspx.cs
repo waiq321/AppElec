@@ -9,6 +9,13 @@ public partial class Elections_NA : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+
+    }
+    protected void loadDistrict()
+    {
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddl_provence.DataSource = objCommonFunctions.
 
     }
 }
