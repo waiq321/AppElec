@@ -9,7 +9,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 
-public partial class Admin_NAsearch : System.Web.UI.Page
+public partial class Admin_NAList : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)

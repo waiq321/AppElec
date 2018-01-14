@@ -58,6 +58,34 @@
                                         </div>
                                     </ul>
                                 </li>
+                                  <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NA<b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="party">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="../Admin/NAList.aspx">NA List</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="../Admin/AddNA.aspx">Add NA</a></li>                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                                 <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PA<b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-column columns-3">
+                                        <div class="row">
+                                            <div class="party">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="../Admin/NAList.aspx">PA List</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="../Admin/AddNA.aspx">Add PA</a></li>                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
                                 <li><a href="results.html">Reports</a></li>
                                 
                             </ul>
