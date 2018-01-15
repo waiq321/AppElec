@@ -11,7 +11,7 @@
      <table class="table-form">
 
         <tr>
-            <td class="label" style="width: 20%">Party Name:</td>
+            <td class="label" style="width: 20%" >Party Name:</td>
             <td style="width: 30%">
                 <asp:TextBox ID="txtPartyName" runat="server"></asp:TextBox>
             </td>

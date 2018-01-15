@@ -201,7 +201,7 @@ public partial class Admin_Parties : System.Web.UI.Page
                 {
                     txtPartyName.Text = rdr["PartyName"].ToString();
                     TxtChairman.Text = rdr["Chairmain"].ToString();
-                    txtRegistrationDate.Text = rdr["RegistrationDate"].ToString();
+                    txtRegistrationDate.Text = Convert.ToDateTime(rdr["RegistrationDate"]).ToString("MM/dd//yyyy");
                     txtRegNo.Text = rdr["PartyNo"].ToString();
                     Partyoff.Text = rdr["PartyOff"].ToString();
                     
@@ -213,7 +213,7 @@ public partial class Admin_Parties : System.Web.UI.Page
         catch (Exception)
         {
 
-            throw;
+           
         }
     }
 }
