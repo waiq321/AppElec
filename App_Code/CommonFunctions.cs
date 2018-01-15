@@ -43,4 +43,23 @@ public class CommonFunctions
         List<SqlParameter> parm = new List<SqlParameter> { };
         return ObjDBManager.ExecuteDataTable("GetNa", parm);
     }
+
+    public DataTable GetCatdidate()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetElectionCandidate", parm);
+    }
+    public DataTable GetelectionYear()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetElectionYear", parm);
+    }
+    public DataTable GetDistrict()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetParties", parm);
+    }
 }

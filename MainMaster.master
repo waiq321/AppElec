@@ -52,7 +52,8 @@
                                                 <ul class="multi-column-dropdown">
                                                     <li><a href="../Candidates/Candidates.aspx">Candidate</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li>                                                    
+                                                    <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li> 
+                                                    <li><a href="../Candidates/ElectionCandidates.aspx">Elec. Candidates</a></li>                                                   
                                                 </ul>
                                             </div>
                                         </div>
