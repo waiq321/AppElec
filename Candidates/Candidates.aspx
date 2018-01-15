@@ -61,10 +61,12 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         
-                        <asp:TemplateField HeaderText="Add Relations">
+                        <asp:TemplateField HeaderText="Other">
                             <ItemTemplate>
-                                   <span class="link"  onclick="lnkClick(this,'Father')">Add Father</span> &nbsp;&nbsp;
-                                <span  class="link" onclick="lnkClick(this,'Spouse')">Add Spouse</span>                        
+                                <span class="link"  onclick="lnkClick(this,'Father')">Father</span> &nbsp;&nbsp;
+                                <span  class="link" onclick="lnkClick(this,'Spouse')">Spouse</span> &nbsp;&nbsp;                        
+                                <span  class="link" onclick="lnkClick(this,'Business')">Business</span>
+                                
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
@@ -97,6 +99,9 @@
                 window.open("../Candidates/AddCandidates.aspx?CandId=" + candidateId, "_blank");
             else if (callFrom == "Details")
                 window.open("../Candidates/CandidateDetails.aspx?CandId=" + candidateId, "_blank");
+            else if (callFrom == "Business")
+                window.open("../Candidates/Businesses.aspx?CandId=" + candidateId, "_blank");
+
         }
         
     </script>

@@ -52,6 +52,9 @@ public partial class Candidates_CandidateDetails : System.Web.UI.Page
 
             grdSpouse.DataSource = ds.Tables[2];
             grdSpouse.DataBind();
+
+            grdBusiness.DataSource = ds.Tables[3];
+            grdBusiness.DataBind();
         }
         catch
         {

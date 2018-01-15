@@ -180,6 +180,33 @@
                 </asp:GridView>
               
                     </div>
-    <h3 style="margin-top:30px;">Other Info</h3>
+    <h3 style="margin-top:30px;">Businesses Info</h3>
+
+     <div  style="padding-top: 10px;">
+
+        <asp:GridView ID="grdBusiness" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
+            <Columns>
+                <asp:TemplateField HeaderText="Business Type">
+                    <ItemTemplate>
+                        <asp:Label ID="lblBusinessType" runat="server" Text='<%#Bind("BusinessType") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Name">
+                    <ItemTemplate>
+                        <asp:Label ID="lblName" runat="server" Text='<%#Bind("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Type">
+                    <ItemTemplate>
+                        <asp:Label ID="lblType" runat="server" Text='<%#Bind("Type") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>                
+                
+            </Columns>
+        </asp:GridView>
+
+    </div>
 </asp:Content>
 
