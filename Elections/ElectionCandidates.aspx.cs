@@ -16,76 +16,74 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            //-----------------------------------------
-            //GetElectionYear
-            //-----------------------------------------
-            CommonFunctions objCommonFunctionsElectionYear = new CommonFunctions();
-            ddlElectionYear.DataSource = objCommonFunctionsElectionYear.GetelectionYear();
-
-            ddlElectionYear.DataTextField = "ElectionYear";
-            ddlElectionYear.DataValueField = "Electionid";
-            ddlElectionYear.DataBind();
-
-            //-----------------------------------------
-            //GetDistrict
-            //-----------------------------------------
+            GetYears();
+            GetProvince();
+            GetDistrict();
+            GetNA();
+            GetParties();
+            GetCandidates();
+            FillGridView();
+        }
+    }
+    protected void GetProvince()
+    {
             CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
             ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
             ddlProvince.DataTextField = "ProvinceName";
             ddlProvince.DataValueField = "ProvinceId";
             ddlProvince.DataBind();
-
-
-            //-----------------------------------------
-            //GetDistrict
-            //-----------------------------------------
-
-            CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-            ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict();
-
-            ddlDistrict.DataTextField = "Name";
-            ddlDistrict.DataValueField = "DistrictId";
-            ddlDistrict.DataBind();
-
-
-            //-----------------------------------------
-            //GetNA
-            //-----------------------------------------
-
-            CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
-            ddlNA.DataSource = objCommonFunctionsGetNA.GetNA();
-
-            ddlNA.DataTextField = "Name";
-            ddlNA.DataValueField = "NAId";
-            ddlNA.DataBind();
-            //-----------------------------------------
-            //GetParties
-            //-----------------------------------------
-
-            CommonFunctions objCommonFunctionsGetParties = new CommonFunctions();
-            ddlParty.DataSource = objCommonFunctionsGetParties.GetParties();
-
-            ddlParty.DataTextField = "PartyName";
-            ddlParty.DataValueField = "PartyId";
-            ddlParty.DataBind();
-
-            //-----------------------------------------
-            //GetCandidate
-            //-----------------------------------------
-
-            CommonFunctions objCommonFunctionsGetCandidate = new CommonFunctions();
-            ddlCandidate.DataSource = objCommonFunctionsGetCandidate.GetCatdidate();
-
-            ddlCandidate.DataTextField = "Name";
-            ddlCandidate.DataValueField = "candidateid";
-            ddlCandidate.DataBind();
-
-            FillGridView();
-        }
     }
+    protected void GetDistrict()
+    {
+        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
 
-        protected void btn_save_Click(object sender, EventArgs e)
+        ddlDistrict.DataTextField = "Name";
+        ddlDistrict.DataValueField = "DistrictId";
+        ddlDistrict.DataBind();
+
+    }
+    protected void GetYears()
+    {
+        CommonFunctions objCommonFunctionsElectionYear = new CommonFunctions();
+        ddlElectionYear.DataSource = objCommonFunctionsElectionYear.GetelectionYear();
+
+        ddlElectionYear.DataTextField = "ElectionYear";
+        ddlElectionYear.DataValueField = "Electionid";
+        ddlElectionYear.DataBind();
+
+    }
+    protected void GetNA()
+    {
+        CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
+        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA(ddlDistrict.SelectedValue);
+
+        ddlNA.DataTextField = "Name";
+        ddlNA.DataValueField = "NAId";
+        ddlNA.DataBind();
+    }
+    protected void GetParties()
+    {
+        CommonFunctions objCommonFunctionsGetParties = new CommonFunctions();
+        ddlParty.DataSource = objCommonFunctionsGetParties.GetParties();
+
+        ddlParty.DataTextField = "PartyName";
+        ddlParty.DataValueField = "PartyId";
+        ddlParty.DataBind();
+
+    }
+    protected void GetCandidates()
+    {
+        CommonFunctions objCommonFunctionsGetCandidate = new CommonFunctions();
+        ddlCandidate.DataSource = objCommonFunctionsGetCandidate.GetPartyCatdidate(ddlParty.SelectedValue);
+
+        ddlCandidate.DataTextField = "Name";
+        ddlCandidate.DataValueField = "candidateid";
+        ddlCandidate.DataBind();
+
+    }
+    protected void btn_save_Click(object sender, EventArgs e)
     {
 
         SqlConnection con = new SqlConnection(_str);
@@ -108,17 +106,10 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
             con.Close();
             LblMeg.Text = "Save Successfully";
             FillGridView();
-
             txtCandidateType.Text = "";
-
-
-
         }
-
-
         catch (Exception ex)
         {
-
 
         }
        
@@ -197,7 +188,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
 
         con.Close();
     }
-         private void FillGridView()
+    private void FillGridView()
     {
         using (SqlConnection connection = new SqlConnection(_str))
         {
@@ -210,4 +201,19 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         }
     }
 
+
+    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetDistrict();
+    }
+
+    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetNA();
+    }
+
+    protected void ddlParty_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetCandidates();
+    }
 }  

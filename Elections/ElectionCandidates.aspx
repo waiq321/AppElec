@@ -18,7 +18,7 @@
                 </td>
                <td class="label" style="width:10%;">Province:</td>
                 <td  style="width:20%;">
-                    <asp:DropDownList ID="ddlProvince" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlProvince"  AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
                 </td>
              
               
@@ -27,7 +27,7 @@
                <tr>
                     <td class="label" style="width:10%;">District:</td>
                 <td  style="width:20%;">
-                    <asp:DropDownList ID="ddlDistrict" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlDistrict"  AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
                 </td>
                <td class="label" style="width:10%;">NA:</td>
                 <td  style="width:20%;">
@@ -42,7 +42,7 @@
              <tr>
                    <td class="label" style="width:10%;">Party:</td>
                 <td  style="width:20%;">
-                    <asp:DropDownList ID="ddlParty" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlParty" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlParty_SelectedIndexChanged"></asp:DropDownList>
                 </td>
               
                    <td class="label" style="width:10%;">Candidate:</td>

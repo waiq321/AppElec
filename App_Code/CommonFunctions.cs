@@ -30,25 +30,31 @@ public class CommonFunctions
         return ObjDBManager.ExecuteDataTable("GetProvince", parm);
     }
 
-    public DataTable GetDistrict()
+    public DataTable GetDistrict(string provinceid)
     {
         DBManager ObjDBManager = new DBManager();
-        List<SqlParameter> parm = new List<SqlParameter> { };
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@ProvinceId",provinceid)
+        };
         return ObjDBManager.ExecuteDataTable("GetDistrict", parm);
     }
 
-    public DataTable GetNA()
+    public DataTable GetNA(string DistrictId)
     {
         DBManager ObjDBManager = new DBManager();
-        List<SqlParameter> parm = new List<SqlParameter> { };
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@DistrictId",DistrictId)
+        };
         return ObjDBManager.ExecuteDataTable("GetNa", parm);
     }
 
-    public DataTable GetCatdidate()
+    public DataTable GetPartyCatdidate(string partyId)
     {
         DBManager ObjDBManager = new DBManager();
-        List<SqlParameter> parm = new List<SqlParameter> { };
-        return ObjDBManager.ExecuteDataTable("GetElectionCandidate", parm);
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@PartyId",partyId)
+        };
+        return ObjDBManager.ExecuteDataTable("GetPartyCandidate", parm);
     }
     public DataTable GetelectionYear()
     {
