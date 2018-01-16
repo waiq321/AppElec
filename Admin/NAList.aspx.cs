@@ -35,7 +35,7 @@ public partial class Admin_NAList : System.Web.UI.Page
         //-----------------------------------------
 
         CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
 
         ddlDistrict.DataTextField = "Name";
         ddlDistrict.DataValueField = "DistrictId";
@@ -72,5 +72,15 @@ public partial class Admin_NAList : System.Web.UI.Page
     {
         bindGrd();
 
+    }
+    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
+
+        ddlDistrict.DataTextField = "Name";
+        ddlDistrict.DataValueField = "DistrictId";
+        ddlDistrict.DataBind();
     }
 }

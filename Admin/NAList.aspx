@@ -12,7 +12,7 @@
     <tr>
                <td class="label" style="width:10%;">Province:</td>
                 <td  style="width:20%;">
-                    <asp:DropDownList ID="ddlProvince" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlProvince" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
                 </td>
              
                <td class="label" style="width:10%;">District:</td>
