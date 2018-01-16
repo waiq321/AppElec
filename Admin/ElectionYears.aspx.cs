@@ -36,7 +36,7 @@ public partial class Admin_ElectionYears : System.Web.UI.Page
             cmd.ExecuteNonQuery();
             con.Close();
 
-            LblMeg.Text = "Save Successfully";
+            lblMsg.Text = "Save Successfully";
             FillGridView();
             txtElecYear.Text = "";
         }

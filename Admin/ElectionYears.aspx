@@ -8,27 +8,24 @@
           <asp:Label ID="lblMsg" runat="server"  Text=""></asp:Label>
           </span>
     </h1>
-    <table class="table-form">  
+    <table class="table-form" style="width:50%;">  
        
        <tr>
-            <td  class="label">Election Year:</td>
-            <td colspan="3">
+            <td  class="label" style="width:20%">Election Year:</td>
+            <td  style="width:20%">
                 <asp:TextBox ID="txtElecYear" runat="server" Width="250px"></asp:TextBox>                
             </td>
-            
+            <td>
+              <asp:Button ID="Button1" Text="Save" CssClass="btn"  runat="server" OnClick="btn_save_Click" />
+              <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+          </td>
         </tr>
 
-      <tr>
-          <td colspan="3" style="text-align:center;">
-              <asp:Button ID="btn_save" Text="Save" CssClass="btn"  runat="server" OnClick="btn_save_Click" />
-              <asp:Label ID="LblMeg" runat="server" Text=""></asp:Label>
-          </td>
-      </tr>
-      <tr>
-            
-          <td align="center" colspan="2">
-              <div class="table-bordered">
-                <asp:GridView  ID="GridView1" CssClass="table-striped" AutoGenerateColumns="false" runat="server"  Width="100%">
+    
+
+  </table> 
+              <div style="width:70%; margin:0 auto;margin-top:20px;">
+                <asp:GridView  ID="GridView1" CssClass="table-striped table-bordered" AutoGenerateColumns="false" runat="server"  Width="100%">
               <Columns>
                   <asp:TemplateField HeaderText="Sr #">
                       <ItemTemplate>
@@ -39,17 +36,33 @@
                       <ItemTemplate>
                           <asp:Label ID="lblid" runat="server" Text='<%#Bind("ElectionYear") %>'></asp:Label>
                       </ItemTemplate>
+                  </asp:TemplateField>                  
+                    <asp:TemplateField HeaderText="Action" >
+                      <ItemTemplate>
+                          <span class="link"  onclick="lnkClick(this,'Candidate')">Add Candidate</span> &nbsp;&nbsp;
+                                <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
+                          <asp:HiddenField ID="hdnElectionId" runat="server" Value='<%#Bind("ElectionId") %>'></asp:HiddenField>
+                      </ItemTemplate>
+                             <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>
-                  <asp:TemplateField >
+                  <asp:TemplateField HeaderText="Delete">
                       <ItemTemplate>
                           <asp:LinkButton ID="LinkButton1" CommandArgument='<%#Bind("ElectionId") %>' OnClick="LinkButton1_Click" runat="server">Delete</asp:LinkButton>
                       </ItemTemplate>
                   </asp:TemplateField>
               </Columns>
             </asp:GridView>
-                  </div>
-</td>
-                
-  </table> 
+                  </div>    
+    <script type="text/javascript">
+        function lnkClick(elem,callFrom) {
+            
+            var electionId = $.trim($(elem).closest("tr").find("[id*='hdnElectionId']").val());
+            if (callFrom == "Candidate")
+                window.open("../Elections/ElectionCandidates.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Results")
+                window.open("../Elections/ElectionResults.aspx?ElecnId=" + electionId, "_blank");
+        }
+        
+    </script>
 </asp:Content>
 
