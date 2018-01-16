@@ -32,7 +32,7 @@ public partial class Admin_AddNA : System.Web.UI.Page
         //-----------------------------------------
 
         CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlDistrict.SelectedValue);
 
         ddlDistrict.DataTextField = "Name";
         ddlDistrict.DataValueField = "DistrictId";
