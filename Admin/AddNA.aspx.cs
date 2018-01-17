@@ -14,33 +14,29 @@ public partial class Admin_AddNA : System.Web.UI.Page
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        //-----------------------------------------
-        //GetProvince
-        //-----------------------------------------
-
+        GetProvince();
+        GetDistrict();
+        FillGridView();
+    }
+    protected void GetProvince()
+    {
         CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
         ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
         ddlProvince.DataTextField = "ProvinceName";
         ddlProvince.DataValueField = "ProvinceId";
         ddlProvince.DataBind();
-        
-
-        //-----------------------------------------
-        //GetDistrict
-        //-----------------------------------------
-
+    }
+    protected void GetDistrict()
+    {
         CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlDistrict.SelectedValue);
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
 
         ddlDistrict.DataTextField = "Name";
         ddlDistrict.DataValueField = "DistrictId";
         ddlDistrict.DataBind();
 
-        FillGridView();
     }
-
     protected void btn_save_Click(object sender, EventArgs e)
     {
 
@@ -186,5 +182,10 @@ public partial class Admin_AddNA : System.Web.UI.Page
         txtLongitude.Text = string.Empty;
         txtFamousPlace.Text = string.Empty;
         
+    }
+
+    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetDistrict();
     }
 }

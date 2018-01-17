@@ -16,10 +16,11 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            GetYears();
+            
             GetProvince();
             GetDistrict();
             GetNA();
+            GetPA();
             GetParties();
             GetCandidates();
             FillGridView();
@@ -44,16 +45,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         ddlDistrict.DataBind();
 
     }
-    protected void GetYears()
-    {
-        CommonFunctions objCommonFunctionsElectionYear = new CommonFunctions();
-        ddlElectionYear.DataSource = objCommonFunctionsElectionYear.GetelectionYear();
-
-        ddlElectionYear.DataTextField = "ElectionYear";
-        ddlElectionYear.DataValueField = "Electionid";
-        ddlElectionYear.DataBind();
-
-    }
+    
     protected void GetNA()
     {
         CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
@@ -62,6 +54,15 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         ddlNA.DataTextField = "Name";
         ddlNA.DataValueField = "NAId";
         ddlNA.DataBind();
+    }
+    protected void GetPA()
+    {
+        CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
+        ddlPA.DataSource = objCommonFunctionsGetNA.GetPA(ddlNA.SelectedValue);
+
+        ddlPA.DataTextField = "Name";
+        ddlPA.DataValueField = "PAId";
+        ddlPA.DataBind();
     }
     protected void GetParties()
     {
@@ -90,66 +91,39 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
 
         try
         {
-
+            string paId = "0";
+            if(!string.IsNullOrEmpty(ddlPA.SelectedValue))
+            {
+                paId = ddlPA.SelectedValue;
+            }
             con.Open();
             SqlCommand cmd = new SqlCommand("InsertElectionCandidates", con);
 
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Electionid", ddlElectionYear.SelectedValue);
+            cmd.CommandType = CommandType.StoredProcedure;  
+            cmd.Parameters.AddWithValue("@Electionid", Request.QueryString["ElecnId"]);
             cmd.Parameters.AddWithValue("@Provinceid", ddlProvince.SelectedValue);
             cmd.Parameters.AddWithValue("@Districtid", ddlDistrict.SelectedValue);
-            cmd.Parameters.AddWithValue("@PAid", ddlParty.SelectedValue);
-            cmd.Parameters.AddWithValue("@Candidateid", ddlCandidate.SelectedValue);
-            cmd.Parameters.AddWithValue("@CandidateType", txtCandidateType.Text.Trim());
-            
+            cmd.Parameters.AddWithValue("@PartyId", ddlParty.SelectedValue);
+            cmd.Parameters.AddWithValue("@NAId", ddlNA.SelectedValue);
+            cmd.Parameters.AddWithValue("@PAId", paId);
+            cmd.Parameters.AddWithValue("@CandidateId", ddlCandidate.SelectedValue);
+            cmd.Parameters.AddWithValue("@CandidateType", rdoType.SelectedValue);
+
             cmd.ExecuteNonQuery();
             con.Close();
-            LblMeg.Text = "Save Successfully";
+            lblMsg.Text = "Save Successfully";
+            lblMsg.ForeColor = System.Drawing.Color.Green;
             FillGridView();
-            txtCandidateType.Text = "";
+            
         }
         catch (Exception ex)
         {
-
+            lblMsg.Text = "Some error occurred";
+            lblMsg.ForeColor = System.Drawing.Color.Red;
         }
        
     }
-    protected void lnkbtnedit_Click(object sender, EventArgs e)
-    {
-        LinkButton lnkBTN = sender as LinkButton;
-        try
-        {
-            SqlConnection con = new SqlConnection(_str);
-            con.Open();
-            btn_save.Visible = false;
-            btnUpdate.Visible = true;
-            SqlCommand cmd = new SqlCommand("select * from ElectionCandidates where Id=" + lnkBTN.CommandName + "", con);
-            cmd.CommandType = CommandType.Text;
-
-            SqlDataReader rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                while (rdr.Read())
-                {
-                    ddlElectionYear.SelectedItem.Value = rdr["Electionid"].ToString();
-                    ddlProvince.SelectedItem.Value = rdr["Provinceid"].ToString();
-                    ddlDistrict.SelectedItem.Value = rdr["Districtid"].ToString();
-                    ddlParty.SelectedItem.Value = rdr["PAid"].ToString();
-                    ddlCandidate.SelectedItem.Value = rdr["Candidateid"].ToString();
-                    txtCandidateType.Text = rdr["CandidateType"].ToString();
-
-                    hdID.Value = lnkBTN.CommandName;
-                }
-            }
-
-        }
-        catch (Exception ex)
-        {
-
-
-        }
-
-    }
+  
     protected void deleteRecord(object sender, EventArgs e)
     {
         LinkButton btn = sender as LinkButton;
@@ -158,62 +132,66 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
 
         SqlCommand cmd = new SqlCommand("usp_deleteElectionCandidates", con);
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@id", btn.CommandName);
+        cmd.Parameters.AddWithValue("@Id", btn.CommandArgument);
+        cmd.Parameters.AddWithValue("@Type", btn.CommandName);
         cmd.ExecuteNonQuery();
-        FillGridView();
         con.Close();
+        FillGridView();        
+        lblMsg.Text = "Deleted Successfully!";
+        lblMsg.ForeColor = System.Drawing.Color.Green;
     }
-    protected void btnUpdate_Click(object sender, EventArgs e)
-    {
-        SqlConnection con = new SqlConnection(_str);
-        con.Open();
-        SqlCommand cmd = new SqlCommand("usp_UpdateElectionCandidates", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-
-        cmd.Parameters.AddWithValue("@Electionid", ddlElectionYear.SelectedValue);
-        cmd.Parameters.AddWithValue("@Provinceid", ddlProvince.SelectedValue);
-        cmd.Parameters.AddWithValue("@Districtid", ddlDistrict.SelectedValue);
-        cmd.Parameters.AddWithValue("@PAid", ddlParty.SelectedValue);
-        cmd.Parameters.AddWithValue("@Candidateid", ddlCandidate.SelectedValue);
-        cmd.Parameters.AddWithValue("@CandidateType", txtCandidateType.Text.Trim());
-
-
-        cmd.Parameters.AddWithValue("@Id", hdID.Value);
-
-
-        cmd.ExecuteNonQuery();
-        btn_save.Visible = true;
-        btnUpdate.Visible = false;
-        FillGridView();
-
-        con.Close();
-    }
+ 
     private void FillGridView()
     {
-        using (SqlConnection connection = new SqlConnection(_str))
+        string paId = "0";
+        if (!string.IsNullOrEmpty(ddlPA.SelectedValue))
         {
-            SqlCommand command = new SqlCommand("Select_ElectionCandidates", connection);
-            SqlDataAdapter sda = new SqlDataAdapter(command);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
+            paId = ddlPA.SelectedValue;
         }
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter>
+            {
+                new SqlParameter("@ElectionId",ddlNA.SelectedValue),
+                new SqlParameter("@NAId",ddlNA.SelectedValue),
+                new SqlParameter("@PAId",paId),
+                new SqlParameter("@Type",rdoType.SelectedValue)
+            };
+        GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
+        GridView1.DataBind();
     }
 
 
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();
+        GetNA();
+        FillGridView();
     }
 
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetNA();
+        FillGridView();
     }
 
     protected void ddlParty_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetCandidates();
+    }
+
+    protected void rdoType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rdoType.SelectedValue == "NA")
+        {
+            GetNA();
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
+            FillGridView();
+        }
+        else
+        {
+            GetPA();
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
+            FillGridView();
+        }
     }
 }  

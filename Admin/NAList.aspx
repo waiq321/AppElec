@@ -17,7 +17,7 @@
              
                <td class="label" style="width:10%;">District:</td>
                 <td  style="width:20%;">
-                    <asp:DropDownList ID="ddlDistrict" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlDistrict"   runat="server" ></asp:DropDownList>
                 </td>
  
         </tr>

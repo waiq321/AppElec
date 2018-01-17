@@ -14,22 +14,51 @@ public partial class Admin_PA : System.Web.UI.Page
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        //-----------------------------------------
-        //GetNA
-        //-----------------------------------------
+        if (!Page.IsPostBack)
+        {
+            GetProvince();
+            GetDistrict();
+            GetNA();
+            FillGridView();
+        }
+    }
+    protected void GetProvince()
+    {
+        CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
+        ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
+        ddlProvince.DataTextField = "ProvinceName";
+        ddlProvince.DataValueField = "ProvinceId";
+        ddlProvince.DataBind();
+    }
+    protected void GetDistrict()
+    {
+        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
+
+        ddlDistrict.DataTextField = "Name";
+        ddlDistrict.DataValueField = "DistrictId";
+        ddlDistrict.DataBind();
+
+    }
+
+    protected void GetNA()
+    {
         CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
-        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA();
+        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA(ddlDistrict.SelectedValue);
 
         ddlNA.DataTextField = "Name";
         ddlNA.DataValueField = "NAId";
         ddlNA.DataBind();
-
-
+    }
+    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetDistrict();
+        GetNA();
         FillGridView();
     }
 
+ 
     protected void btn_save_Click(object sender, EventArgs e)
     {
 
@@ -77,15 +106,14 @@ public partial class Admin_PA : System.Web.UI.Page
     }
     private void FillGridView()
     {
-        using (SqlConnection connection = new SqlConnection(_str))
-        {
-            SqlCommand command = new SqlCommand("Select_PA", connection);
-            SqlDataAdapter sda = new SqlDataAdapter(command);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-        }
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter>
+            {
+                new SqlParameter("@NAId",ddlNA.SelectedValue),                
+            };
+        GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_PA", parm);
+        GridView1.DataBind();
+       
     }
     protected void lnkbtnedit_Click(object sender, EventArgs e)
     {
@@ -173,5 +201,16 @@ public partial class Admin_PA : System.Web.UI.Page
         txtLongitude.Text = string.Empty;
         txtFamousPlace.Text = string.Empty;
         
+    }
+
+    protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        FillGridView();
+    }
+
+    protected void ddlDistrict_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+        GetNA();
+        FillGridView();
     }
 }

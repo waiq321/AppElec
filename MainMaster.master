@@ -50,10 +50,10 @@
                                         <div class="row">
                                             <div class="party">
                                                 <ul class="multi-column-dropdown">
-                                                    <li><a href="../Candidates/Candidates.aspx">Candidate</a></li>
+                                                    <li><a href="../Candidates/Candidates.aspx">Candidates List</a></li>
                                                     <li class="divider"></li>
                                                     <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li> 
-                                                   <%-- <li><a href="../Elections/ElectionCandidates.aspx">Elec. Candidates</a></li> --%>                                                  
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -79,9 +79,10 @@
                                         <div class="row">
                                             <div class="party">
                                                 <ul class="multi-column-dropdown">
-                                                    <li><a href="../Admin/NAList.aspx">PA List</a></li>
+                                                    <li><a href="../Admin/PAList.aspx">PA List</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="../Admin/AddNA.aspx">Add PA</a></li>                                                    
+                                                    <li><a href="../Admin/PA.aspx">Add PA</a></li>                                                    
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
