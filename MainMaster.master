@@ -53,6 +53,8 @@
                                                     <li><a href="../Candidates/Candidates.aspx">Candidates List</a></li>
                                                     <li class="divider"></li>
                                                     <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li> 
+                                                    <li class="divider"></li>
+                                                    <li><a href="../Elections/ElectionCandidatesList.aspx">Election Candidates List</a></li> 
                                                     
                                                 </ul>
                                             </div>
