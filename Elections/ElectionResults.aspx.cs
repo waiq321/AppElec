@@ -9,131 +9,180 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 
-public partial class Elections_ElectionResults : System.Web.UI.Page
+public partial class Candidates_ElectionResults : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
+    CommonFunctions objCommonFunctions = new CommonFunctions();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            GetYears();
+            
             GetProvince();
             GetDistrict();
             GetNA();
-            GetParties();
-            GetCandidates();
-            
+            GetPA();
+    
         }
-
-    }
-    protected void GetYears()
-    {
-        CommonFunctions objCommonFunctionsElectionYear = new CommonFunctions();
-        ddlElectionYear.DataSource = objCommonFunctionsElectionYear.GetelectionYear();
-
-        ddlElectionYear.DataTextField = "ElectionYear";
-        ddlElectionYear.DataValueField = "Electionid";
-        ddlElectionYear.DataBind();
-
     }
     protected void GetProvince()
     {
-        CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
-        ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
+    
+            ddlProvince.DataSource = objCommonFunctions.GetProvince();
 
-        ddlProvince.DataTextField = "ProvinceName";
-        ddlProvince.DataValueField = "ProvinceId";
-        ddlProvince.DataBind();
+            ddlProvince.DataTextField = "ProvinceName";
+            ddlProvince.DataValueField = "ProvinceId";
+            ddlProvince.DataBind();
     }
     protected void GetDistrict()
     {
-        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
+        
+        ddlDistrict.DataSource = objCommonFunctions.GetDistrict(ddlProvince.SelectedValue);
 
         ddlDistrict.DataTextField = "Name";
         ddlDistrict.DataValueField = "DistrictId";
         ddlDistrict.DataBind();
 
     }
+    
     protected void GetNA()
     {
-        CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
-        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA(ddlDistrict.SelectedValue);
+        
+        ddlNA.DataSource = objCommonFunctions.GetNA(ddlDistrict.SelectedValue);
 
         ddlNA.DataTextField = "Name";
         ddlNA.DataValueField = "NAId";
         ddlNA.DataBind();
     }
-
-    protected void GetParties()
+    protected void GetPA()
     {
-        CommonFunctions objCommonFunctionsGetParties = new CommonFunctions();
-        ddlParty.DataSource = objCommonFunctionsGetParties.GetParties();
+        
+        ddlPA.DataSource = objCommonFunctions.GetPA(ddlNA.SelectedValue);
 
-        ddlParty.DataTextField = "PartyName";
-        ddlParty.DataValueField = "PartyId";
-        ddlParty.DataBind();
-
+        ddlPA.DataTextField = "Name";
+        ddlPA.DataValueField = "PAId";
+        ddlPA.DataBind();
     }
-    protected void GetCandidates()
+    
+    protected void btn_Search_Click(object sender, EventArgs e)
     {
-        CommonFunctions objCommonFunctionsGetCandidate = new CommonFunctions();
-        ddlCandidate.DataSource = objCommonFunctionsGetCandidate.GetPartyCatdidate(ddlParty.SelectedValue);
-
-        ddlCandidate.DataTextField = "Name";
-        ddlCandidate.DataValueField = "candidateid";
-        ddlCandidate.DataBind();
-
+        FillGridView();
     }
+  
+    protected void Update_Record(string Result,string id,String type)
+    {
+        
+        SqlConnection con = new SqlConnection(_str);
+        con.Open();
+
+        SqlCommand cmd = new SqlCommand("UpdateElectionResult", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.Parameters.AddWithValue("@Result", Result);
+        cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
+        cmd.ExecuteNonQuery();
+        con.Close();
+        FillGridView();        
+        lblMsg.Text = "Result Saved Successfully!";
+        lblMsg.ForeColor = System.Drawing.Color.Green;
+    }
+ 
+    private void FillGridView()
+    {
+        string paId = "0";
+        if (!string.IsNullOrEmpty(ddlPA.SelectedValue))
+        {
+            paId = ddlPA.SelectedValue;
+        }
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter>
+            {
+                new SqlParameter("@ElectionId",ddlNA.SelectedValue),
+                new SqlParameter("@NAId",ddlNA.SelectedValue),
+                new SqlParameter("@PAId",paId),
+                new SqlParameter("@Type",rdoType.SelectedValue)
+            };
+        GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
+        GridView1.DataBind();
+        if (GridView1.Rows.Count>0)
+        {
+            Btn_Save.Visible = true;
+
+        }
+        else
+        {
+            Btn_Save.Visible = false;
+        }
+    }
+
+
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();
         GetNA();
+        
     }
 
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetNA();
+        FillGridView();
     }
-    protected void ddlCandidate_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        GetCandidates();
-    }
-    protected void ddlParty_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        GetParties();
-    }
-    protected void btn_save_Click(object sender, EventArgs e)
-    {
 
-        SqlConnection con = new SqlConnection(_str);
-
-        try
+    
+    protected void rdoType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rdoType.SelectedValue == "NA")
         {
-
-            con.Open();
-            SqlCommand cmd = new SqlCommand("InsertElectionCandidates", con);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Electionid", ddlElectionYear.SelectedValue);
-            cmd.Parameters.AddWithValue("@Provinceid", ddlProvince.SelectedValue);
-            cmd.Parameters.AddWithValue("@Districtid", ddlDistrict.SelectedValue);
-            cmd.Parameters.AddWithValue("@PAid", ddlParty.SelectedValue);
-            //cmd.Parameters.AddWithValue("@Candidateid", ddlCandidate.SelectedValue);
-            //cmd.Parameters.AddWithValue("@CandidateType", txtCandidateType.Text.Trim());
-
-            cmd.ExecuteNonQuery();
-            con.Close();
-            LblMeg.Text = "Save Successfully";
-            //FillGridView();
-            //txtCandidateType.Text = "";
+            GetNA();
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
+    
         }
-        catch (Exception ex)
+        else
         {
-
+            GetPA();
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
+    
         }
-
     }
 
+    //protected void Update_CheckedChanged(object sender, EventArgs e)
+    //{
+    //    CheckBox Ck = (CheckBox)sender;
+    //    GridViewRow row = (GridViewRow)Ck.NamingContainer;
+    //    TextBox result = (TextBox)row.FindControl("");
+    //    HiddenField ID = (HiddenField)row.FindControl("");
+    //    Update_Record()
+    //}
 
-}
+    protected void Btn_Save_Click(object sender, EventArgs e)
+    {
+        if (GridView1.Rows.Count>0)
+        {
+            TextBox result = new TextBox();
+            HiddenField ID = new HiddenField();
+            CheckBox Ck = new CheckBox();
+            int count = 0;
+            foreach(GridViewRow row in GridView1.Rows)
+            {
+                Ck = (CheckBox)row.FindControl("Update");
+
+                if (Ck.Checked)
+                {
+                    count = count + 1;
+                    result = (TextBox)row.FindControl("txt_result");
+                    ID = (HiddenField)row.FindControl("hfd_E_ID");
+                    Update_Record(result.Text, ID.Value, "");
+                }
+                if (count>0)
+                {
+                    lblMsg.Text = "Record Saved ...";
+                    lblMsg.Visible = true;
+                }
+                
+            }
+
+
+        }
+    }
+}  
