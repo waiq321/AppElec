@@ -31,16 +31,21 @@
                       <ItemTemplate>
                           <%#Container.DataItemIndex+1 %>
                       </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>
                   <asp:TemplateField HeaderText="Election Year">
                       <ItemTemplate>
                           <asp:Label ID="lblid" runat="server" Text='<%#Bind("ElectionYear") %>'></asp:Label>
                       </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>                  
                     <asp:TemplateField HeaderText="Action" >
                       <ItemTemplate>
                           <span class="link"  onclick="lnkClick(this,'Candidate')">Add Candidate</span> &nbsp;&nbsp;
-                                <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
+                          <span class="link"  onclick="lnkClick(this,'ECandidate')">View Candidates</span> &nbsp;&nbsp;
+                          <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
+                          <span  class="link" onclick="lnkClick(this,'Winner')">View Winners</span> &nbsp;&nbsp;                        
+
                           <asp:HiddenField ID="hdnElectionId" runat="server" Value='<%#Bind("ElectionId") %>'></asp:HiddenField>
                       </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
@@ -60,8 +65,12 @@
             var electionId = $.trim($(elem).closest("tr").find("[id*='hdnElectionId']").val());
             if (callFrom == "Candidate")
                 window.open("../Elections/ElectionCandidates.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "ECandidate")
+                window.open("../Elections/ElectionCandidatesList.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Results")
                 window.open("../Elections/ElectionResults.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Winner")
+                window.open("../Elections/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
         }
         
     </script>

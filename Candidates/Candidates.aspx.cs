@@ -13,13 +13,15 @@ public partial class Candidates_Candidates : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        CommonFunctions objCommonFunctions = new CommonFunctions();
-        ddlParty.DataSource = objCommonFunctions.GetParties();
+        if (!Page.IsPostBack)
+        {
+            CommonFunctions objCommonFunctions = new CommonFunctions();
+            ddlParty.DataSource = objCommonFunctions.GetParties();
 
-        ddlParty.DataTextField = "PartyName";
-        ddlParty.DataValueField = "Partyid";
-        ddlParty.DataBind();
-
+            ddlParty.DataTextField = "PartyName";
+            ddlParty.DataValueField = "Partyid";
+            ddlParty.DataBind();
+        }
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)

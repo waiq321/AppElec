@@ -9,7 +9,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 
-public partial class Candidates_ElectionCandidates : System.Web.UI.Page
+public partial class Candidates_ElectionCandidatesList : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +24,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
             GetParties();
             GetCandidates();
             FillGridView();
-            if (Request.QueryString["ElecnId"] != null)
+            if(Request.QueryString["ElecnId"] !=null)
             {
                 ddlYear.SelectedValue = Request.QueryString["ElecnId"];
             }
@@ -97,37 +97,12 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         ddlCandidate.DataBind();
 
     }
-    protected void btn_save_Click(object sender, EventArgs e)
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
-
         SqlConnection con = new SqlConnection(_str);
-
         try
         {
-            string paId = "0";
-            if(!string.IsNullOrEmpty(ddlPA.SelectedValue))
-            {
-                paId = ddlPA.SelectedValue;
-            }
-            con.Open();
-            SqlCommand cmd = new SqlCommand("InsertElectionCandidates", con);
-
-            cmd.CommandType = CommandType.StoredProcedure;  
-            cmd.Parameters.AddWithValue("@Electionid", Request.QueryString["ElecnId"]);
-            cmd.Parameters.AddWithValue("@Provinceid", ddlProvince.SelectedValue);
-            cmd.Parameters.AddWithValue("@Districtid", ddlDistrict.SelectedValue);
-            cmd.Parameters.AddWithValue("@PartyId", ddlParty.SelectedValue);
-            cmd.Parameters.AddWithValue("@NAId", ddlNA.SelectedValue);
-            cmd.Parameters.AddWithValue("@PAId", paId);
-            cmd.Parameters.AddWithValue("@CandidateId", ddlCandidate.SelectedValue);
-            cmd.Parameters.AddWithValue("@CandidateType", rdoType.SelectedValue);
-
-            cmd.ExecuteNonQuery();
-            con.Close();
-            lblMsg.Text = "Save Successfully";
-            lblMsg.ForeColor = System.Drawing.Color.Green;
-            FillGridView();
-            
+            FillGridView();            
         }
         catch (Exception ex)
         {
@@ -177,14 +152,12 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();
-        GetNA();
-        FillGridView();
+        GetNA();        
     }
 
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GetNA();
-        FillGridView();
+        GetNA();        
     }
 
     protected void ddlParty_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,15 +171,13 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         {
             GetNA();
             tdPA1.Style.Add(HtmlTextWriterStyle.Display, "none");
-            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "none");
-            FillGridView();
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "none");            
         }
         else
         {
             GetPA();
             tdPA1.Style.Add(HtmlTextWriterStyle.Display, "contents");
-            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");
-            FillGridView();
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");            
         }
     }
 }  

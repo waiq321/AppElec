@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="ElectionCandidates.aspx.cs" Inherits="Candidates_ElectionCandidates" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="ElectionCandidatesList.aspx.cs" Inherits="Candidates_ElectionCandidatesList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -11,7 +11,7 @@
     </h1>
     <table class="table-form">
 
-       <tr>
+        <tr>
             <td class="label" style="width: 10%;">Year:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlYear" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td colspan="4" style="text-align: center;">
-                <asp:Button ID="btn_save" Text="Save" CssClass="btn" runat="server" OnClick="btn_save_Click" />
+                <asp:Button ID="btnSearch" Text="Search" CssClass="btn" runat="server" OnClick="btnSearch_Click" />
 
             </td>
         </tr>
