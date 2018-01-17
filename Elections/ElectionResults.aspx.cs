@@ -22,6 +22,7 @@ public partial class Elections_ElectionResults : System.Web.UI.Page
             GetNA();
             GetParties();
             GetCandidates();
+            GetNA();
         }
 
     }
