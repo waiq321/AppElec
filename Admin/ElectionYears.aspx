@@ -47,8 +47,9 @@
                   </asp:TemplateField>
                   <asp:TemplateField HeaderText="Delete">
                       <ItemTemplate>
-                          <asp:LinkButton ID="LinkButton1" CommandArgument='<%#Bind("ElectionId") %>' OnClick="LinkButton1_Click" runat="server">Delete</asp:LinkButton>
+                          <asp:LinkButton ID="LinkButton1" CssClass="icon-delete" CommandArgument='<%#Bind("ElectionId") %>' OnClick="LinkButton1_Click" runat="server"></asp:LinkButton>
                       </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>
               </Columns>
             </asp:GridView>

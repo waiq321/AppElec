@@ -47,7 +47,14 @@ public class CommonFunctions
         };
         return ObjDBManager.ExecuteDataTable("GetNa", parm);
     }
-
+    public DataTable GetPA(string NAId)
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@NAId",NAId)
+        };
+        return ObjDBManager.ExecuteDataTable("GetPA", parm);
+    }
     public DataTable GetPartyCatdidate(string partyId)
     {
         DBManager ObjDBManager = new DBManager();

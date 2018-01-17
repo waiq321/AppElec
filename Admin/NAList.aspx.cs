@@ -13,37 +13,32 @@ public partial class Admin_NAList : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
-    { 
+    {
         if (!Page.IsPostBack)
         {
 
-        
-        //-----------------------------------------
-        //GetProvince
-        //-----------------------------------------
-
+            GetProvince();
+            GetDistrict();
+            bindGrd();
+        }
+    }
+         protected void GetProvince()
+    {
         CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
         ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
         ddlProvince.DataTextField = "ProvinceName";
         ddlProvince.DataValueField = "ProvinceId";
         ddlProvince.DataBind();
-
-
-        //-----------------------------------------
-        //GetDistrict
-        //-----------------------------------------
-
+    }
+    protected void GetDistrict()
+    {
         CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
         ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
 
         ddlDistrict.DataTextField = "Name";
         ddlDistrict.DataValueField = "DistrictId";
         ddlDistrict.DataBind();
-        }
-
-
-        bindGrd();
 
     }
     protected void bindGrd()
@@ -73,14 +68,11 @@ public partial class Admin_NAList : System.Web.UI.Page
         bindGrd();
 
     }
+
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
-
-        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
-
-        ddlDistrict.DataTextField = "Name";
-        ddlDistrict.DataValueField = "DistrictId";
-        ddlDistrict.DataBind();
+        GetDistrict();
+        
     }
+    
 }

@@ -110,7 +110,7 @@ samp {
   font-size: 1em;
 }
 
-input[type=text],
+input[type=text],input[type=date],
 optgroup,
 select,
 textarea {
@@ -118,9 +118,9 @@ textarea {
   font: inherit;
   color: inherit;
   border-radius:10px;
-  line-height:5px;padding:3px;
+  padding:3px;
   border:solid 1px #ccc;
-  width:90%;
+  width:90%;    line-height: 20px;
 }
 button {
   overflow: visible;
@@ -2595,34 +2595,7 @@ textarea.form-control {
 input[type="search"] {
   -webkit-appearance: none;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  input[type="date"],
-  input[type="time"],
-  input[type="datetime-local"],
-  input[type="month"] {
-    line-height: 34px;
-  }
-  input[type="date"].input-sm,
-  input[type="time"].input-sm,
-  input[type="datetime-local"].input-sm,
-  input[type="month"].input-sm,
-  .input-group-sm input[type="date"],
-  .input-group-sm input[type="time"],
-  .input-group-sm input[type="datetime-local"],
-  .input-group-sm input[type="month"] {
-    line-height: 30px;
-  }
-  input[type="date"].input-lg,
-  input[type="time"].input-lg,
-  input[type="datetime-local"].input-lg,
-  input[type="month"].input-lg,
-  .input-group-lg input[type="date"],
-  .input-group-lg input[type="time"],
-  .input-group-lg input[type="datetime-local"],
-  .input-group-lg input[type="month"] {
-    line-height: 46px;
-  }
-}
+
 .form-group {
   margin-bottom: 15px;
 }
