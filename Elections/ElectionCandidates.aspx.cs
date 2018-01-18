@@ -16,7 +16,6 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            
             GetProvince();
             GetDistrict();
             GetNA();
@@ -55,6 +54,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         ddlNA.DataValueField = "NAId";
         ddlNA.DataBind();
     }
+    
     protected void GetPA()
     {
         CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
@@ -184,13 +184,13 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         if (rdoType.SelectedValue == "NA")
         {
             GetNA();
-          //  trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
             FillGridView();
         }
         else
         {
             GetPA();
-           // trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
+            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
             FillGridView();
         }
     }

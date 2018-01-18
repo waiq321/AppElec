@@ -12,49 +12,49 @@
     <table class="table-form">
 
        <tr>
-            <td class="label" style="width: 10%;">Year:</td>
-            <td style="width: 30%;">
-                <asp:DropDownList ID="ddlYear" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
-            </td>
+            
             <td class="label" style="width: 10%;">Province:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlProvince" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
             </td>
-           
-        </tr>
-        <tr>
-             <td class="label" style="width: 10%;">District:</td>
+           <td class="label" style="width: 10%;">District:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlDistrict" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
             </td>
+           
+        </tr>
+        <tr>
+             
             <td class="label">Party:</td>
             <td>
                 <asp:DropDownList ID="ddlParty" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlParty_SelectedIndexChanged"></asp:DropDownList>
             </td>
-            
-
-        </tr>
-        <tr>
             <td class="label">Candidate:</td>
             <td>
                 <asp:DropDownList ID="ddlCandidate" runat="server"></asp:DropDownList>
-            </td>          
-            <td></td>  
+            </td> 
+
+        </tr>
+        <tr>
+                     
+             
+            
+                <td>Select Type :</td>
             <td>
                 <asp:RadioButtonList ID="rdoType" AutoPostBack="true" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoType_SelectedIndexChanged">
                     <asp:ListItem Text="NA" Value="NA" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="PA" Value="PA"></asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-         
-        </tr>
-        <tr>
                <td class="label">NA:</td>
             <td>
                 <asp:DropDownList ID="ddlNA" AutoPostBack="true" runat="server"></asp:DropDownList>
             </td>
-            <td  class="label" id="tdPA1" runat="server" style="display:none;">PA:</td>
-            <td  id="tdPA2" runat="server" style="display:none;">
+        </tr>
+        <tr id="trPA" runat="server" style="display:none;">
+         
+            <td  class="label" >PA:</td>
+            <td  id="tdPA" runat="server" >
                 <asp:DropDownList ID="ddlPA" runat="server"></asp:DropDownList>
             </td>
 
