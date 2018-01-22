@@ -100,7 +100,17 @@
                             <asp:TemplateField HeaderText="Update">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="Update"  runat="server" > </asp:CheckBox>
-                                    <asp:HiddenField ID ="hfd_E_ID" runat ="server" Value='<%#Bind("Id") %>' />
+                                    <asp:HiddenField ID ="EC_ID" runat ="server" Value='<%#Bind("Id") %>' />
+                                    <asp:HiddenField ID ="Pro_ID" runat ="server" Value='<%#Bind("Provinceid") %>' />
+                                    <asp:HiddenField ID ="Dis_ID" runat ="server" Value='<%#Bind("Districtid") %>' />
+                                    <asp:HiddenField ID ="PA_ID" runat ="server" Value='<%#Bind("PAId") %>' />
+                                    <asp:HiddenField ID ="NA_ID" runat ="server" Value='<%#Bind("NAId") %>' />
+                                    <asp:HiddenField ID ="P_ID" runat ="server" Value='<%#Bind("PartyId") %>' />
+                                    <asp:HiddenField ID ="El_ID" runat ="server" Value='<%#Bind("ElectionId") %>' />
+                                     <asp:HiddenField ID ="C_ID" runat ="server" Value='<%#Bind("CandidateId") %>' />
+                                    
+
+
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>

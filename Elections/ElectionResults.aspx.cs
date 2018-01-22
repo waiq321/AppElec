@@ -97,7 +97,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         DBManager ObjDBManager = new DBManager();
         List<SqlParameter> parm = new List<SqlParameter>
             {
-                new SqlParameter("@ElectionId",ddlNA.SelectedValue),
+                new SqlParameter("@ElectionId",Request.QueryString["ElecnId"].ToString()),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
                 new SqlParameter("@Type",rdoType.SelectedValue)
@@ -161,6 +161,13 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         {
             TextBox result = new TextBox();
             HiddenField ID = new HiddenField();
+            HiddenField Pro_ID = new HiddenField();
+            HiddenField Dis_ID = new HiddenField();
+            HiddenField PA_ID = new HiddenField();
+            HiddenField NA_ID = new HiddenField();
+            HiddenField P_ID = new HiddenField();
+            HiddenField El_ID = new HiddenField();
+            HiddenField C_ID = new HiddenField();
             CheckBox Ck = new CheckBox();
             int count = 0;
             foreach(GridViewRow row in GridView1.Rows)
@@ -171,8 +178,17 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
                 {
                     count = count + 1;
                     result = (TextBox)row.FindControl("txt_result");
-                    ID = (HiddenField)row.FindControl("hfd_E_ID");
-                    Update_Record(result.Text, ID.Value, "");
+                    ID = (HiddenField)row.FindControl("EC_ID");
+                    Pro_ID = (HiddenField)row.FindControl("Pro_ID");
+                    Dis_ID = (HiddenField)row.FindControl("Dis_ID");
+                    NA_ID = (HiddenField)row.FindControl("NA_ID");
+                    PA_ID = (HiddenField)row.FindControl("PA_ID");
+                    P_ID = (HiddenField)row.FindControl("P_ID");
+                    El_ID = (HiddenField)row.FindControl("El_ID");
+                    C_ID = (HiddenField)row.FindControl("C_ID");
+                   
+
+                    Update_Record(result.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value,NA_ID.Value);
                 }
                 if (count>0)
                 {
@@ -184,5 +200,31 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
 
 
         }
+    }
+
+    private void Update_Record(string Result, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID)
+    {
+        SqlConnection con = new SqlConnection(_str);
+        con.Open();
+
+        SqlCommand cmd = new SqlCommand("InsertElectionResult", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@Id", ID);
+        cmd.Parameters.AddWithValue("@Result", Result);
+      
+        cmd.Parameters.AddWithValue("@Pro_ID", Pro_ID);
+        cmd.Parameters.AddWithValue("@C_ID", C_ID);
+        cmd.Parameters.AddWithValue("@Dis_ID", Dis_ID);
+        cmd.Parameters.AddWithValue("@NA_ID", NA_ID);
+        cmd.Parameters.AddWithValue("@PA_ID", PA_ID);
+        cmd.Parameters.AddWithValue("@P_ID", P_ID);
+        cmd.Parameters.AddWithValue("@El_ID", El_ID);
+        cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        FillGridView();
+        lblMsg.Text = "Result Saved Successfully!";
+        lblMsg.ForeColor = System.Drawing.Color.Green;
     }
 }  

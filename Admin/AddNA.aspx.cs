@@ -14,9 +14,12 @@ public partial class Admin_AddNA : System.Web.UI.Page
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Page.IsPostBack)
+        { 
         GetProvince();
         GetDistrict();
         FillGridView();
+        }
     }
     protected void GetProvince()
     {
