@@ -16,13 +16,26 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            GetYears();
             GetProvince();
             GetDistrict();
             GetNA();
             GetPA();
-           
+            if (Request.QueryString["ElecnId"] != null)
+            {
+                ddlYear.SelectedValue = Request.QueryString["ElecnId"];
+            }
             FillGridView();
         }
+    }
+    protected void GetYears()
+    {
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddlYear.DataSource = objCommonFunctions.GetelectionYear();
+
+        ddlYear.DataTextField = "electionyear";
+        ddlYear.DataValueField = "electionid";
+        ddlYear.DataBind();
     }
     protected void GetProvince()
     {
@@ -66,7 +79,6 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     
     protected void btn_save_Click(object sender, EventArgs e)
     {
-
         FillGridView();
     }
   
@@ -94,14 +106,12 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();
-        GetNA();
-        FillGridView();
+        GetNA();        
     }
 
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GetNA();
-        FillGridView();
+        GetNA();        
     }
 
     
@@ -110,15 +120,20 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (rdoType.SelectedValue == "NA")
         {
-            GetNA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
-            FillGridView();
+            GetNA();            
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "none");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "none");
         }
         else
         {
-            GetPA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
-            FillGridView();
+            GetPA();            
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "contents");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");
         }
+    }
+
+    protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetPA();        
     }
 }  

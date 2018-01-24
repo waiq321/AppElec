@@ -108,7 +108,7 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
             lblMsg.Text = "some error occurred!";
             lblMsg.Attributes.Remove("class");
             lblMsg.Attributes.Add("class", "error");
-            throw;
+            
         }
     }
 }

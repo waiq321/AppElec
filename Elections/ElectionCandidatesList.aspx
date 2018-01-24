@@ -5,45 +5,47 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <h1>Election Candidates
-      <span style="padding-left: 100px">
-          <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
-      </span>
+     
+        <span style="padding-left: 100px">
+            <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
+        </span>
     </h1>
     <table class="table-form">
 
-       <tr>
-            
+          <tr>
+            <td class="label" style="width: 10%;">Year:</td>
+            <td style="width: 30%;">
+                <asp:DropDownList ID="ddlYear" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
+            </td>
             <td class="label" style="width: 10%;">Province:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlProvince" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
             </td>
-           <td class="label" style="width: 10%;">District:</td>
+
+        </tr>
+        <tr>
+            <td class="label" style="width: 10%;">District:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlDistrict" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
             </td>
-           
-        </tr>
-        
-        <tr>
-                     
-             
-            
-                <td>Select Type :</td>
+
+            <td class="label">Select Type :</td>
             <td>
                 <asp:RadioButtonList ID="rdoType" AutoPostBack="true" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoType_SelectedIndexChanged">
                     <asp:ListItem Text="NA" Value="NA" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="PA" Value="PA"></asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-               <td class="label">NA:</td>
-            <td>
-                <asp:DropDownList ID="ddlNA" AutoPostBack="true" runat="server"></asp:DropDownList>
-            </td>
+
         </tr>
-        <tr id="trPA" runat="server" style="display:none;">
-         
-            <td  class="label" >PA:</td>
-            <td  id="tdPA" runat="server" >
+        <tr>
+
+            <td class="label">NA:</td>
+            <td>
+                <asp:DropDownList ID="ddlNA" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlNA_SelectedIndexChanged"></asp:DropDownList>
+            </td>
+            <td class="label" id="tdPA1" runat="server" style="display: none;">PA:</td>
+            <td id="tdPA2" runat="server" style="display: none;">
                 <asp:DropDownList ID="ddlPA" runat="server"></asp:DropDownList>
             </td>
 
@@ -98,7 +100,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                           
+
                         </Columns>
                     </asp:GridView>
 

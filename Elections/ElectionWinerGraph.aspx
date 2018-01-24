@@ -40,7 +40,7 @@
         <tr>
                <td class="label">NA:</td>
             <td>
-                <asp:DropDownList ID="ddlNA" AutoPostBack="true" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlNA"  OnSelectedIndexChanged="ddlNA_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
             </td>
             <td  class="label" id="tdPA1" runat="server" style="display:none;">PA:</td>
             <td  id="tdPA2" runat="server" style="display:none;">
@@ -110,9 +110,19 @@
                           yAxis: {
                               min: 0,
                               labels: {
-                                  overflow: 'justify'
+                                  formatter: function () {
+                                      return this.value
+                                  }, style: {
+                                      color: '#008d4c',
+                                      'font-weight': 'bold',
+                                  }
                               },
-                              title:{text:'Votes Obtained'}
+                              title: {
+                                  text: 'Votes Obtained', style: {
+                                      color: '#008d4c',
+                                      'font-weight': 'bold',
+                                  }
+                              }
                           },
                           tooltip: {
                               valueSuffix: ' millions'

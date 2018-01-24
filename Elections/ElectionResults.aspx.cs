@@ -17,13 +17,26 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            
+            GetYears();
             GetProvince();
             GetDistrict();
             GetNA();
             GetPA();
-    
+            if (Request.QueryString["ElecnId"] != null)
+            {
+                ddlYear.SelectedValue = Request.QueryString["ElecnId"];
+            }
         }
+        lblMsg.Text = "";
+    }
+    protected void GetYears()
+    {
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddlYear.DataSource = objCommonFunctions.GetelectionYear();
+
+        ddlYear.DataTextField = "electionyear";
+        ddlYear.DataValueField = "electionid";
+        ddlYear.DataBind();
     }
     protected void GetProvince()
     {
@@ -135,48 +148,41 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         if (rdoType.SelectedValue == "NA")
         {
             GetNA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
-    
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "none");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "none");
         }
         else
         {
             GetPA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
-    
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "contents");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");
         }
     }
-
-    //protected void Update_CheckedChanged(object sender, EventArgs e)
-    //{
-    //    CheckBox Ck = (CheckBox)sender;
-    //    GridViewRow row = (GridViewRow)Ck.NamingContainer;
-    //    TextBox result = (TextBox)row.FindControl("");
-    //    HiddenField ID = (HiddenField)row.FindControl("");
-    //    Update_Record()
-    //}
+    protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetPA();
+    }
+   
 
     protected void Btn_Save_Click(object sender, EventArgs e)
     {
-        if (GridView1.Rows.Count>0)
+        try
         {
-            TextBox result = new TextBox();
-            HiddenField ID = new HiddenField();
-            HiddenField Pro_ID = new HiddenField();
-            HiddenField Dis_ID = new HiddenField();
-            HiddenField PA_ID = new HiddenField();
-            HiddenField NA_ID = new HiddenField();
-            HiddenField P_ID = new HiddenField();
-            HiddenField El_ID = new HiddenField();
-            HiddenField C_ID = new HiddenField();
-            CheckBox Ck = new CheckBox();
-            int count = 0;
-            foreach(GridViewRow row in GridView1.Rows)
+            if (GridView1.Rows.Count > 0)
             {
-                Ck = (CheckBox)row.FindControl("Update");
-
-                if (Ck.Checked)
+                TextBox result = new TextBox();
+                HiddenField ID = new HiddenField();
+                HiddenField Pro_ID = new HiddenField();
+                HiddenField Dis_ID = new HiddenField();
+                HiddenField PA_ID = new HiddenField();
+                HiddenField NA_ID = new HiddenField();
+                HiddenField P_ID = new HiddenField();
+                HiddenField El_ID = new HiddenField();
+                HiddenField C_ID = new HiddenField();
+                CheckBox Ck = new CheckBox();
+                foreach (GridViewRow row in GridView1.Rows)
                 {
-                    count = count + 1;
+
                     result = (TextBox)row.FindControl("txt_result");
                     ID = (HiddenField)row.FindControl("EC_ID");
                     Pro_ID = (HiddenField)row.FindControl("Pro_ID");
@@ -186,19 +192,20 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
                     P_ID = (HiddenField)row.FindControl("P_ID");
                     El_ID = (HiddenField)row.FindControl("El_ID");
                     C_ID = (HiddenField)row.FindControl("C_ID");
-                   
 
-                    Update_Record(result.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value,NA_ID.Value);
+
+                    Update_Record(result.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value, NA_ID.Value);
                 }
-                if (count>0)
-                {
-                    lblMsg.Text = "Record Saved ...";
-                    lblMsg.Visible = true;
-                }
-                
+                lblMsg.Text = "Saved successfully!";
+                lblMsg.Attributes.Remove("class");
+                lblMsg.Attributes.Add("class", "success");
             }
-
-
+        }
+        catch
+        {
+            lblMsg.Text = "some error occurred!";
+            lblMsg.Attributes.Remove("class");
+            lblMsg.Attributes.Add("class", "error");
         }
     }
 

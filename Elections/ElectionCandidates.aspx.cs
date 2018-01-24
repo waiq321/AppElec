@@ -16,14 +16,28 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            GetYears();
             GetProvince();
             GetDistrict();
             GetNA();
             GetPA();
             GetParties();
-            GetCandidates();
+            GetCandidates();            
+            if (Request.QueryString["ElecnId"] != null)
+            {
+                ddlYear.SelectedValue = Request.QueryString["ElecnId"];
+            }
             FillGridView();
         }
+    }
+    protected void GetYears()
+    {
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddlYear.DataSource = objCommonFunctions.GetelectionYear();
+
+        ddlYear.DataTextField = "electionyear";
+        ddlYear.DataValueField = "electionid";
+        ddlYear.DataBind();
     }
     protected void GetProvince()
     {
@@ -100,7 +114,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
             SqlCommand cmd = new SqlCommand("InsertElectionCandidates", con);
 
             cmd.CommandType = CommandType.StoredProcedure;  
-            cmd.Parameters.AddWithValue("@Electionid", Request.QueryString["ElecnId"]);
+            cmd.Parameters.AddWithValue("@Electionid",ddlYear.SelectedValue);
             cmd.Parameters.AddWithValue("@Provinceid", ddlProvince.SelectedValue);
             cmd.Parameters.AddWithValue("@Districtid", ddlDistrict.SelectedValue);
             cmd.Parameters.AddWithValue("@PartyId", ddlParty.SelectedValue);
@@ -151,7 +165,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         DBManager ObjDBManager = new DBManager();
         List<SqlParameter> parm = new List<SqlParameter>
             {
-                new SqlParameter("@ElectionId",Request.QueryString["ElecnId"].ToString()),
+                new SqlParameter("@ElectionId",ddlYear.SelectedValue),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
                 new SqlParameter("@Type",rdoType.SelectedValue)
@@ -184,14 +198,22 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         if (rdoType.SelectedValue == "NA")
         {
             GetNA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "none");
             FillGridView();
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "none");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "none");
         }
         else
         {
             GetPA();
-            trPA.Style.Add(HtmlTextWriterStyle.Display, "table-row");
             FillGridView();
+            tdPA1.Style.Add(HtmlTextWriterStyle.Display, "contents");
+            tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");
         }
+    }
+
+    protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetPA();
+        FillGridView();
     }
 }  

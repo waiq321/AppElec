@@ -161,4 +161,8 @@ public partial class Candidates_ElectionWinerGraph : System.Web.UI.Page
             tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");            
         }
     }
+    protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetPA();
+    }
 }  
