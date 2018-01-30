@@ -7,123 +7,85 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
 
     <link href='fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <link href='fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="Content/style.css">
-    
-    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.11.1.min.js")%>"></script>
-    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/bootstrap-3.1.1.min.js")%>"></script>        
-     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/easing.js") %>"></script>
 
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="Content/style.css">
+    <link rel="stylesheet" type="text/css" href="Content/superfish.css">
+
+
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.11.1.min.js")%>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/bootstrap-3.1.1.min.js")%>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/superfish.js")%>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery.waypoints.min.js")%>"></script>
+    <%--<script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/main.js")%>"></script> --%>
 </head>
 <body>
     <form id="form1" runat="server">
 
-        <!-- header -->
-        <div class="header_bg">
-            <div class="container">
-                <!-----start-header----->
-                <div class="header">
-                    <div class="logo">                        
-                    </div>
-                    <nav class="navbar navbar-default">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
+        <div id="fh5co-header">
+            <header id="fh5co-header-section">
+                <div class="container">
+                    <div class="nav-header">
+                        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+                        <h1 id="fh5co-logo">
+                            
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="act"><a href="../Admin/ElectionYears.aspx">Election Years</a></li>
-                                <li class="act"><a href="../Admin/Parties.aspx">Parties</a></li>
-                                <li class="dropdown act">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidates<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="party">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="../Candidates/Candidates.aspx">Candidates List</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li> 
-                                                    <li class="divider"></li>
-                                                    <li><a href="../Elections/ElectionCandidatesList.aspx">Election Candidates List</a></li> 
-                                                    
-                                                </ul>
-                                            </div>
-                                        </div>
+                        </h1>
+                        <!-- START #fh5co-menu-wrap -->
+                        <nav id="fh5co-menu-wrap" role="navigation">
+                            <ul class="sf-menu" id="fh5co-primary-menu">
+                                <li>
+                                    <a href="../Elections/ConstituencyMap.aspx">Map</a>
+                                </li>
+                                <li><a href="../Admin/ElectionYears.aspx">Election Years</a></li>
+                                <li><a href="../Admin/Parties.aspx">Parties</a></li>
+                                <li>
+                                    <a href="services.html" class="fh5co-sub-ddown">Candidates</a>
+                                    <ul class="fh5co-sub-menu">
+                                        <li><a href="../Candidates/AddCandidates.aspx">Add Candidates</a></li>
+                                        <li><a href="../Candidates/Candidates.aspx">Candidates List</a></li>                                                                                                                       
+                                        <li><a href="../Elections/ElectionCandidatesList.aspx">Election Candidates List</a></li>                                        
+                                    </ul>
+                                </li>                               
+                                <li>
+                                    <a href="services.html" class="fh5co-sub-ddown">NA</a>
+                                    <ul class="fh5co-sub-menu">                                        
+                                        <li><a href="../Admin/AddNA.aspx">Add NA</a></li>                                                                                                                                                               
+                                        <li><a href="../Admin/NAList.aspx">NA List</a></li>
                                     </ul>
                                 </li>
-                                  <li style="    margin-left: 102px;" class="dropdown act">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NA<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="party">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="../Admin/NAList.aspx">NA List</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="../Admin/AddNA.aspx">Add NA</a></li>                                                    
-                                                </ul>
-                                            </div>
-                                        </div>
+                                <li>
+                                    <a href="services.html" class="fh5co-sub-ddown">PA</a>
+                                    <ul class="fh5co-sub-menu">                                        
+                                        <li><a href="../Admin/PA.aspx">Add List</a></li>
+                                        <li><a href="../Admin/PAList.aspx">PA NA</a></li>                                                                                                                                                                                                       
                                     </ul>
                                 </li>
-                                                 <li class="dropdown act">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PA<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="party">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="../Admin/PAList.aspx">PA List</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="../Admin/PA.aspx">Add PA</a></li>                                                    
-                                                    
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="act"><a href="../Login.aspx">Reports</a></li>
-                                 <li class="act"><a href="../Login.aspx">Logout</a></li>
-
-                                
-                                     
-                                
-                                         
-                               
+                                <li><a href="about.html">Reports</a></li>                                
                             </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-
-                    </nav>
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            </header>
         </div>
-      
-        <!-- //end-header -->
-       
         <div class="main-content">
-            
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-       </div>
-        <!-- footer -->
-        <div class="footer">
-            <div class="container">                
-                <div class="footer-copy">
-                    <p>&copy 2015 E. All rights reserved | Design by WAIQ</p>
-                </div>
-            </div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
+
+        <footer>
+            <div id="footer">
+                
+               &copy 2015. All rights reserved | Design by WAIQ
+                        
+            </div>
+        </footer>
     </form>
 
-    
+
 </body>
 </html>

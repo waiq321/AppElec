@@ -16,7 +16,8 @@
             </td>            
             <td colspan="2" rowspan="3" style="text-align:center">
                 <div style="text-align:center;    width: 50%;margin: 0 auto;">
-                <img src="../images/dumy.png" class="picture" width="120" height="120" />
+                <%--<img src="../images/dumy.png" runat="server" id="candPic"  class="picture" width="120" height="120" />--%>
+                    <asp:Image runat="server" ID="candPic" ImageUrl="~/images/dumy.png" CssClass="picture"  width="120" height="120"  />
                 <asp:FileUpload ID="picUpload" runat="server" />                
                     </div>
             </td>
@@ -106,6 +107,8 @@
          <tr>
              <td colspan="4" style="text-align:center;">
                  <asp:Button ID="btnSave" runat="server"  CssClass="btn" Text="Save" OnClick="btnSave_Click" />
+                 &nbsp;&nbsp;&nbsp;
+                 <asp:Button ID="btnClear" runat="server"  CssClass="btn" Text="Clear" OnClick="btnClear_Click" />
              </td>
          </tr>
     </table>

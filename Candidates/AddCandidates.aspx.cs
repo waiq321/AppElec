@@ -7,7 +7,9 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
-    
+using System.Drawing;
+using System.IO;
+
 public partial class Candidates_AddCandidates : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -57,6 +59,10 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
                 txtPresentAdd.Text = dt.Rows[0]["PresentAddress"].ToString();
                 txtPermanentAddress.Text = dt.Rows[0]["PermanentAddress"].ToString();
                 txtObservations.Text = dt.Rows[0]["OtherObservations"].ToString();
+
+                byte[] b = (byte[])dt.Rows[0]["Picture"];
+                string base64 = Convert.ToBase64String(b);
+                candPic.ImageUrl = "data:Image/png;base64," + base64;
                 
                 hdnCandidateId.Value= candId;
             }
@@ -70,7 +76,16 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         DBManager ObjDBManager = new DBManager();
-        byte b = new byte();
+        byte[] b=null;
+        if (picUpload.HasFile)
+        {
+            b = picUpload.FileBytes;
+        }   
+        else
+        {
+            b=Convert.FromBase64String(candPic.ImageUrl.Replace("data:Image/png;base64,", ""));                        
+        }
+          
         try
         {
 
@@ -102,6 +117,7 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
             lblMsg.Text = "Saved successfully!";
             lblMsg.Attributes.Remove("class");
             lblMsg.Attributes.Add("class", "success");
+            ClearFields();
         }
         catch (Exception)
         {
@@ -110,5 +126,32 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
             lblMsg.Attributes.Add("class", "error");
             
         }
+    }
+    protected void ClearFields()
+    {
+        hdnCandidateId.Value = "0";
+        txtName.Text = "";
+        txtNic.Text = "";
+        txtEdu.Text = "";
+        txtPresentAdd.Text = "";
+        txtPermanentAddress.Text = "";
+        ddlParty.SelectedIndex = 0;
+        txtRWJ.Text = "";
+        txtRWM.Text = "";
+        txtRWP.Text = "";
+        txtRWB.Text = "";
+        txtImpApp.Text = "";
+        txtScandles.Text = "";
+        txtVAE.Text = "";
+        txtMC.Text = "";
+        txtFC.Text = "";
+        txtObservations.Text = "";
+        candPic.ImageUrl = "~/images/dumy.png";
+
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        ClearFields();
     }
 }
