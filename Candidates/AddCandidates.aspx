@@ -81,7 +81,7 @@
             <td>
                 <asp:TextBox ID="txtImpApp" runat="server"></asp:TextBox>
             </td> 
-              <td  class="label">Scandles:</td>
+              <td  class="label">Major Incident/Scandles:</td>
             <td>
                 <asp:TextBox ID="txtScandles" runat="server"></asp:TextBox>
             </td>
@@ -100,10 +100,11 @@
          <tr>
             <td  class="label">Other Observations:</td>
             <td colspan="3">
-                <asp:TextBox ID="txtObservations" runat="server" style="width:100%; height:100px;"></asp:TextBox>                
+                <asp:TextBox ID="txtObservations" runat="server" style="width:96%; height:100px;"></asp:TextBox>                
             </td>
             
         </tr>
+         <tr><td>&nbsp;</td></tr>
          <tr>
              <td colspan="4" style="text-align:center;">
                  <asp:Button ID="btnSave" runat="server"  CssClass="btn" Text="Save" OnClick="btnSave_Click" />
