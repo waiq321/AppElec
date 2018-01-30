@@ -87,18 +87,7 @@
                                     <asp:Label ID="lblElectionYear" runat="server" Text='<%#Bind("ElectionYear") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Province Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblProvinceName" runat="server" Text='<%#Bind("ProvinceName") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="District Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblDistrictName" runat="server" Text='<%#Bind("District") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                           
 
                             <asp:TemplateField HeaderText="Party Name">
                                 <ItemTemplate>

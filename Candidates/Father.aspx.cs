@@ -44,6 +44,10 @@ public partial class Candidates_Father : System.Web.UI.Page
             txtPoliticalRelation.Text = "";
             txtOtherAffiliations.Text = "";
             hdnFatherId.Value = "0";
+            GetFatherInfo();
+
+            divFather.Style.Add(HtmlTextWriterStyle.Display, "block");
+            formFather.Style.Add(HtmlTextWriterStyle.Display, "none");
 
         }
         catch (Exception)
@@ -52,11 +56,7 @@ public partial class Candidates_Father : System.Web.UI.Page
             lblMsg.Attributes.Remove("class");
             lblMsg.Attributes.Add("class", "error");
         }
-        GetFatherInfo();
-
-        divFather.Style.Add(HtmlTextWriterStyle.Display, "block");
-        formFather.Style.Add(HtmlTextWriterStyle.Display, "none");
-
+      
     }
     protected void GetFatherInfo()
     {

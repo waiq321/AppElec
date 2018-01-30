@@ -207,6 +207,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
             lblMsg.Attributes.Remove("class");
             lblMsg.Attributes.Add("class", "error");
         }
+        FillGridView();
     }
 
     private void Update_Record(string Result, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID)

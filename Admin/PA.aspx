@@ -75,7 +75,7 @@
         <tr>
             <td colspan="4" style="text-align: center;">
                 <asp:Button ID="btn_save" Text="Save" CssClass="btn" runat="server" OnClick="btn_save_Click" />
-                <asp:Button ID="btnUpdate" Visible="false" CssClass="btn" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+                
                 <asp:Label ID="LblMeg" runat="server" Text=""></asp:Label>
             </td>
         </tr>
@@ -135,8 +135,6 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
-
-
                         </Columns>
                     </asp:GridView>
                     <asp:HiddenField ID="hdID" runat="server" />

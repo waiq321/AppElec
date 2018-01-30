@@ -1104,7 +1104,6 @@ textarea {
   font-size: inherit;  
 }
 a {
-  color: #337ab7;
   text-decoration: none;
 }
 a:hover,
@@ -2311,6 +2310,11 @@ th {
 .table-bordered > tfoot > tr > td {
   border: 1px solid #ddd;
 }
+.table-bordered > tbody > tr > td
+{
+    padding-left:5px !important;
+}
+
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;

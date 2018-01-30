@@ -49,5 +49,17 @@ public partial class Candidates_Candidates : System.Web.UI.Page
             throw;
         }
     }
-    
+
+
+    protected void grdCandidates_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if(e.Row.RowType==DataControlRowType.DataRow)
+        {
+            Image img = (Image)e.Row.FindControl("candPic");
+            DataRowView rowView = (DataRowView)e.Row.DataItem;                        
+            byte[] b = (byte[])rowView["Picture"];
+            string base64 = Convert.ToBase64String(b);
+            img.ImageUrl = "data:Image/png;base64," + base64;
+        }
+    }
 }

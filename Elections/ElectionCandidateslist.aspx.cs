@@ -91,9 +91,19 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
             paId = ddlPA.SelectedValue;
         }
         DBManager ObjDBManager = new DBManager();
+        string electionId = "";
+        if(Request.QueryString.HasKeys())
+        {
+            electionId = Request.QueryString["ElecnId"].ToString();
+        }
+        else
+        {
+            electionId = ddlYear.SelectedValue;
+        }
+
         List<SqlParameter> parm = new List<SqlParameter>
             {
-                new SqlParameter("@ElectionId",Request.QueryString["ElecnId"].ToString()),
+                new SqlParameter("@ElectionId",electionId),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
                 new SqlParameter("@Type",rdoType.SelectedValue)

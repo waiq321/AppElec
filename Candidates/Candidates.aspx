@@ -30,7 +30,7 @@
     </fieldset>
       <div style="padding-top:10px;">
           
-                <asp:GridView ID="grdCandidates" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
+                <asp:GridView ID="grdCandidates" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%" OnRowDataBound="grdCandidates_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="Sr #">
                             <ItemTemplate>
@@ -39,7 +39,10 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Name">
                             <ItemTemplate>
-                                <asp:Label ID="lblName" runat="server" Text='<%#Bind("Name") %>'></asp:Label>
+                                <asp:Label ID="lblName"  CssClass="hyperlink" runat="server" Text='<%#Bind("Name") %>'></asp:Label>
+                                <div class="cand-image">
+                                    <asp:Image runat="server" ID="candPic"  CssClass="picture"  width="120" height="120"  />
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -103,7 +106,23 @@
                 window.open("../Candidates/Businesses.aspx?CandId=" + candidateId, "_blank");
 
         }
-        
+        $(document).ready(function () {
+           
+            $("body").click(function (e) {                
+                var target = $(e.target);
+                if ($(target).hasClass("hyperlink")) {
+                    $(".cand-image").hide();
+                    $(target).next(".cand-image").show();
+                }
+                else
+                {
+                    $(".cand-image").hide();
+                }
+            }); 
+            $(".hyperlink").on("mousemove", function () {
+                $(this).next(".cand-image").hide();
+            });
+        });
     </script>
 </asp:Content>
 
