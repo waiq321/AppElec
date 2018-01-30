@@ -50,7 +50,7 @@
 	<div class="page-inner">
 	
 	
-	<header id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(images/img1.jpg)">
+	<header id="gtco-header" class="gtco-cover" role="banner" style="background-image: url(images/img1.jfif)">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">

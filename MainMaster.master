@@ -92,6 +92,7 @@
                                 </li>
                                 <li class="act"><a href="../Login.aspx">Reports</a></li>
                                  <li class="act"><a href="../Login.aspx">Logout</a></li>
+                                 <li class="act"><a href="../ChangePassword.aspx">Change Password</a></li>
 
                                 
                                      

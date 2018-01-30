@@ -30,7 +30,9 @@ public partial class Login : System.Web.UI.Page
         {
             
             lblMessage.Text="Success!";
+            Session.Add("UserId", dt.Rows[0]["UserID"].ToString());
             Response.Redirect("~/Admin/ElectionYears.aspx");
+           
         }
         else
         {
