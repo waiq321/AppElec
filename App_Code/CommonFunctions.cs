@@ -69,5 +69,30 @@ public class CommonFunctions
         List<SqlParameter> parm = new List<SqlParameter> { };
         return ObjDBManager.ExecuteDataTable("GetElectionYear", parm);
     }
-    
+    public DataTable GetLBelectionYear()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetLBElectionYear", parm);
+    }
+    public DataTable GetLModule()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetModule", parm);
+    }
+    public DataTable GetUsers()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("GetUsers", parm);
+    }
+
+    public DataTable GetPages(string Module_ID)
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> {new SqlParameter("@Module_ID", Module_ID) };
+        return ObjDBManager.ExecuteDataTable("SelectModulePages", parm);
+    }
+
 }
