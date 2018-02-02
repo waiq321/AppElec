@@ -24,7 +24,7 @@
     
 
   </table> 
-              <div style="width:70%; margin:0 auto;margin-top:20px;">
+              <div style="width:100%; margin:0 auto;margin-top:20px;">
                 <asp:GridView  ID="GridView1" CssClass="table-striped table-bordered" AutoGenerateColumns="false" runat="server"  Width="100%">
               <Columns>
                   <asp:TemplateField HeaderText="Sr #">
@@ -43,9 +43,12 @@
                       <ItemTemplate>
                           <span class="link"  onclick="lnkClick(this,'Candidate')">Add Candidate</span> &nbsp;&nbsp;
                           <span class="link"  onclick="lnkClick(this,'ECandidate')">View Candidates</span> &nbsp;&nbsp;
+                          <span class="link"  onclick="lnkClick(this,'Analysis')">Add Analysis</span> &nbsp;&nbsp;
+                          <span class="link"  onclick="lnkClick(this,'Figures')">Add Figures</span> &nbsp;&nbsp;
+                          <span class="link"  onclick="lnkClick(this,'Recommendations')">Add Recommendations</span> &nbsp;&nbsp;
                           <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
                           <span  class="link" onclick="lnkClick(this,'Winner')">View Winners</span> &nbsp;&nbsp;                        
-
+                          
                           <asp:HiddenField ID="hdnElectionId" runat="server" Value='<%#Bind("ElectionId") %>'></asp:HiddenField>
                       </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
@@ -70,6 +73,12 @@
             else if (callFrom == "Results")
                 window.open("../Elections/ElectionResults.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Winner")
+                window.open("../Elections/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Analysis")
+                window.open("../Elections/AddConstituencyAnalysis.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Recommendations")
+                window.open("../Elections/ElectionRecommendation.aspx.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Figures")
                 window.open("../Elections/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
         }
         

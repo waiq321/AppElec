@@ -34,15 +34,53 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
         }
     }
     protected void grdWinningCandidates_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        //if (e.Row.RowType == DataControlRowType.DataRow)
-        //{
-        //    Image Winner1Picture = (Image)e.Row.FindControl("Winner1Pic");
-        //    DataRowView rowView = (DataRowView)e.Row.DataItem;
-        //    byte[] b = (byte[])rowView["Winner1Picture"];
-        //    string base64 = Convert.ToBase64String(b);
-        //    Winner1Picture  .ImageUrl = "data:Image/png;base64," + base64;
-        //}
+   {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            
+            byte[] b =new byte[0];
+            string base64 = ""; Image WinnerPic;
+            DataRowView rowView = (DataRowView)e.Row.DataItem;
+
+            if (!string.IsNullOrEmpty(rowView["Winner1Picture"].ToString()))
+            {
+                b = (byte[])rowView["Winner1Picture"];
+                base64 = Convert.ToBase64String(b);
+                WinnerPic = (Image)e.Row.FindControl("Winner1Pic");
+                WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+            }
+
+            if (!string.IsNullOrEmpty(rowView["Winner2Picture"].ToString()))
+            {
+                b = (byte[])rowView["Winner2Picture"];
+                base64 = Convert.ToBase64String(b);
+                WinnerPic = (Image)e.Row.FindControl("Winner2Pic");
+                WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+            }
+            if (!string.IsNullOrEmpty(rowView["Winner3Picture"].ToString()))
+            {
+                b = (byte[])rowView["Winner3Picture"];
+                base64 = Convert.ToBase64String(b);
+                WinnerPic = (Image)e.Row.FindControl("Winner3Pic");
+                WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+            }
+            if (!string.IsNullOrEmpty(rowView["Winner4Picture"].ToString()))
+            {
+                b = (byte[])rowView["Winner4Picture"];
+                base64 = Convert.ToBase64String(b);
+                WinnerPic = (Image)e.Row.FindControl("Winner4Pic");
+                WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+            }
+
+            if (!string.IsNullOrEmpty(rowView["Winner5Picture"].ToString()))
+            {
+                b = (byte[])rowView["Winner5Picture"];
+                base64 = Convert.ToBase64String(b);
+                WinnerPic = (Image)e.Row.FindControl("Winner5Pic");
+                WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+            }
+
+        }
     }
     
 }

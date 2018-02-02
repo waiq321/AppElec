@@ -12,7 +12,7 @@
             </td>
             <td colspan="2" rowspan="3" style="text-align: center">
 
-                <img src="../images/dumy.png" class="picture" width="120" height="120" />
+                <asp:Image runat="server" ID="candPic" ImageUrl="~/images/dumy.png" CssClass="picture"  width="120" height="120"  />
 
             </td>
         </tr>

@@ -44,7 +44,10 @@ public partial class Candidates_CandidateDetails : System.Web.UI.Page
                 lblPermanentAddress.Text = ds.Tables[0].Rows[0]["PermanentAddress"].ToString();
                 lblObservations.Text = ds.Tables[0].Rows[0]["OtherObservations"].ToString();
 
-              
+                byte[] b = (byte[])ds.Tables[0].Rows[0]["Picture"];
+                string base64 = Convert.ToBase64String(b);
+                candPic.ImageUrl = "data:Image/png;base64," + base64;
+
             }
 
             grdFather.DataSource = ds.Tables[1];
