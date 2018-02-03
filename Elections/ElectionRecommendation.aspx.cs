@@ -122,13 +122,13 @@ public partial class Election_ElectionRecommendation : System.Web.UI.Page
 
 
 
-            cmd.Parameters.AddWithValue("@FWParty", ddlLWParty.SelectedItem.Text);
-            cmd.Parameters.AddWithValue("@FirstWiningCandidate", ddlCandidate1.SelectedItem.Text);
+            cmd.Parameters.AddWithValue("@FWParty", ddlLWParty.SelectedValue);
+            cmd.Parameters.AddWithValue("@FirstWiningCandidate", ddlCandidate1.SelectedValue);
             cmd.Parameters.AddWithValue("@FirstFactors", txtLWFactor.Text);
             
 
-            cmd.Parameters.AddWithValue("@SWParty", ddlOLWParty.SelectedItem.Text);
-            cmd.Parameters.AddWithValue("@SecondWiningCandidate", ddlCandidate2.SelectedItem.Text);
+            cmd.Parameters.AddWithValue("@SWParty", ddlOLWParty.SelectedValue);
+            cmd.Parameters.AddWithValue("@SecondWiningCandidate", ddlCandidate2.SelectedValue);
             cmd.Parameters.AddWithValue("@SecondFactors", txtOLWFactor.Text);
             cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString());
 
@@ -179,9 +179,10 @@ public partial class Election_ElectionRecommendation : System.Web.UI.Page
                 
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
-                new SqlParameter("@Type",rdoType.SelectedValue)
+                new SqlParameter("@Type",rdoType.SelectedValue),
+                new SqlParameter("@ElectionId",ddlYear.SelectedValue)
             };
-        GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_LBElectionRecommandation", parm);
+        GridView1.DataSource = ObjDBManager.ExecuteDataTable("GetRecommandations", parm);
         GridView1.DataBind();
     }
 

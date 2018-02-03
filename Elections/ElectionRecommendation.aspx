@@ -128,31 +128,31 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="First Wining Candidate">
+                            <asp:TemplateField HeaderText="Candidate">
                                 <ItemTemplate>
                                     <asp:Label ID="lblFirstWiningCandidate" runat="server" Text='<%#Bind("FirstWiningCandidate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="First Factors">
+                            <asp:TemplateField HeaderText="Factors">
                                 <ItemTemplate>
                                     <asp:Label ID="lblFirstFactors" runat="server" Text='<%#Bind("FirstFactors") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Second Party Name">
+                            <asp:TemplateField HeaderText="Second Wining Party">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSWParty" runat="server" Text='<%#Bind("SWParty") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Second Wining Candidate">
+                            <asp:TemplateField HeaderText="Candidate">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSecondWiningCandidate" runat="server" Text='<%#Bind("SecondWiningCandidate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Second Factors">
+                             <asp:TemplateField HeaderText="Factors">
                                 <ItemTemplate>
                                     <asp:Label ID="LabelSecondFactors" runat="server" Text='<%#Bind("SecondFactors") %>'></asp:Label>
                                 </ItemTemplate>

@@ -77,7 +77,7 @@
             else if (callFrom == "Analysis")
                 window.open("../Elections/AddConstituencyAnalysis.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Recommendations")
-                window.open("../Elections/ElectionRecommendation.aspx.aspx?ElecnId=" + electionId, "_blank");
+                window.open("../Elections/ElectionRecommendation.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Figures")
                 window.open("../Elections/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
         }

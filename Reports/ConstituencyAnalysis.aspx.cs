@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Configuration;
+
+public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
+{
+    String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            GetYears();
+            GetProvince();
+            GetDistrict();
+            GetNA();            
+        }
+    }
+    protected void GetYears()
+    {
+        CommonFunctions objCommonFunctions = new CommonFunctions();
+        ddlYear.DataSource = objCommonFunctions.GetelectionYear();
+
+        ddlYear.DataTextField = "electionyear";
+        ddlYear.DataValueField = "electionid";
+        ddlYear.DataBind();
+    }
+    protected void GetProvince()
+    {
+            CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
+            ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
+
+            ddlProvince.DataTextField = "ProvinceName";
+            ddlProvince.DataValueField = "ProvinceId";
+            ddlProvince.DataBind();
+    }
+    protected void GetDistrict()
+    {
+        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
+        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
+
+        ddlDistrict.DataTextField = "Name";
+        ddlDistrict.DataValueField = "DistrictId";
+        ddlDistrict.DataBind();
+
+    }
+    
+    protected void GetNA()
+    {
+        CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
+        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA(ddlDistrict.SelectedValue);
+
+        ddlNA.DataTextField = "Name";
+        ddlNA.DataValueField = "NAId";
+        ddlNA.DataBind();
+    }
+    
+ 
+    private void FillGridView()
+    {
+        
+        //List<SqlParameter> parm = new List<SqlParameter>
+        //    {
+        //        new SqlParameter("@ElectionId",electionId),
+        //        new SqlParameter("@NAId",ddlNA.SelectedValue),
+        //        new SqlParameter("@PAId",paId),
+        //        new SqlParameter("@Type",rdoType.SelectedValue)
+        //    };
+        //GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
+        //GridView1.DataBind();
+    }
+
+
+    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetDistrict();
+        GetNA();        
+    }
+
+    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetNA();        
+    }
+    
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+
+    }
+}  

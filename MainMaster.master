@@ -64,6 +64,13 @@
                                         <li><a href="../Admin/PAList.aspx">PA NA</a></li>                                                                                                                                                                                                       
                                     </ul>
                                 </li>
+                                 <li>
+                                    <a href="services.html" class="fh5co-sub-ddown">Local Body Elections</a>
+                                    <ul class="fh5co-sub-menu">                                        
+                                        <li><a href="../Admin/LBElectionYears.aspx">Add Election Year</a></li>
+                                        <li><a href="../Elections/LBElectionResults.aspx">Add Results</a></li>                                                                                                                                                                                                       
+                                    </ul>
+                                </li>
                                 <li><a href="about.html">Reports</a></li>                                
                             </ul>
                         </nav>

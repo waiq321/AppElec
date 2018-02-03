@@ -66,7 +66,9 @@
                     <asp:ListItem Value="5">5</asp:ListItem>
                 </asp:DropDownList>
             </td>
-            
+            <td>
+                  <asp:Button ID="Btn_Save" Text="Save" CssClass="btn" runat="server" OnClick="btn_save_Click"  />
+            </td>
         </tr>
 
         <tr>
@@ -133,12 +135,7 @@
                 </div>
             </td>
         </tr>
-        <tr>
-            <td colspan="4" style="text-align: center;">
-                <asp:Button ID="Btn_Save" Text="Save" CssClass="btn" runat="server" OnClick="btn_save_Click"  />
-
-            </td>
-        </tr>
+        
     </table>
 </asp:Content>
 
