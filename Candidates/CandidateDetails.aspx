@@ -208,5 +208,37 @@
         </asp:GridView>
 
     </div>
+
+      <h3 style="margin-top: 30px;">Cook / Guard Info</h3>
+
+    <div style="padding-top: 10px;">
+        <asp:GridView ID="grdCookGuard" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
+            <Columns>
+                <asp:TemplateField HeaderText="Name">
+                    <ItemTemplate>
+                        <asp:Label ID="lblName" runat="server" Text='<%#Bind("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="NIC#">
+                    <ItemTemplate>
+                        <asp:Label ID="lblNIC" runat="server" Text='<%#Bind("NIC") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Phone">
+                    <ItemTemplate>
+                        <asp:Label ID="lblPhone" runat="server" Text='<%#Bind("Phone") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Type">
+                    <ItemTemplate>
+                        <asp:Label ID="lblType" runat="server" Text='<%#Bind("Type") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                
+            </Columns>
+        </asp:GridView>
+        </div>
 </asp:Content>
 
