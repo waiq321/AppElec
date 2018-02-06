@@ -11,7 +11,7 @@ using System.Configuration;
 using System.Web.Services;
 using System.Text;
 
-public partial class Candidates_ElectionWinerGraph : System.Web.UI.Page
+public partial class Reports_ElectionWinerGraph : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)

@@ -68,7 +68,8 @@
                             <ItemTemplate>
                                 <span class="link"  onclick="lnkClick(this,'Father')">Father</span> &nbsp;&nbsp;
                                 <span  class="link" onclick="lnkClick(this,'Spouse')">Spouse</span> &nbsp;&nbsp;                        
-                                <span  class="link" onclick="lnkClick(this,'Business')">Business</span>
+                                <span  class="link" onclick="lnkClick(this,'Business')">Business</span>&nbsp;&nbsp;                        
+                                <span  class="link" onclick="lnkClick(this,'CookGurard')">Guard/Cood</span>
                                 
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
@@ -104,7 +105,10 @@
                 window.open("../Candidates/CandidateDetails.aspx?CandId=" + candidateId, "_blank");
             else if (callFrom == "Business")
                 window.open("../Candidates/Businesses.aspx?CandId=" + candidateId, "_blank");
+            else if (callFrom == "CookGurard")
+                window.open("../Candidates/Guard_Cook.aspx?CandId=" + candidateId, "_blank");
 
+            
         }
         $(document).ready(function () {
            

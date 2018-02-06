@@ -12,8 +12,8 @@
     </h1>
     <table class="table-form">
 
-        
-          <tr>
+
+        <tr>
             <td class="label" style="width: 10%;">Year:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlYear" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
@@ -47,18 +47,10 @@
             </td>
             <td class="label" id="tdPA1" runat="server" style="display: none;">PA:</td>
             <td id="tdPA2" runat="server" style="display: none;">
-                <asp:DropDownList ID="ddlPA" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlPA" AutoPostBack="true" OnSelectedIndexChanged="ddlPA_SelectedIndexChanged" runat="server"></asp:DropDownList>
             </td>
 
         </tr>
-        
-        <tr>
-            <td colspan="4" style="text-align: center;">
-                <asp:Button ID="btn_Search" Text="Search" CssClass="btn" runat="server" OnClick="btn_Search_Click" />
-
-            </td>
-        </tr>
-
         <tr>
 
             <td align="center" colspan="4">
@@ -77,7 +69,7 @@
                                     <asp:Label ID="lblElectionYear" runat="server" Text='<%#Bind("ElectionYear") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
+
                             <asp:TemplateField HeaderText="Party Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPartyName" runat="server" Text='<%#Bind("PartyName") %>'></asp:Label>
@@ -89,11 +81,11 @@
                                     <asp:Label ID="lblCandidate" runat="server" Text='<%#Bind("Candidate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Enter Result">
+                            <asp:TemplateField HeaderText="Votes">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txt_result" runat="server" Text='<%#Eval("ResultVote") %>'></asp:TextBox>
 
-                                     <asp:HiddenField ID="EC_ID" runat="server" Value='<%#Bind("Id") %>' />
+                                    <asp:HiddenField ID="EC_ID" runat="server" Value='<%#Bind("Id") %>' />
                                     <asp:HiddenField ID="Pro_ID" runat="server" Value='<%#Bind("Provinceid") %>' />
                                     <asp:HiddenField ID="Dis_ID" runat="server" Value='<%#Bind("Districtid") %>' />
                                     <asp:HiddenField ID="PA_ID" runat="server" Value='<%#Bind("PAId") %>' />
@@ -103,7 +95,12 @@
                                     <asp:HiddenField ID="C_ID" runat="server" Value='<%#Bind("CandidateId") %>' />
 
                                 </ItemTemplate>
-                            </asp:TemplateField>                           
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Remarks">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txt_remarks" runat="server" Text='<%#Bind("Remarks") %>' ></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
 

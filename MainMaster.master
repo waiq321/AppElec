@@ -60,18 +60,28 @@
                                 <li>
                                     <a href="services.html" class="fh5co-sub-ddown">PA</a>
                                     <ul class="fh5co-sub-menu">                                        
-                                        <li><a href="../Admin/PA.aspx">Add List</a></li>
-                                        <li><a href="../Admin/PAList.aspx">PA NA</a></li>                                                                                                                                                                                                       
+                                        <li><a href="../Admin/PA.aspx">Add PA</a></li>
+                                        <li><a href="../Admin/PAList.aspx">PA List</a></li>                                                                                                                                                                                                       
                                     </ul>
                                 </li>
+
+                                
                                  <li>
-                                    <a href="services.html" class="fh5co-sub-ddown">Local Body Elections</a>
+                                    <a href="services.html" class="fh5co-sub-ddown">LB Elections</a>
                                     <ul class="fh5co-sub-menu">                                        
                                         <li><a href="../Admin/LBElectionYears.aspx">Add Election Year</a></li>
                                         <li><a href="../Elections/LBElectionResults.aspx">Add Results</a></li>                                                                                                                                                                                                       
                                     </ul>
                                 </li>
-                                <li><a href="about.html">Reports</a></li>                                
+                                <li>
+                                    <a href="services.html" class="fh5co-sub-ddown">Reports</a>
+                                    <ul class="fh5co-sub-menu">                                        
+                                        <li><a href="../Reports/ElectionWinerGraph.aspx">View Winner</a></li>
+                                        <li><a href="../Reports/VotersComparison.aspx">Voters Comparison</a></li>
+                                            <li><a href="../Reports/PartiesVotes.aspx">Parties Votes</a></li>
+                                    </ul>
+                                </li>
+                                
                             </ul>
                         </nav>
                     </div>

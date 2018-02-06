@@ -56,8 +56,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         ddlDistrict.DataValueField = "DistrictId";
         ddlDistrict.DataBind();
 
-    }
-    
+    }    
     protected void GetNA()
     {
         
@@ -76,13 +75,8 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         ddlPA.DataValueField = "PAId";
         ddlPA.DataBind();
     }
-    
-    protected void btn_Search_Click(object sender, EventArgs e)
-    {
-        FillGridView();
-    }
   
-    protected void Update_Record(string Result,string id,String type)
+    protected void Update_Record(string Result, string Remarks, string id,String type)
     {
         
         SqlConnection con = new SqlConnection(_str);
@@ -92,6 +86,8 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@Id", id);
         cmd.Parameters.AddWithValue("@Result", Result);
+        cmd.Parameters.AddWithValue("@Remarks", Remarks);
+
         cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
         cmd.ExecuteNonQuery();
         con.Close();
@@ -127,8 +123,6 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
             Btn_Save.Visible = false;
         }
     }
-
-
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();
@@ -141,7 +135,6 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         GetNA();
         FillGridView();
     }
-
     
     protected void rdoType_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -157,13 +150,18 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
             tdPA1.Style.Add(HtmlTextWriterStyle.Display, "contents");
             tdPA2.Style.Add(HtmlTextWriterStyle.Display, "contents");
         }
+        FillGridView();
     }
     protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetPA();
+        FillGridView();
     }
-   
 
+    protected void ddlPA_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        FillGridView();
+    }
     protected void Btn_Save_Click(object sender, EventArgs e)
     {
         try
@@ -171,6 +169,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
             if (GridView1.Rows.Count > 0)
             {
                 TextBox result = new TextBox();
+                TextBox remarks = new TextBox();
                 HiddenField ID = new HiddenField();
                 HiddenField Pro_ID = new HiddenField();
                 HiddenField Dis_ID = new HiddenField();
@@ -184,6 +183,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
                 {
 
                     result = (TextBox)row.FindControl("txt_result");
+                    remarks = (TextBox)row.FindControl("txt_remarks");
                     ID = (HiddenField)row.FindControl("EC_ID");
                     Pro_ID = (HiddenField)row.FindControl("Pro_ID");
                     Dis_ID = (HiddenField)row.FindControl("Dis_ID");
@@ -194,7 +194,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
                     C_ID = (HiddenField)row.FindControl("C_ID");
 
 
-                    Update_Record(result.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value, NA_ID.Value);
+                    Update_Record(result.Text, remarks.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value, NA_ID.Value);
                 }
                 lblMsg.Text = "Saved successfully!";
                 lblMsg.Attributes.Remove("class");
@@ -210,7 +210,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         FillGridView();
     }
 
-    private void Update_Record(string Result, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID)
+    private void Update_Record(string Result, string Remarks, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID)
     {
         SqlConnection con = new SqlConnection(_str);
         con.Open();
@@ -219,7 +219,8 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@Id", ID);
         cmd.Parameters.AddWithValue("@Result", Result);
-      
+        cmd.Parameters.AddWithValue("@Remarks", Remarks);
+
         cmd.Parameters.AddWithValue("@Pro_ID", Pro_ID);
         cmd.Parameters.AddWithValue("@C_ID", C_ID);
         cmd.Parameters.AddWithValue("@Dis_ID", Dis_ID);

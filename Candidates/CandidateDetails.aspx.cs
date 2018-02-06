@@ -58,6 +58,10 @@ public partial class Candidates_CandidateDetails : System.Web.UI.Page
 
             grdBusiness.DataSource = ds.Tables[3];
             grdBusiness.DataBind();
+
+
+            grdCookGuard.DataSource = ds.Tables[4];
+            grdCookGuard.DataBind();
         }
         catch
         {
