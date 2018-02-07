@@ -49,7 +49,7 @@ public partial class Candidates_Guard_Cook : System.Web.UI.Page
             formCookGuard.Style.Add(HtmlTextWriterStyle.Display, "none");
 
         }
-        catch (Exception)
+        catch (Exception exp)
         {
             lblMsg.Text = "some error occurred!";
             lblMsg.Attributes.Remove("class");

@@ -94,5 +94,26 @@ public class CommonFunctions
         List<SqlParameter> parm = new List<SqlParameter> {new SqlParameter("@Module_ID", Module_ID) };
         return ObjDBManager.ExecuteDataTable("SelectModulePages", parm);
     }
+    public DataTable GetPAByDistrict(string DistrictId)
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@DistrictId",DistrictId)
+        };
+        return ObjDBManager.ExecuteDataTable("GetPAByDistrict", parm);
+    }
+    public DataTable GetCast()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("uspGetCast", parm);
+    }
+
+    public DataTable GetSectrain()
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> { };
+        return ObjDBManager.ExecuteDataTable("uspGetSectrain", parm);
+    }
 
 }

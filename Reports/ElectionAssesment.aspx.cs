@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
+public partial class Reports_ElectionAssesment : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,19 +20,19 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
             GetDistrict();
             GetNA();
 
-            LoadReport();
+            
 
         }
     }
-    private void LoadReport()
-    {
+
+    private void LoadReport() {
         DBManager dbmanger = new DBManager();
 
         List<SqlParameter> list = new List<SqlParameter>();
-        list.Add(new SqlParameter("@NAId", ddlNA.SelectedValue));
-        list.Add(new SqlParameter("@ElectionId", ddlYear.SelectedValue));
+        list.Add(new SqlParameter("@NAId", 6));
+        list.Add(new SqlParameter("@ElectionId", 10));
 
-        DataSet dss = dbmanger.ExecuteDataSet("Report_GetNAAnalysis", list);
+        DataSet dss = dbmanger.ExecuteDataSet("Report_GetAssesment", list);
 
 
         ReportDataSource ds = new ReportDataSource();
@@ -41,11 +41,11 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
 
         ReportViewer1.LocalReport.DataSources.Clear();
         ReportViewer1.LocalReport.DataSources.Add(ds);
-        ReportViewer1.LocalReport.ReportPath = Server.MapPath("ConstituencyAnalysis.rdlc");
+        ReportViewer1.LocalReport.ReportPath = Server.MapPath("ElectionAssesment.rdlc");
         ReportViewer1.LocalReport.Refresh();
     }
 
-    protected void GetYears()
+         protected void GetYears()
     {
         CommonFunctions objCommonFunctions = new CommonFunctions();
         ddlYear.DataSource = objCommonFunctions.GetelectionYear();
@@ -56,12 +56,12 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
     }
     protected void GetProvince()
     {
-        CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
-        ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
+            CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
+            ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
-        ddlProvince.DataTextField = "ProvinceName";
-        ddlProvince.DataValueField = "ProvinceId";
-        ddlProvince.DataBind();
+            ddlProvince.DataTextField = "ProvinceName";
+            ddlProvince.DataValueField = "ProvinceId";
+            ddlProvince.DataBind();
     }
     protected void GetDistrict()
     {
@@ -73,7 +73,7 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
         ddlDistrict.DataBind();
 
     }
-
+    
     protected void GetNA()
     {
         CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
@@ -100,4 +100,9 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
     {
         GetNA();
     }
+
+     
+
+
+
 }

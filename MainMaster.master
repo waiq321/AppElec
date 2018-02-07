@@ -14,12 +14,15 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="Content/style.css">
     <link rel="stylesheet" type="text/css" href="Content/superfish.css">
+    <%--    <link rel="stylesheet" type="text/css" href="Content/jquery-ui.css">--%>
 
 
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-1.11.1.min.js")%>"></script>
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/bootstrap-3.1.1.min.js")%>"></script>
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/superfish.js")%>"></script>
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery.waypoints.min.js")%>"></script>
+    <%--<script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/jquery-ui.js")%>"></script>--%>
+
     <%--<script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/main.js")%>"></script> --%>
 </head>
 <body>
@@ -77,8 +80,11 @@
                                     <a href="services.html" class="fh5co-sub-ddown">Reports</a>
                                     <ul class="fh5co-sub-menu">                                        
                                         <li><a href="../Reports/ElectionWinerGraph.aspx">View Winner</a></li>
-                                        <li><a href="../Reports/VotersComparison.aspx">Voters Comparison</a></li>
+                                        <%--<li><a href="../Reports/VotersComparison.aspx">Voters Comparison</a></li>--%>
                                             <li><a href="../Reports/PartiesVotes.aspx">Parties Votes</a></li>
+                                        <li><a href="../Reports/ConstituencyAnalysis.aspx">Constituency Analysis</a></li>
+                                        <li><a href="../Reports/ElectionAssesment.aspx">Election Assesment</a></li>
+                                        <li><a href="../Reports/NAStatisticsReport.aspx">NA Statistics</a></li>
                                     </ul>
                                 </li>
                                 

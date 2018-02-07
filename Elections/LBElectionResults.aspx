@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <h1>LB Election Results
+    <h1>Local Body Election Results
      
         <span style="padding-left: 100px">
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
@@ -14,7 +14,7 @@
 
         
           <tr>
-            <td class="label" style="width: 10%;">LB election Year:</td>
+            <td class="label" style="width: 10%;">Election Year:</td>
             <td style="width: 30%;">
                 <asp:DropDownList ID="ddlYear" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
             </td>
@@ -84,7 +84,7 @@
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="LB Election Year">
+                            <asp:TemplateField HeaderText="Election Year">
                                 <ItemTemplate>
                                     <asp:Label ID="lblLBElectionYear" runat="server" Text='<%#Bind("LBElectionYear") %>'></asp:Label>
                                 </ItemTemplate>
@@ -110,13 +110,13 @@
 
                           
 
-                              <asp:TemplateField HeaderText="PartyType">
+                              <asp:TemplateField HeaderText="Type">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPartyTypee" runat="server" Text='<%#Bind("PartyType") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Name">
+                            <asp:TemplateField HeaderText="Candidate Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Bind("Name") %>'></asp:Label>
                                 </ItemTemplate>

@@ -46,6 +46,9 @@
                           <span class="link"  onclick="lnkClick(this,'Analysis')">Add Analysis</span> &nbsp;&nbsp;
                           <span class="link"  onclick="lnkClick(this,'Figures')">Add Figures</span> &nbsp;&nbsp;
                           <span class="link"  onclick="lnkClick(this,'Recommendations')">Add Recommendations</span> &nbsp;&nbsp;
+                          
+                          <span class="link"  onclick="lnkClick(this,'Spoilers')">Spoilers/Influential Figures</span> &nbsp;&nbsp;
+
                           <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
                           
                           <span  class="link" onclick="lnkClick(this,'OnGoiningResults')">On Goining Results</span> &nbsp;&nbsp;                        
@@ -86,8 +89,10 @@
                 window.open("../Elections/AddConstituencyAnalysis.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Recommendations")
                 window.open("../Elections/ElectionRecommendation.aspx?ElecnId=" + electionId, "_blank");
+            else if (callFrom == "Spoilers")
+                window.open("../Elections/NAInfulense.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Figures")
-                window.open("../Elections/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
+                window.open("../Elections/AddFigureCastSectrain.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "OnGoiningResults")
                 window.open("../Elections/OnGoiningResults.aspx?ElecnId=" + electionId, "_blank");
         }
