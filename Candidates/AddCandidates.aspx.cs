@@ -9,6 +9,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Text;
 
 public partial class Candidates_AddCandidates : System.Web.UI.Page
 {
@@ -46,24 +47,35 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
                 txtName.Text = dt.Rows[0]["Name"].ToString();
                 txtNic.Text = dt.Rows[0]["NIC"].ToString();
                 ddlParty.SelectedValue = dt.Rows[0]["PartyId"].ToString();
-                txtEdu.Text = dt.Rows[0]["Education"].ToString();
-                txtRWM.Text = dt.Rows[0]["RelationWithMilitary"].ToString();
-                txtRWB.Text = dt.Rows[0]["RelationWithBureaucracy"].ToString();
-                txtRWJ.Text = dt.Rows[0]["RelationWithJudiciary"].ToString();
-                txtRWP.Text = dt.Rows[0]["RelationWithPolitics"].ToString();
-                txtMC.Text = dt.Rows[0]["MoralCharacteristics"].ToString();
-                txtFC.Text = dt.Rows[0]["FinancialCharacteristics"].ToString();
-                txtVAE.Text = dt.Rows[0]["ViewsAboutEstablishment"].ToString();
-                txtImpApp.Text = dt.Rows[0]["ImpotantAppoinments"].ToString();
-                txtScandles.Text = dt.Rows[0]["InvolvedScandals"].ToString();
-                txtPresentAdd.Text = dt.Rows[0]["PresentAddress"].ToString();
-                txtPermanentAddress.Text = dt.Rows[0]["PermanentAddress"].ToString();
-                txtObservations.Text = dt.Rows[0]["OtherObservations"].ToString();
 
                 byte[] b = (byte[])dt.Rows[0]["Picture"];
                 string base64 = Convert.ToBase64String(b);
                 candPic.ImageUrl = "data:Image/png;base64," + base64;
+
+                txtEdu.Text = dt.Rows[0]["Education"].ToString();
+                txtPresentAdd.Text = dt.Rows[0]["PresentAddress"].ToString();
+                txtPermanentAddress.Text = dt.Rows[0]["PermanentAddress"].ToString();
                 
+                hdnNadraVerises.Value = dt.Rows[0]["NadraVerises"].ToString();
+                chkVoteForUs.Checked=bool.Parse(dt.Rows[0]["VoteForUs"].ToString());
+                chkLikeMinded.Checked = bool.Parse(dt.Rows[0]["LikeMinded"].ToString());
+
+                txtPastAffiliation.Text= dt.Rows[0]["PastAffiliation"].ToString();
+                txtCurrentAffiliation.Text= dt.Rows[0]["CurrentAffiliation"].ToString();
+                txtChangingAffiliation.Text= dt.Rows[0]["ChangingAffiliation"].ToString();
+
+                txtRWM.Text = dt.Rows[0]["RelationWithMilitary"].ToString();
+                txtRWB.Text = dt.Rows[0]["RelationWithBureaucracy"].ToString();
+                txtRWJ.Text = dt.Rows[0]["RelationWithJudiciary"].ToString();
+                txtRWP.Text = dt.Rows[0]["RelationWithPolitics"].ToString();
+
+                txtMC.Text = dt.Rows[0]["MoralCharacteristics"].ToString();
+                txtFC.Text = dt.Rows[0]["FinancialCharacteristics"].ToString();
+
+                txtVAE.Text = dt.Rows[0]["ViewsAboutEstablishment"].ToString();
+                txtImpApp.Text = dt.Rows[0]["ImpotantAppoinments"].ToString();
+                txtScandles.Text = dt.Rows[0]["InvolvedScandals"].ToString();                
+                txtObservations.Text = dt.Rows[0]["OtherObservations"].ToString();                
                 hdnCandidateId.Value= candId;
             }
         }
@@ -83,32 +95,60 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
         }   
         else
         {
-            b=Convert.FromBase64String(candPic.ImageUrl.Replace("data:Image/png;base64,", ""));                        
+            if (candPic.ImageUrl.Contains("dumy"))
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(Server.MapPath("~/images/dumy.png"));
+                b = imgToByteArray(img);
+            }
+            else
+            {
+                b =Convert.FromBase64String(candPic.ImageUrl.Replace("data:Image/png;base64,", ""));                        
+            }
         }
-          
+
+        byte[] nadraVerises = null;
+        if (fileNadraVerises.HasFile)
+        {
+            nadraVerises = fileNadraVerises.FileBytes;
+        }     
+        else
+        {
+            nadraVerises = Encoding.ASCII.GetBytes(hdnNadraVerises.Value);            
+        }   
         try
         {
-
             List<SqlParameter> parm = new List<SqlParameter>
             {
             new SqlParameter("@CandidateId",hdnCandidateId.Value),
             new SqlParameter("@Name",txtName.Text),
             new SqlParameter("@NIC",txtNic.Text),
+            new SqlParameter("@PartyId",ddlParty.SelectedValue),
+            new SqlParameter("@Picture",b),
             new SqlParameter("@Education",txtEdu.Text),
             new SqlParameter("@PresentAddress",txtPresentAdd.Text),
             new SqlParameter("@PermanentAddress",txtPermanentAddress.Text),
-            new SqlParameter("@PartyId",ddlParty.SelectedValue),
+            new SqlParameter("@NadraVerises",nadraVerises),
+
+            new SqlParameter("@PastAffiliation",txtPastAffiliation.Text),
+            new SqlParameter("@CurrentAffiliation",txtCurrentAffiliation.Text),
+            new SqlParameter("@ChangingAffiliation",txtChangingAffiliation.Text),
+
             new SqlParameter("@RelationWithJudiciary",txtRWJ.Text),
             new SqlParameter("@RelationWithMilitary",txtRWM.Text),
             new SqlParameter("@RelationWithPolitics",txtRWP.Text),
             new SqlParameter("@RelationWithBureaucracy",txtRWB.Text),
+
             new SqlParameter("@ImpotantAppoinments",txtImpApp.Text),
             new SqlParameter("@InvolvedScandals",txtScandles.Text),
             new SqlParameter("@ViewsAboutEstablishment",txtVAE.Text),
+
             new SqlParameter("@MoralCharacteristics",txtMC.Text),
             new SqlParameter("@FinancialCharacteristics",txtFC.Text),
             new SqlParameter("@OtherObservations",txtObservations.Text),
-            new SqlParameter("@Picture",b),
+
+            new SqlParameter("@VoteForUs",chkVoteForUs.Checked),
+            new SqlParameter("@LikeMinded",chkLikeMinded.Checked),
+
             new SqlParameter("@CreatedBy",Session["UserId"]),
             new SqlParameter("@CreatedDate",DateTime.Now)
 
@@ -127,6 +167,14 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
             
         }
     }
+    public byte[] imgToByteArray(System.Drawing.Image img)
+    {
+        using (MemoryStream mStream = new MemoryStream())
+        {
+            img.Save(mStream, img.RawFormat);
+            return mStream.ToArray();
+        }
+    }
     protected void ClearFields()
     {
         hdnCandidateId.Value = "0";
@@ -136,6 +184,14 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
         txtPresentAdd.Text = "";
         txtPermanentAddress.Text = "";
         ddlParty.SelectedIndex = 0;
+
+        txtPastAffiliation.Text = "";
+        txtCurrentAffiliation.Text = "";
+        txtChangingAffiliation.Text = "";
+
+        chkVoteForUs.Checked = false;
+        chkLikeMinded.Checked = false;
+
         txtRWJ.Text = "";
         txtRWM.Text = "";
         txtRWP.Text = "";

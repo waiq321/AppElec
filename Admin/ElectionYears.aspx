@@ -49,10 +49,9 @@
                           
                           <span class="link"  onclick="lnkClick(this,'Spoilers')">Spoilers/Influential Figures</span> &nbsp;&nbsp;
 
-                          <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
-                          
                           <span  class="link" onclick="lnkClick(this,'OnGoiningResults')">On Goining Results</span> &nbsp;&nbsp;                        
-                          
+                          <span  class="link" onclick="lnkClick(this,'Results')">Add Results</span> &nbsp;&nbsp;                        
+                                                                              
                           <asp:HiddenField ID="hdnElectionId" runat="server" Value='<%#Bind("ElectionId") %>'></asp:HiddenField>
                       </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
@@ -82,7 +81,7 @@
             else if (callFrom == "ECandidate")
                 window.open("../Elections/ElectionCandidatesList.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Results")
-                window.open("../Elections/ElectionResults.aspx?ElecnId=" + electionId, "_blank");
+                window.open("../Elections/ElectionResults.aspx?Type=Final&ElecnId=" + electionId, "_blank");
             else if (callFrom == "Winner")
                 window.open("../Reports/ElectionWinerGraph.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "Analysis")
@@ -94,7 +93,7 @@
             else if (callFrom == "Figures")
                 window.open("../Elections/AddFigureCastSectrain.aspx?ElecnId=" + electionId, "_blank");
             else if (callFrom == "OnGoiningResults")
-                window.open("../Elections/OnGoiningResults.aspx?ElecnId=" + electionId, "_blank");
+                window.open("../Elections/ElectionResults.aspx?Type=OnGng&ElecnId=" + electionId, "_blank");
         }
         
     </script>

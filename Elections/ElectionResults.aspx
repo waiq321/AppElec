@@ -57,7 +57,7 @@
                 <div style="padding-top: 10px;">
                     <asp:GridView ID="GridView1" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
                         <Columns>
-                            <asp:TemplateField HeaderText="Sr #">
+                            <asp:TemplateField HeaderText="Ser">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
@@ -74,17 +74,43 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblPartyName" runat="server" Text='<%#Bind("PartyName") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle Width="15%" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Candidate">
                                 <ItemTemplate>
                                     <asp:Label ID="lblCandidate" runat="server" Text='<%#Bind("Candidate") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle Width="15%" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Votes">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txt_result" runat="server" Text='<%#Eval("ResultVote") %>'></asp:TextBox>
-
+                                    <asp:TextBox ID="txt_result" runat="server" Text='<%#Eval("ResultVote") %>'></asp:TextBox>                                    
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Polling Stations">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtPollingStations" runat="server" Text='<%#Eval("PollingStations") %>'></asp:TextBox>                                    
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Individual Votes">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtIndividualVotes" runat="server" Text='<%#Eval("IndividualVotes") %>'></asp:TextBox>                                    
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Party Votes">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtPartyVotes" runat="server" Text='<%#Eval("PartyVotes") %>'></asp:TextBox>                                    
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Religious Votes">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtReligiousVotes" runat="server" Text='<%#Eval("ReligiousVotes") %>'></asp:TextBox>                                    
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Remarks">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txt_remarks" runat="server" Text='<%#Bind("Remarks") %>' ></asp:TextBox>
                                     <asp:HiddenField ID="EC_ID" runat="server" Value='<%#Bind("Id") %>' />
                                     <asp:HiddenField ID="Pro_ID" runat="server" Value='<%#Bind("Provinceid") %>' />
                                     <asp:HiddenField ID="Dis_ID" runat="server" Value='<%#Bind("Districtid") %>' />
@@ -94,11 +120,6 @@
                                     <asp:HiddenField ID="El_ID" runat="server" Value='<%#Bind("ElectionId") %>' />
                                     <asp:HiddenField ID="C_ID" runat="server" Value='<%#Bind("CandidateId") %>' />
 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Remarks">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txt_remarks" runat="server" Text='<%#Bind("Remarks") %>' ></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

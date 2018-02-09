@@ -52,6 +52,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 5px;
 
 }
+h2
+{
+    color:#008d4c !important; margin-top:20px;background-color: #ccc;
+    line-height: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
 
 figure {
   margin-bottom: 2em;
@@ -1380,7 +1387,7 @@ figure {
     line-height:40px;
 }
 .label{
-    text-align:right; padding-right:5px;
+    text-align:right; padding-right:5px;white-space:nowrap;
 }
 
 .error{
@@ -1414,7 +1421,7 @@ legend
     line-height:30px; background-color:#515c8e !important;color:#fff !important;font-weight:bold;
 }
 .table-bordered th {
-    text-align:center !important;
+    text-align:center !important;white-space: nowrap;
 }
 .picture{
     border-radius:50px;
@@ -1468,5 +1475,11 @@ table tbody
 .cand-title
 {
     color:#515c8e;font-weight:bold;
+}
+.label-sub{
+    text-align:center;font-weight:bold; background-color:aliceblue;
+}
+.border{
+    border:solid 1px #ccc;
 }
 /*#41c17d--#00a885*/

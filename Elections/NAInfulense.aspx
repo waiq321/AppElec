@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <h1>
-        NA INFLUENTIAL / Spoilers :
+        Na Influential / Spoilers :
      
         <span style="padding-left: 100px">
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
@@ -42,7 +42,7 @@
      
     </table>
     <div style="margin-top:20px;">
-        <h1>INFLUENTIAL PERSON</h1>
+        <h1>Influential Person</h1>
     <table class="table-form">
      <tr>
         <td class="label" >Name :</td>
@@ -77,7 +77,7 @@
         </tr>
         <tr>
             <td colspan ="2" class="label">
-                Bureaucratic :
+                Bueurocracy :
             </td>
             <td>
                  <asp:textbox id ="txtbureaucratic" runat ="server"></asp:textbox>
@@ -86,7 +86,7 @@
         </tr>
         <tr>
             <td colspan ="2" class="label">
-                Militacal :
+                Military :
             </td>
             <td>
                  <asp:textbox id ="txtMilitary" runat ="server"></asp:textbox>
@@ -106,7 +106,7 @@
                 <div style="padding-top: 10px;">
                     <asp:GridView ID="GridViewInf" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
                         <Columns>
-                            <asp:TemplateField HeaderText="Sr #">
+                            <asp:TemplateField HeaderText="Ser">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
@@ -157,10 +157,10 @@
             </td>
         </tr>
     </table>
-        <h1>SPOILERS</h1>
+        <h1>Spoilers</h1>
     <table  class="table-form">
         <tr>
-            <td class ="label">Indivisuals :</td>
+            <td class ="label">Individuals :</td>
             <td> 
                  <asp:textbox id ="txt_Ind" runat ="server"></asp:textbox>
             </td>
@@ -172,14 +172,13 @@
             </td>
         </tr>
         <tr>
-            <td>
+            
                 <td colspan ="2" style ="text-align: center;">
                     <asp:Button ID="Btn_Save_Spo" Text="Save" CssClass="btn" runat="server" OnClick="Btn_Save_Spo_Click"  />
                 </td>
-            </td>
+            
         </tr>
-        <tr>
-            <td>
+        <tr>            
                 <td colspan ="2" style ="text-align: center;">
                     <div style="padding-top: 10px;">
                     <asp:GridView ID="GridView1" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%">
@@ -200,8 +199,7 @@
                     </asp:GridView>
 
                 </div>
-                </td>
-            </td>
+                </td>            
         </tr>
     </table>
 </asp:Content>

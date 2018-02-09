@@ -76,25 +76,25 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         ddlPA.DataBind();
     }
   
-    protected void Update_Record(string Result, string Remarks, string id,String type)
-    {
+    //protected void Update_Record(string Result, string Remarks, string id,String type)
+    //{
         
-        SqlConnection con = new SqlConnection(_str);
-        con.Open();
+    //    SqlConnection con = new SqlConnection(_str);
+    //    con.Open();
 
-        SqlCommand cmd = new SqlCommand("UpdateElectionResult", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@Id", id);
-        cmd.Parameters.AddWithValue("@Result", Result);
-        cmd.Parameters.AddWithValue("@Remarks", Remarks);
+    //    SqlCommand cmd = new SqlCommand("UpdateElectionResult", con);
+    //    cmd.CommandType = CommandType.StoredProcedure;
+    //    cmd.Parameters.AddWithValue("@Id", id);
+    //    cmd.Parameters.AddWithValue("@Result", Result);
+    //    cmd.Parameters.AddWithValue("@Remarks", Remarks);
 
-        cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
-        cmd.ExecuteNonQuery();
-        con.Close();
-        FillGridView();        
-        lblMsg.Text = "Result Saved Successfully!";
-        lblMsg.ForeColor = System.Drawing.Color.Green;
-    }
+    //    cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
+    //    cmd.ExecuteNonQuery();
+    //    con.Close();
+    //    FillGridView();        
+    //    lblMsg.Text = "Result Saved Successfully!";
+    //    lblMsg.ForeColor = System.Drawing.Color.Green;
+    //}
  
     private void FillGridView()
     {
@@ -103,13 +103,15 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         {
             paId = ddlPA.SelectedValue;
         }
+        string resultType = Request.QueryString["Type"];
         DBManager ObjDBManager = new DBManager();
         List<SqlParameter> parm = new List<SqlParameter>
             {
                 new SqlParameter("@ElectionId",Request.QueryString["ElecnId"].ToString()),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
-                new SqlParameter("@Type",rdoType.SelectedValue)
+                new SqlParameter("@Type",rdoType.SelectedValue),
+                new SqlParameter("@ResultType",resultType)
             };
         GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
         GridView1.DataBind();
@@ -170,6 +172,11 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
             {
                 TextBox result = new TextBox();
                 TextBox remarks = new TextBox();
+                TextBox txtPollingStations = new TextBox();
+                TextBox txtIndividualVotes = new TextBox();
+                TextBox txtPartyVotes = new TextBox();
+                TextBox txtReligiousVotes = new TextBox();
+
                 HiddenField ID = new HiddenField();
                 HiddenField Pro_ID = new HiddenField();
                 HiddenField Dis_ID = new HiddenField();
@@ -184,6 +191,11 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
 
                     result = (TextBox)row.FindControl("txt_result");
                     remarks = (TextBox)row.FindControl("txt_remarks");
+                    txtPollingStations = (TextBox)row.FindControl("txtPollingStations");
+                    txtIndividualVotes = (TextBox)row.FindControl("txtIndividualVotes");
+                    txtPartyVotes = (TextBox)row.FindControl("txtPartyVotes");
+                    txtReligiousVotes = (TextBox)row.FindControl("txtReligiousVotes");
+
                     ID = (HiddenField)row.FindControl("EC_ID");
                     Pro_ID = (HiddenField)row.FindControl("Pro_ID");
                     Dis_ID = (HiddenField)row.FindControl("Dis_ID");
@@ -194,7 +206,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
                     C_ID = (HiddenField)row.FindControl("C_ID");
 
 
-                    Update_Record(result.Text, remarks.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value, NA_ID.Value);
+                    Update_Record(result.Text, remarks.Text, ID.Value, Pro_ID.Value, Dis_ID.Value, PA_ID.Value, P_ID.Value, El_ID.Value, C_ID.Value, NA_ID.Value,txtPollingStations.Text,txtIndividualVotes.Text,txtPartyVotes.Text,txtReligiousVotes.Text);
                 }
                 lblMsg.Text = "Saved successfully!";
                 lblMsg.Attributes.Remove("class");
@@ -210,7 +222,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         FillGridView();
     }
 
-    private void Update_Record(string Result, string Remarks, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID)
+    private void Update_Record(string Result, string Remarks, string ID, string Pro_ID, string Dis_ID, string PA_ID, string P_ID, string El_ID, string C_ID ,string NA_ID,string pollingStations,string individualVotes,string partyVotes,string religiousVotes)
     {
         SqlConnection con = new SqlConnection(_str);
         con.Open();
@@ -219,6 +231,13 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@Id", ID);
         cmd.Parameters.AddWithValue("@Result", Result);
+        cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
+        cmd.Parameters.AddWithValue("@ResultType", Request.QueryString["Type"]);
+
+        cmd.Parameters.AddWithValue("@PollingStations", pollingStations);
+        cmd.Parameters.AddWithValue("@IndividualVotes", individualVotes);
+        cmd.Parameters.AddWithValue("@PartyVotes", partyVotes);
+        cmd.Parameters.AddWithValue("@ReligiousVotes", religiousVotes);
         cmd.Parameters.AddWithValue("@Remarks", Remarks);
 
         cmd.Parameters.AddWithValue("@Pro_ID", Pro_ID);
@@ -228,7 +247,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@PA_ID", PA_ID);
         cmd.Parameters.AddWithValue("@P_ID", P_ID);
         cmd.Parameters.AddWithValue("@El_ID", El_ID);
-        cmd.Parameters.AddWithValue("@Type", rdoType.SelectedValue);
+        
 
         cmd.ExecuteNonQuery();
         con.Close();
