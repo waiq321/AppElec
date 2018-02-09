@@ -15,6 +15,7 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             lblId.Text = Request.QueryString["Title"];
+            HPNAName.NavigateUrl = "~/Reports/NAStatisticsReport.aspx?NAID=" + Request.QueryString["Id"];
             DBManager ObjDBManager = new DBManager();
             try
             {

@@ -15,42 +15,8 @@
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
         </span>
     </h1>
-    <table class="table-form">
-
-          <tr>
-           
-            <td class="label" style="width: 10%;">Province:</td>
-            <td style="width: 40%;">
-                <asp:DropDownList ID="ddlProvince" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
-            </td>
-               <td class="label" style="width: 10%;">District:</td>
-            <td style="width: 40%;">
-                <asp:DropDownList ID="ddlDistrict" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-           
-
-            <td class="label">NA:</td>
-            <td>
-                <asp:DropDownList ID="ddlNA" AutoPostBack="true" runat="server" ></asp:DropDownList>
-            </td>  
-            <td colspan="2">
-                 <asp:Button ID="btn_Search" Text="Search" CssClass="btn" runat="server" OnClick="btn_Search_Click" />
-            </td>         
-        </tr>
-       
-        <tr>
-            <td colspan="4" style="text-align: center;">
-               
-               <asp:Label ID="LblMeg" runat="server" Text=""></asp:Label>
-                <br />
-                <rsweb:ReportViewer ID="ReportViewer1" Width="100%" runat="server">
+     <rsweb:ReportViewer ID="ReportViewer1" Width="100%" runat="server" Height="900px" ShowBackButton="False" ShowExportControls="False" ShowFindControls="False" ShowPageNavigationControls="False" ShowPrintButton="False" ShowRefreshButton="False" ShowZoomControl="False" >
                 </rsweb:ReportViewer>
-            </td>
-        </tr>
-        
-    </table>
     
 </asp:Content>
 

@@ -17,55 +17,12 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            
-            GetProvince();
-            GetDistrict();
-            GetNA();
-            
+
+            ShowReport();
+
         }
     }
-    
-    protected void GetProvince()
-    {
-            CommonFunctions objCommonFunctionsProvince = new CommonFunctions();
-            ddlProvince.DataSource = objCommonFunctionsProvince.GetProvince();
 
-            ddlProvince.DataTextField = "ProvinceName";
-            ddlProvince.DataValueField = "ProvinceId";
-            ddlProvince.DataBind();
-    }
-    protected void GetDistrict()
-    {
-        CommonFunctions objCommonFunctionsGetDistrict = new CommonFunctions();
-        ddlDistrict.DataSource = objCommonFunctionsGetDistrict.GetDistrict(ddlProvince.SelectedValue);
-
-        ddlDistrict.DataTextField = "Name";
-        ddlDistrict.DataValueField = "DistrictId";
-        ddlDistrict.DataBind();
-
-    }
-    
-    protected void GetNA()
-    {
-        CommonFunctions objCommonFunctionsGetNA = new CommonFunctions();
-        ddlNA.DataSource = objCommonFunctionsGetNA.GetNA(ddlDistrict.SelectedValue);
-
-        ddlNA.DataTextField = "Name";
-        ddlNA.DataValueField = "NAId";
-        ddlNA.DataBind();
-    }
-    
-   
-    protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        GetDistrict();
-        GetNA();        
-    }
-
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        GetNA();        
-    }
     private void ShowReport()
     {
         try
@@ -73,9 +30,9 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
             DBManager dbMgr = new DBManager();
             List<SqlParameter> parm = new List<SqlParameter>
             {
-                
-                new SqlParameter("@NAId",ddlNA.SelectedValue)
-                
+
+                new SqlParameter("@NAId",Request.QueryString["NAID"])
+
             };
             DataSet ds = dbMgr.ExecuteDataSet("Report_GetNAStatistics", parm);
 
@@ -84,20 +41,113 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
             ReportViewer1.LocalReport.DataSources.Clear();
 
             ReportDataSource repDs = new ReportDataSource();
-         
+
             //ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("Report_GetNAStatistics", ds.Tables[0]));
 
             ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetFigure", ds.Tables[0]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetVoters", ds.Tables[1]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetCast", ds.Tables[2]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSectrain", ds.Tables[3]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", ds.Tables[4]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", ds.Tables[5]));
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetVotesObtained", ds.Tables[6]));
+            //ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetCast", ds.Tables[1]));
+            //ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSectrain", ds.Tables[2]));
+            //ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", ds.Tables[3]));
+            //ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", ds.Tables[4]));
+            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetVotesObtained", ds.Tables[5]));
 
-            ReportViewer1.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(subReports);
+            if (ds.Tables[2].Rows.Count == 0)
+            {
+                DataTable dt4 = new DataTable();
+                dt4.Clear();
+                dt4.Columns.Add("SectrainName");
+                dt4.Columns.Add("Percentage");
+                DataRow _ravi = dt4.NewRow();
+                _ravi["SectrainName"] = "";
+                _ravi["Percentage"] = "";
+                dt4.Rows.Add(_ravi);
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSectrain", dt4));
+            }
+            else
+            {
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSectrain", ds.Tables[2]));
+            }
 
-           // ReportViewer1.LocalReport.DataSources.Add(repDs);
+            if (ds.Tables[1].Rows.Count == 0)
+            {
+                DataTable dt3 = new DataTable();
+                dt3.Clear();
+                dt3.Columns.Add("CastName");
+                dt3.Columns.Add("Percentage");
+                DataRow _ravi = dt3.NewRow();
+                _ravi["CastName"] = "";
+                _ravi["Percentage"] = "";
+                dt3.Rows.Add(_ravi);
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetCast", dt3));
+            }
+            else
+            {
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetCast", ds.Tables[1]));
+            }
+
+            if (ds.Tables[4].Rows.Count==0)
+            {
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Individulas");
+            dt.Columns.Add("Factors");
+            DataRow _ravi = dt.NewRow();
+            _ravi["Individulas"] = "";
+            _ravi["Factors"] = "";
+            dt.Rows.Add(_ravi);
+            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", dt));
+            }
+            else
+            {
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", ds.Tables[4]));
+            }
+            if (ds.Tables[3].Rows.Count == 0)
+            {
+                DataTable dt1 = new DataTable();
+                dt1.Clear();
+                dt1.Columns.Add("Name");
+                dt1.Columns.Add("TYPE_Inf");
+                dt1.Columns.Add("Political_leaning");
+                dt1.Columns.Add("Profession");
+                dt1.Columns.Add("Rel_poli");
+                dt1.Columns.Add("Rel_Beau");
+                dt1.Columns.Add("Rel_Mili");
+                DataRow _ravi = dt1.NewRow();
+                _ravi["Name"] = "";
+                _ravi["TYPE_Inf"] = "";
+                _ravi["Political_leaning"] = "";
+                _ravi["Profession"] = "";
+                _ravi["Rel_poli"] = "";
+                _ravi["Rel_Beau"] = "";
+                _ravi["Rel_Mili"] = "";
+                dt1.Rows.Add(_ravi);
+
+               
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", dt1));
+            }
+            else
+            {
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", ds.Tables[3]));
+            }
+             if (ds.Tables[4].Rows.Count==0)
+            {
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Individulas");
+            dt.Columns.Add("Factors");
+            DataRow _ravi = dt.NewRow();
+            _ravi["Individulas"] = "";
+            _ravi["Factors"] = "";
+            dt.Rows.Add(_ravi);
+            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", dt));
+            }
+            else
+            {
+                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", ds.Tables[4]));
+            }
+            //ReportViewer1.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(subReports);
+
+            // ReportViewer1.LocalReport.DataSources.Add(repDs);
 
             ReportViewer1.LocalReport.Refresh();
 
@@ -119,33 +169,33 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
 
         }
     }
-    public void subReports(object sender, SubreportProcessingEventArgs e)
-    {
+    //public void subReports(object sender, SubreportProcessingEventArgs e)
+    //{
 
-        try
-        {
+    //    try
+    //    {
 
-            DBManager dbMgr = new DBManager();
-            List<SqlParameter> parm = new List<SqlParameter>
-            {
+    //        DBManager dbMgr = new DBManager();
+    //        List<SqlParameter> parm = new List<SqlParameter>
+    //        {
 
-                new SqlParameter("@NAId",ddlNA.SelectedValue)
+    //            new SqlParameter("@NAId",ddlNA.SelectedValue)
 
-            };
-            DataTable dt = dbMgr.ExecuteDataTable("Report_GetNAStatistics_Voters", parm);
+    //        };
+    //        DataTable dt = dbMgr.ExecuteDataTable("Report_GetNAStatistics_Voters", parm);
 
-            e.DataSources.Clear();            
-            e.DataSources.Add(new ReportDataSource("ReportAllVoters", dt));            
-        }
-        catch (Exception)
-        {
+    //        e.DataSources.Clear();
+    //        e.DataSources.Add(new ReportDataSource("ReportAllVoters", dt));
+    //    }
+    //    catch (Exception)
+    //    {
 
-        }
+    //    }
 
 
-    }
+    //}
     protected void btn_Search_Click(object sender, EventArgs e)
     {
         ShowReport();
     }
-}  
+}

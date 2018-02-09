@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <h1><asp:Label ID="lblId" runat="server"></asp:Label> Winning Candidates </h1>
+    <asp:HyperLink ID="HPNAName" runat="server">
+    <h1><asp:Label ID="lblId" runat="server"></asp:Label> Winning Candidates </h1></asp:HyperLink>
   <div style="margin-top:20px;">
       <asp:GridView ID="grdWinningCandidates" CssClass="table-bordered table-striped" AutoGenerateColumns="false" runat="server" Width="100%" OnRowDataBound="grdWinningCandidates_RowDataBound">
         <Columns>
