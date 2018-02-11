@@ -160,7 +160,7 @@
 
                         <asp:GridView ID="grdCasts" CssClass="table-bordered table-striped" AutoGenerateColumns="False" runat="server" Width="100%">
                             <Columns>
-                                <asp:TemplateField HeaderText="Sr #">
+                                <asp:TemplateField HeaderText="Ser">
                                     <ItemTemplate>
                                         <%#Container.DataItemIndex+1 %>
                                     </ItemTemplate>
@@ -228,7 +228,7 @@
                     <td style="vertical-align:top;text-align:center;">
                         <asp:GridView ID="grdSectarian" CssClass="table-bordered table-striped" AutoGenerateColumns="False" runat="server" Width="100%">
                             <Columns>
-                                <asp:TemplateField HeaderText="Sr #">
+                                <asp:TemplateField HeaderText="Ser">
                                     <ItemTemplate>
                                         <%#Container.DataItemIndex+1 %>
                                     </ItemTemplate>

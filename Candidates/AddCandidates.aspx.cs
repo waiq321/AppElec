@@ -60,6 +60,10 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
                 chkVoteForUs.Checked=bool.Parse(dt.Rows[0]["VoteForUs"].ToString());
                 chkLikeMinded.Checked = bool.Parse(dt.Rows[0]["LikeMinded"].ToString());
 
+                rdoGender.SelectedValue = dt.Rows[0]["Gender"].ToString();
+                txtPersonalPhone.Text = dt.Rows[0]["PersonalPhone"].ToString();
+                txtConfidentPhone.Text = dt.Rows[0]["ConfidentialPhone"].ToString();
+
                 txtPastAffiliation.Text= dt.Rows[0]["PastAffiliation"].ToString();
                 txtCurrentAffiliation.Text= dt.Rows[0]["CurrentAffiliation"].ToString();
                 txtChangingAffiliation.Text= dt.Rows[0]["ChangingAffiliation"].ToString();
@@ -128,6 +132,9 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
             new SqlParameter("@PresentAddress",txtPresentAdd.Text),
             new SqlParameter("@PermanentAddress",txtPermanentAddress.Text),
             new SqlParameter("@NadraVerises",nadraVerises),
+            new SqlParameter("@PersonalPhone",txtPersonalPhone.Text),
+            new SqlParameter("@ConfidentialPhone",txtConfidentPhone.Text),
+            new SqlParameter("@Gender",rdoGender.SelectedValue),
 
             new SqlParameter("@PastAffiliation",txtPastAffiliation.Text),
             new SqlParameter("@CurrentAffiliation",txtCurrentAffiliation.Text),
@@ -188,6 +195,9 @@ public partial class Candidates_AddCandidates : System.Web.UI.Page
         txtPastAffiliation.Text = "";
         txtCurrentAffiliation.Text = "";
         txtChangingAffiliation.Text = "";
+
+        txtPersonalPhone.Text = "";
+        txtConfidentPhone.Text = "";
 
         chkVoteForUs.Checked = false;
         chkLikeMinded.Checked = false;

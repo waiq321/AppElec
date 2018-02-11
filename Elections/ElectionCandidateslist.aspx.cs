@@ -106,7 +106,8 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
                 new SqlParameter("@ElectionId",electionId),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
-                new SqlParameter("@Type",rdoType.SelectedValue)
+                new SqlParameter("@Type",rdoType.SelectedValue),
+                new SqlParameter("@ResultType","Final")
             };
         GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
         GridView1.DataBind();
@@ -145,5 +146,16 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     protected void ddlNA_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetPA();        
+    }
+    protected void grdCandidates_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Image img = (Image)e.Row.FindControl("candPic");
+            DataRowView rowView = (DataRowView)e.Row.DataItem;
+            byte[] b = (byte[])rowView["Picture"];
+            string base64 = Convert.ToBase64String(b);
+            img.ImageUrl = "data:Image/png;base64," + base64;
+        }
     }
 }  

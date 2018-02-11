@@ -66,7 +66,7 @@
             <td>
                 <asp:TextBox ID="txtPoliticalRelation" runat="server"></asp:TextBox>
             </td>
-            <td class="label">OtherAffiliations:</td>
+            <td class="label">Other Affiliations:</td>
             <td>
                 <asp:TextBox ID="txtOtherAffiliations" runat="server"></asp:TextBox>
             </td>

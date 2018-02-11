@@ -27,7 +27,7 @@
               <div style="width:100%; margin:0 auto;margin-top:20px;">
                 <asp:GridView  ID="GridView1" CssClass="table-striped table-bordered" AutoGenerateColumns="false" runat="server"  Width="100%">
               <Columns>
-                  <asp:TemplateField HeaderText="Sr #">
+                  <asp:TemplateField HeaderText="Ser">
                       <ItemTemplate>
                           <%#Container.DataItemIndex+1 %>
                       </ItemTemplate>
@@ -56,13 +56,13 @@
                       </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
                   </asp:TemplateField>
-                  <asp:TemplateField HeaderText="View" >
+                  <%--<asp:TemplateField HeaderText="View" >
                       <ItemTemplate>
                           <span class="link"  onclick="lnkClick(this,'ECandidate')">View Candidates</span> &nbsp;&nbsp;
                           <span  class="link" onclick="lnkClick(this,'Winner')">View Winners</span> &nbsp;&nbsp;                        
                           </ItemTemplate>
                              <ItemStyle HorizontalAlign="Center" />
-                  </asp:TemplateField>
+                  </asp:TemplateField>--%>
                   <asp:TemplateField HeaderText="Delete">
                       <ItemTemplate>
                           <asp:LinkButton ID="LinkButton1" CssClass="icon-delete" CommandArgument='<%#Bind("ElectionId") %>' OnClick="LinkButton1_Click" runat="server"></asp:LinkButton>

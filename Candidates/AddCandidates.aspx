@@ -62,15 +62,37 @@
                 <asp:TextBox ID="txtPermanentAddress" runat="server"></asp:TextBox>
             </td>
         </tr>
-        <tr>             
-            <td colspan="2" style="text-align:center">
+        <tr>
+             <td class="label">Gender:
+            </td>
+            <td>
+                <asp:RadioButtonList ID="rdoGender" runat="server" RepeatDirection="Horizontal">
+                    <asp:ListItem Text="Male" Value="Male" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                </asp:RadioButtonList>
+            </td>
+            <td class="label">Personal Phone:
+            </td>
+            <td>
+                <asp:TextBox ID="txtPersonalPhone" runat="server"></asp:TextBox>
+            </td>
+           
+        </tr>
+        <tr>
+            
+            <td colspan="2" style="text-align: center">
                 <label for="ContentPlaceHolder1_chkVoteForUs" class="label">Vote for Us:</label>
                 <asp:CheckBox ID="chkVoteForUs" runat="server" />
-                                &nbsp;&nbsp;
-                <label for="ContentPlaceHolder1_chkLikeMinded"  class="label">Like Minded:</label>
-                <span><asp:CheckBox ID="chkLikeMinded" runat="server" /></span>
+                &nbsp;&nbsp;
+                <label for="ContentPlaceHolder1_chkLikeMinded" class="label">Like Minded:</label>
+                <span>
+                    <asp:CheckBox ID="chkLikeMinded" runat="server" /></span>
             </td>
-            
+             <td class="label">Confident Phone:
+            </td>
+            <td>
+                <asp:TextBox ID="txtConfidentPhone" runat="server"></asp:TextBox>
+            </td>
         </tr>
         <tr>
             <td colspan="4">
@@ -119,47 +141,47 @@
                         <td>
                             <asp:TextBox ID="txtRWJ" runat="server"></asp:TextBox>
                         </td>
-                        </tr>
-                        <tr>
-                         <td class="label">Military:</td>
-            <td>
-                <asp:TextBox ID="txtRWM" runat="server"></asp:TextBox>
-            </td>                            
                     </tr>
                     <tr>
-            <td class="label">Bureaucracy:</td>
-            <td>
-                <asp:TextBox ID="txtRWB" runat="server"></asp:TextBox>
-            </td>
-
-        </tr>
+                        <td class="label">Military:</td>
+                        <td>
+                            <asp:TextBox ID="txtRWM" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
                     <tr>
-                         <td class="label">Politics:</td>
-            <td>
-                <asp:TextBox ID="txtRWP" runat="server"></asp:TextBox>
-            </td>
+                        <td class="label">Bureaucracy:</td>
+                        <td>
+                            <asp:TextBox ID="txtRWB" runat="server"></asp:TextBox>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="label">Politics:</td>
+                        <td>
+                            <asp:TextBox ID="txtRWP" runat="server"></asp:TextBox>
+                        </td>
                     </tr>
                 </table>
             </td>
         </tr>
-          <tr>
+        <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
-             <td class="label">Important Appointments Held in Past Govts:</td>
+            <td class="label">Important Appointments Held in Past Govts:</td>
             <td colspan="3">
                 <asp:TextBox ID="txtImpApp" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-          
+
             <td class="label">Involved in any Major Incident/ Event/ Scandal:</td>
             <td colspan="3">
                 <asp:TextBox ID="txtScandles" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-             <td class="label">View About Establishment:</td>
+            <td class="label">View About Establishment:</td>
             <td>
                 <asp:TextBox ID="txtVAE" runat="server"></asp:TextBox>
             </td>
@@ -167,36 +189,36 @@
         <tr>
             <td>&nbsp;</td>
         </tr>
-          <tr>
+        <tr>
             <td class="label-sub border">Moral and Financial Characteristics
             </td>
             <td colspan="3" class="border">
                 <table style="width: 100%;">
                     <tr>
-                        
-            <td class="label">Moral:</td>
-            <td>
-                <asp:TextBox ID="txtMC" runat="server"></asp:TextBox>
+
+                        <td class="label">Moral:</td>
+                        <td>
+                            <asp:TextBox ID="txtMC" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">Financial:</td>
+                        <td>
+                            <asp:TextBox ID="txtFC" runat="server"></asp:TextBox>
+                        </td>
+
+                    </tr>
+                </table>
             </td>
-                        </tr>
-                    
-        <tr>
-            <td class="label">Financial:</td>
-            <td>
-                <asp:TextBox ID="txtFC" runat="server"></asp:TextBox>
-            </td>
-           
         </tr>
-                    </table>
-                </td>
-              </tr>
         <tr>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="label">Any Special Observation (Heard/In Record):</td>
             <td colspan="3">
-                <asp:TextBox ID="txtObservations" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="txtObservations" runat="server"></asp:TextBox>
             </td>
 
         </tr>

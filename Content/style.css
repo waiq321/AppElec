@@ -1398,7 +1398,7 @@ figure {
 }
 .icon-edit {    width: 30px;height: 26px;background: url(../images/edit.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
 }
-.icon-delete {    width: 25px;height: 25px;background: url(../images/cross-red.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
+.icon-delete {cursor:pointer;    width: 25px;height: 25px;background: url(../images/cross-red.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
 }
 .icon-details {    width: 33px;height: 31px;background: url(../images/details.png) 0 0 no-repeat;display: inline-block;cursor:pointer;
 }
@@ -1424,7 +1424,7 @@ legend
     text-align:center !important;white-space: nowrap;
 }
 .picture{
-    border-radius:50px;
+    border-radius:50px;border:solid 1px #ccc;background-color:#ccc;  
 }
 .link
 {
@@ -1481,5 +1481,9 @@ table tbody
 }
 .border{
     border:solid 1px #ccc;
+}
+.td-position tr td
+{
+    position:relative;
 }
 /*#41c17d--#00a885*/

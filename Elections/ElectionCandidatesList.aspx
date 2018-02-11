@@ -61,9 +61,9 @@
 
             <td align="center" colspan="4">
                 <div style="padding-top: 10px;">
-                    <asp:GridView ID="GridView1" CssClass="table-bordered table-striped" AutoGenerateColumns="False" runat="server" Width="100%">
+                    <asp:GridView ID="GridView1" CssClass="td-position  table-bordered table-striped" AutoGenerateColumns="False" runat="server" Width="100%"  OnRowDataBound="grdCandidates_RowDataBound">
                         <Columns>
-                            <asp:TemplateField HeaderText="Sr #">
+                            <asp:TemplateField HeaderText="Ser">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
@@ -83,9 +83,21 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Candidate">
+                            <asp:TemplateField HeaderText="Candidate">  
                                 <ItemTemplate>
-                                    <asp:Label ID="lblCandidate" runat="server" Text='<%#Bind("Candidate") %>'></asp:Label>
+                                <div class="cand-pic">
+                                <div style="float:left;width:80%; text-align:left;">
+                                    <asp:Label ID="lblName"  CssClass="hyperlink" runat="server" Text='<%#Bind("Candidate") %>'></asp:Label>
+                                </div>
+                                <div style="float:left;width:20%;position:absolute;right:0;z-index:999999;">
+                                    <asp:Image runat="server" ID="candPic" onmouseover="largePic(this)" CssClass="picture"  width="30" height="30"  />
+                                </div>
+                               </div>
+                                    </ItemTemplate>                              
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Phone">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPhone" runat="server" Text='<%#Bind("PersonalPhone") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Details" HeaderStyle-Width="200px" >
@@ -110,6 +122,17 @@
             var candidateId = $.trim($(elem).closest("tr").find("[id*='hdnCandidateId']").val());                       
                 window.open("../Candidates/CandidateDetails.aspx?CandId=" + candidateId, "_blank");                        
         }
+        function largePic(elem) {
+            $(elem).stop().animate();
+            $(elem).css("height", "120px");
+            $(elem).css("width", "120px");
+        }
+        $(document).ready(function () {
+            $(".cand-pic").mouseleave(function () {                
+                $(this).find("img").css("height", "30px");
+                $(this).find("img").css("width", "30px");
+            });
+        });
         </script>
 </asp:Content>
 

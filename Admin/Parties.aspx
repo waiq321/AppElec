@@ -34,7 +34,7 @@
 
 
         <tr>
-            <td class="label">Party Off:</td>
+            <td class="label">Party Sadar:</td>
             <td>
                 <asp:TextBox ID="Partyoff" runat="server"></asp:TextBox>
             </td>
@@ -61,7 +61,7 @@
                 <div style="padding-top:10px;">
                 <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" CssClass="table-bordered table-striped" Width="100%" OnRowDataBound="GridView1_RowDataBound"> 
                     <Columns>
-                        <asp:TemplateField HeaderText="Sr #">
+                        <asp:TemplateField HeaderText="Ser">
                             <ItemTemplate>
                                 <%#Container.DataItemIndex+1 %>
                             </ItemTemplate>

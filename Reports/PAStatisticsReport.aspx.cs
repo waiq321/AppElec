@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Microsoft.Reporting.WebForms;
 
-public partial class Reports_NAStatisticsReport : System.Web.UI.Page
+public partial class Reports_PAStatisticsReport : System.Web.UI.Page
 {
     String _str = ConfigurationManager.ConnectionStrings["ElecConnection"].ConnectionString;
     protected void Page_Load(object sender, EventArgs e)
@@ -31,13 +31,13 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
             List<SqlParameter> parm = new List<SqlParameter>
             {
 
-                new SqlParameter("@NAId",Request.QueryString["NAID"])
+                new SqlParameter("@PAId",Request.QueryString["PAID"])
 
             };
-            DataSet ds = dbMgr.ExecuteDataSet("Report_GetNAStatistics", parm);
+            DataSet ds = dbMgr.ExecuteDataSet("Report_GetPAStatistics", parm);
 
 
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath("NAStatisticsReport.rdlc");
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("PAStatisticsReport.rdlc");
             ReportViewer1.LocalReport.DataSources.Clear();
 
             ReportDataSource repDs = new ReportDataSource();            
@@ -78,54 +78,9 @@ public partial class Reports_NAStatisticsReport : System.Web.UI.Page
                 ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSectrain", ds.Tables[2]));
             }
 
-            if (ds.Tables[3].Rows.Count == 0)
-            {
-                DataTable dtInf = new DataTable();
-                dtInf.Clear();
-                dtInf.Columns.Add("Name");
-                dtInf.Columns.Add("TYPE_Inf");
-                dtInf.Columns.Add("Political_leaning");
-                dtInf.Columns.Add("Profession");
-                dtInf.Columns.Add("Rel_poli");
-                dtInf.Columns.Add("Rel_Beau");
-                dtInf.Columns.Add("Rel_Mili");
-                DataRow _ravi = dtInf.NewRow();
-                _ravi["Name"] = "";
-                _ravi["TYPE_Inf"] = "";
-                _ravi["Political_leaning"] = "";
-                _ravi["Profession"] = "";
-                _ravi["Rel_poli"] = "";
-                _ravi["Rel_Beau"] = "";
-                _ravi["Rel_Mili"] = "";
-                dtInf.Rows.Add(_ravi);
-
-
-                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", dtInf));
-            }
-            else
-            {
-                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetInflueienceFigure", ds.Tables[3]));
-            }
-
-            if (ds.Tables[4].Rows.Count==0)
-            {
-            DataTable dtSpoilers = new DataTable();
-                dtSpoilers.Clear();
-                dtSpoilers.Columns.Add("Individulas");
-                dtSpoilers.Columns.Add("Factors");
-            DataRow _ravi = dtSpoilers.NewRow();
-            _ravi["Individulas"] = "";
-            _ravi["Factors"] = "";
-                dtSpoilers.Rows.Add(_ravi);
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", dtSpoilers));
-            }
-            else
-            {
-                ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetSpoilers", ds.Tables[4]));
-            }
-            
+           
              
-            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetVotesObtained", ds.Tables[5]));
+            ReportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WebForms.ReportDataSource("DataSetVotesObtained", ds.Tables[3]));
             
             //ReportViewer1.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(subReports);
 

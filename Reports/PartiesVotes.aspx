@@ -19,20 +19,19 @@
                <td  style="text-align: left;">                
                 <input type="button" value="Search" class="btn" onclick="getPartiesVotes()" />
             </td>
-        </tr>
-       
+        </tr>       
         <tr>
             <td align="center" colspan="3">
                 <div style="padding-top: 10px;">
-              <div id="PartiesVotes" style="width: 50%;"></div>
+              
+                <div id="PartiesVotes" style="width: 50%;"></div>
                 </div>
             </td>
         </tr>
     </table>
     <script src="../Scripts/highcharts.js"></script>
       <script language="JavaScript" type="text/javascript">
-          function getPartiesVotes() {
-              
+          function getPartiesVotes() {             
               var obj = {};
               obj.electionId = $("[id$='ddlYear']").val();
             
@@ -44,68 +43,44 @@
                   dataType: "json",
                   success: function (response) {                      
                       var result = response.d;
-                      var chartData = result.split('- ');
-                      var arrComponent = JSON.parse(chartData[0]);
-                      var arrData = JSON.parse(chartData[1]);
-
-
-                      Highcharts.chart('PartiesVotes', {
+                      var chartData = result.split('-');
+                      var arrParty = JSON.parse(chartData[0]);
+                      var arrVotes = JSON.parse(chartData[1]);
+                     
+                      var chart = Highcharts.chart('PartiesVotes', {
                           chart: {
-                              type: 'column'
+                              plotBackgroundColor: null,
+                              plotBorderWidth: null,
+                              plotShadow: false,
+                              type: 'pie'
                           },
                           title: {
-                              text: 'Parties Total Votes Obtained'
-                          },
-                          xAxis: {
-                              categories: arrComponent,
-                              title: {
-                                  text: null
-                              }
-                          },
-                          yAxis: {
-                              min: 0,
-                              labels: {
-                                  formatter: function () {
-                                      return this.value
-                                  }, style: {
-                                      color: '#008d4c',
-                                      'font-weight': 'bold',
-                                  }
-                              },
-                              title: {
-                                  text: 'Votes Obtained', style: {
-                                      color: '#008d4c',
-                                      'font-weight': 'bold',
-                                  }
-                              }
-                          },
-                          tooltip: {
-                              valueSuffix: ' millions'
-                          },
+                              text: 'Parties Vote Sharing'
+                          },                          
                           plotOptions: {
-                              bar: {
+                              pie: {
+                                  allowPointSelect: true,
+                                  cursor: 'pointer',
                                   dataLabels: {
-                                      enabled: true
+                                      enabled: true,
+                                      format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                      style: {
+                                          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                      }
                                   }
                               }
                           },
-                          legend: {
-                              layout: 'vertical',
-                              align: 'right',                              
-                              verticalAlign: 'top',
-                              x: -40,
-                              y: 80,
-                              floating: true,
-                              borderWidth: 1,
-                              backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                              shadow: true
-                          },
-                          credits: {
-                              enabled: false
-                          },
-                          series: [{
-                              name: $("[id$='ddlYear'] :selected").text(),
-                              data: arrData
+                          series: [{                              
+                              data: (function () {                                  
+                                  var data = [];
+                                  for (i = 0; i <= arrParty.length; i++) {                                    
+                                      data.push({
+                                          name: arrParty[i],
+                                          y: arrVotes[i]
+                                      });
+                                  }
+                                  return data;
+                              }())
                           }]
                       });
 

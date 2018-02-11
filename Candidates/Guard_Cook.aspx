@@ -70,6 +70,7 @@
             <td>
                 <asp:DropDownList ID="ddlType" runat="server">
                     <asp:ListItem Text="Cook" Value="Cook"></asp:ListItem>
+                    <asp:ListItem Text="Driver" Value="Driver"></asp:ListItem>
                     <asp:ListItem Text="Guard" Value="Guard"></asp:ListItem>
                 </asp:DropDownList>
             </td>

@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
 {
+    DataSet _dsAnalysis;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -32,17 +33,17 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
         list.Add(new SqlParameter("@NAId", ddlNA.SelectedValue));
         list.Add(new SqlParameter("@ElectionId", ddlYear.SelectedValue));
 
-        DataSet dss = dbmanger.ExecuteDataSet("Report_GetNAAnalysis", list);
+        _dsAnalysis = dbmanger.ExecuteDataSet("Report_GetNAAnalysis", list);
 
+        rptAnalysisMain.DataSource = _dsAnalysis.Tables[0];
+        rptAnalysisMain.DataBind();
 
-        ReportDataSource ds = new ReportDataSource();
-        ds.Name = "DataSet1";
-        ds.Value = dss.Tables[0];
+        //DataTable dtPA = dss.Tables[1];
 
-        ReportViewer1.LocalReport.DataSources.Clear();
-        ReportViewer1.LocalReport.DataSources.Add(ds);
-        ReportViewer1.LocalReport.ReportPath = Server.MapPath("ConstituencyAnalysis.rdlc");
-        ReportViewer1.LocalReport.Refresh();
+        //DataSet dsMain = new DataSet();
+        //DataRelation newRelation = new DataRelation("processData",dss.Tables[1].Columns["EmpName"], dss.Tables[1].Columns["EmpRole"]);
+        //dsMain.Relations.Add(newRelation);
+
     }
 
     protected void GetYears()
@@ -99,5 +100,15 @@ public partial class Reports_ConstituencyAnalysis : System.Web.UI.Page
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetNA();
+    }
+
+    protected void rptAnalysisMain_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if(e.Item.ItemType==ListItemType.Item)
+        {
+            Repeater rpt = e.Item.FindControl("rptAnalysisSub") as Repeater;
+            rpt.DataSource = _dsAnalysis.Tables[1];
+            rpt.DataBind();
+        }
     }
 }

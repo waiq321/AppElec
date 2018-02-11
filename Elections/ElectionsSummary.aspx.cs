@@ -16,6 +16,7 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
         {
             lblId.Text = Request.QueryString["Title"];
             HPNAName.NavigateUrl = "~/Reports/NAStatisticsReport.aspx?NAID=" + Request.QueryString["Id"];
+
             DBManager ObjDBManager = new DBManager();
             try
             {
@@ -25,9 +26,15 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 new SqlParameter("@PAId",Request.QueryString["Id"]),
                 new SqlParameter("@Type",Request.QueryString["Type"])
             };
-                DataTable dt = ObjDBManager.ExecuteDataTable("GetLastFiveElectionResults", parm);
-                grdWinningCandidates.DataSource = dt;
+                DataSet ds = ObjDBManager.ExecuteDataSet("GetLastFiveElectionResults", parm);
+                grdWinningCandidates.DataSource = ds.Tables[0];
                 grdWinningCandidates.DataBind();
+
+                if(Request.QueryString["Type"]=="NA")
+                {
+                    ddlList.DataSource = ds.Tables[1];
+                    ddlList.DataBind();
+                }
             }
             catch
             {

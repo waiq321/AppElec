@@ -2254,9 +2254,7 @@ caption {
   color: #777;
   text-align: left;
 }
-th {
-  text-align: left;
-}
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -2510,8 +2508,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 5px;  
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;

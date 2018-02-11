@@ -28,6 +28,11 @@
                         <asp:Label ID="lblNIC" runat="server" Text='<%#Bind("NIC") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                 <asp:TemplateField HeaderText="Phone">
+                    <ItemTemplate>
+                        <asp:Label ID="lblPhone" runat="server" Text='<%#Bind("Phone") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Political Relation">
                     <ItemTemplate>
@@ -62,18 +67,22 @@
             </td>
         </tr>
         <tr>
+            <td class="label">Phone:</td>
+            <td>
+                <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+            </td>
             <td class="label">Political Relation:</td>
             <td>
                 <asp:TextBox ID="txtPoliticalRelation" runat="server"></asp:TextBox>
-            </td>
+            </td>            
+        </tr>
+
+        <tr>
             <td class="label">OtherAffiliations:</td>
             <td>
                 <asp:TextBox ID="txtOtherAffiliations" runat="server"></asp:TextBox>
             </td>
-        </tr>
-
-        <tr>
-            <td colspan="4" style="text-align: center;">
+            <td colspan="2" style="text-align: left;">
                 <asp:Button ID="btnSave" runat="server" CssClass="btn" Text="Save" OnClick="btnSave_Click" />
             </td>
         </tr>

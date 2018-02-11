@@ -137,24 +137,30 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
         }
        
     }
-  
-    protected void deleteRecord(object sender, EventArgs e)
+    protected void lnkDelete_Click(object sender, EventArgs e)
     {
-        LinkButton btn = sender as LinkButton;
-        SqlConnection con = new SqlConnection(_str);
-        con.Open();
+        try
+        {
+            LinkButton btn = sender as LinkButton;
+            SqlConnection con = new SqlConnection(_str);
+            con.Open();
 
-        SqlCommand cmd = new SqlCommand("usp_deleteElectionCandidates", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@Id", btn.CommandArgument);
-        cmd.Parameters.AddWithValue("@Type", btn.CommandName);
-        cmd.ExecuteNonQuery();
-        con.Close();
-        FillGridView();        
-        lblMsg.Text = "Deleted Successfully!";
-        lblMsg.ForeColor = System.Drawing.Color.Green;
+            SqlCommand cmd = new SqlCommand("usp_deleteElectionCandidates", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Id", btn.CommandArgument);
+            cmd.Parameters.AddWithValue("@Type", btn.CommandName);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            FillGridView();
+            lblMsg.Text = "Deleted Successfully!";
+            lblMsg.ForeColor = System.Drawing.Color.Green;
+        }
+        catch
+        {
+            ;
+        }
     }
- 
+   
     private void FillGridView()
     {
         string paId = "0";
@@ -170,11 +176,21 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
                 new SqlParameter("@PAId",paId),
                 new SqlParameter("@Type",rdoType.SelectedValue)
             };
-        GridView1.DataSource = ObjDBManager.ExecuteDataTable("Select_ElectionCandidates", parm);
+        GridView1.DataSource = ObjDBManager.ExecuteDataTable("GetElectionCandidates", parm);
         GridView1.DataBind();
     }
 
-
+    protected void grdCandidates_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Image img = (Image)e.Row.FindControl("candPic");
+            DataRowView rowView = (DataRowView)e.Row.DataItem;
+            byte[] b = (byte[])rowView["Picture"];
+            string base64 = Convert.ToBase64String(b);
+            img.ImageUrl = "data:Image/png;base64," + base64;
+        }
+    }
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetDistrict();

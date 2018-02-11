@@ -28,6 +28,7 @@ public partial class Candidates_Spouse : System.Web.UI.Page
             new SqlParameter("@CandidateId",Request.QueryString["CandId"]),
             new SqlParameter("@Name",txtName.Text),
             new SqlParameter("@NIC",txtNic.Text),
+            new SqlParameter("@Phone",txtPhone.Text),
             new SqlParameter("@PoliticalRelation",txtPoliticalRelation.Text),
             new SqlParameter("@OtherAffiliations",txtOtherAffiliations.Text),
             new SqlParameter("@CreatedBy",Session["UserId"]),
@@ -43,6 +44,7 @@ public partial class Candidates_Spouse : System.Web.UI.Page
             txtNic.Text = "";
             txtPoliticalRelation.Text = "";
             txtOtherAffiliations.Text = "";
+            txtPhone.Text = "";
             hdnSpouseId.Value = "0";
 
         }
@@ -85,6 +87,7 @@ public partial class Candidates_Spouse : System.Web.UI.Page
             {
                 txtName.Text = ((Label)row.FindControl("lblName") as Label).Text;
                 txtNic.Text = ((Label)row.FindControl("lblNIC") as Label).Text;
+                txtPhone.Text = ((Label)row.FindControl("lblPhone") as Label).Text;
                 txtPoliticalRelation.Text = ((Label)row.FindControl("lblPoliticalRelation") as Label).Text;
                 txtOtherAffiliations.Text = ((Label)row.FindControl("lblOtherAffiliations") as Label).Text;
 

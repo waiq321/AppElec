@@ -115,7 +115,7 @@
                 <div style="padding-top: 10px;">
                     <asp:GridView ID="GridView1" CssClass="table-bordered table-striped" AutoGenerateColumns="False" runat="server" Width="100%">
                         <Columns>
-                            <asp:TemplateField HeaderText="Sr #">
+                            <asp:TemplateField HeaderText="Ser">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1 %>
                                 </ItemTemplate>
