@@ -36,7 +36,7 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                     ddlList.DataBind();
                 }
             }
-            catch
+            catch(Exception exp)
             {
             }
         }

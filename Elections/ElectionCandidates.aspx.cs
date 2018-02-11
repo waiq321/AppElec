@@ -91,7 +91,7 @@ public partial class Candidates_ElectionCandidates : System.Web.UI.Page
     protected void GetCandidates()
     {
         CommonFunctions objCommonFunctionsGetCandidate = new CommonFunctions();
-        ddlCandidate.DataSource = objCommonFunctionsGetCandidate.GetPartyCatdidate(ddlParty.SelectedValue);
+        ddlCandidate.DataSource = objCommonFunctionsGetCandidate.GetPartyCandidateNotRegisteredForElection(ddlParty.SelectedValue,ddlYear.SelectedValue);
 
         ddlCandidate.DataTextField = "Name";
         ddlCandidate.DataValueField = "candidateid";

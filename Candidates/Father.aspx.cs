@@ -50,7 +50,7 @@ public partial class Candidates_Father : System.Web.UI.Page
             formFather.Style.Add(HtmlTextWriterStyle.Display, "none");
 
         }
-        catch (Exception)
+        catch (Exception exp)
         {
             lblMsg.Text = "some error occurred!";
             lblMsg.Attributes.Remove("class");

@@ -63,6 +63,15 @@ public class CommonFunctions
         };
         return ObjDBManager.ExecuteDataTable("GetPartyCandidate", parm);
     }
+    public DataTable GetPartyCandidateNotRegisteredForElection(string partyId,string electionId)
+    {
+        DBManager ObjDBManager = new DBManager();
+        List<SqlParameter> parm = new List<SqlParameter> {
+            new SqlParameter("@PartyId",partyId),
+            new SqlParameter("@ElectionId",electionId)
+        };
+        return ObjDBManager.ExecuteDataTable("GetPartyCandidateNotRegisteredForElection", parm);
+    }
     public DataTable GetelectionYear()
     {
         DBManager ObjDBManager = new DBManager();

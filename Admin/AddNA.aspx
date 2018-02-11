@@ -58,9 +58,8 @@
             <td class="label" style="width: 10%;">Famous Place:</td>
             <td style="width: 20%;">
                 <asp:TextBox ID="txtFamousPlace" runat="server"></asp:TextBox>
-            </td>
-            <td class="label" style="width: 10%;">Created Date:</td>
-            <td style="width: 20%;">
+            </td>            
+            <td style="width: 20%;display:none;">
                 <asp:TextBox ID="txtCreatedDate" runat="server" TextMode="Date"></asp:TextBox>
             </td>
 

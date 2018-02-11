@@ -48,7 +48,7 @@
                                 </div>
                                </div>
                             </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Center" Width="15%" />
+                            <ItemStyle HorizontalAlign="Center" Width="20%" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Party">
@@ -69,11 +69,11 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Present Address">
+                        <%--<asp:TemplateField HeaderText="Present Address">
                             <ItemTemplate>
                                  <asp:Label ID="lblPresentAddress" runat="server" Text='<%#Bind("PresentAddress") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         
                         <asp:TemplateField HeaderText="Other">
                             <ItemTemplate>
@@ -87,7 +87,7 @@
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
                         
-                         <asp:TemplateField HeaderText="Action" HeaderStyle-Width="200px" >
+                         <asp:TemplateField HeaderText="Action" HeaderStyle-Width="100px" >
                       <ItemTemplate>
                           <span class="icon-edit" title="Edit" onclick="lnkClick(this,'Edit')"></span>
                           <span class="icon-details" title="Details" onclick="lnkClick(this,'Details')"></span>

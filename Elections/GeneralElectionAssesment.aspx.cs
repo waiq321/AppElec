@@ -93,14 +93,8 @@ public partial class Election_GeneralElectionAssesment : System.Web.UI.Page
         ddlOLWParty.DataTextField = "PartyName";
         ddlOLWParty.DataValueField = "PartyId";
         ddlOLWParty.DataBind();
-
-
     }
-
     
-  
-   
- 
     private void FillGridView()
     {
         string paId = "0";

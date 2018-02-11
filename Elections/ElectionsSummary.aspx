@@ -52,7 +52,7 @@
                     </div>
                         <div>
                         <span class="cand-title">Party: </span>
-                        <asp:Label ID="lblParty" CssClass="cand-text" runat="server" Text='<%#Bind("Winner1Party") %>'></asp:Label>
+                        <asp:Label ID="lblParty1" CssClass="cand-text" runat="server" Text='<%#Bind("Winner1Party") %>'></asp:Label>
                     </div>
                             </div>
                     <asp:HiddenField ID="hdnWinner1Id" runat="server" Value='<%#Bind("Winner1Id") %>'></asp:HiddenField>
@@ -81,7 +81,7 @@
                     </div>
                         <div>
                         <span class="cand-title">Party: </span>
-                        <asp:Label ID="lblParty" CssClass="cand-text" runat="server" Text='<%#Bind("Winner2Party") %>'></asp:Label>
+                        <asp:Label ID="lblParty2" CssClass="cand-text" runat="server" Text='<%#Bind("Winner2Party") %>'></asp:Label>
                     </div>
                             </div>
                     <asp:HiddenField ID="hdnWinner2Id" runat="server" Value='<%#Bind("Winner2Id") %>'></asp:HiddenField>
@@ -108,7 +108,7 @@
                     </div>
                         <div>
                         <span class="cand-title">Party: </span>
-                        <asp:Label ID="lblParty" CssClass="cand-text" runat="server" Text='<%#Bind("Winner3Party") %>'></asp:Label>
+                        <asp:Label ID="lblParty3" CssClass="cand-text" runat="server" Text='<%#Bind("Winner3Party") %>'></asp:Label>
                     </div>
                             </div>
                     <asp:HiddenField ID="hdnWinner3Id" runat="server" Value='<%#Bind("Winner3Id") %>'></asp:HiddenField>
@@ -135,7 +135,7 @@
                     </div>
                         <div>
                         <span class="cand-title">Party: </span>
-                        <asp:Label ID="lblParty" CssClass="cand-text" runat="server" Text='<%#Bind("Winner4Party") %>'></asp:Label>
+                        <asp:Label ID="lblParty4" CssClass="cand-text" runat="server" Text='<%#Bind("Winner4Party") %>'></asp:Label>
                     </div>
                             </div>
                     <asp:HiddenField ID="hdnWinner4Id" runat="server" Value='<%#Bind("Winner4Id") %>'></asp:HiddenField>
@@ -162,7 +162,7 @@
                     </div>
                         <div>
                         <span class="cand-title">Party: </span>
-                        <asp:Label ID="lblParty" CssClass="cand-text" runat="server" Text='<%#Bind("Winner5Party") %>'></asp:Label>
+                        <asp:Label ID="lblParty5" CssClass="cand-text" runat="server" Text='<%#Bind("Winner5Party") %>'></asp:Label>
                     </div>
                             </div>
                     <asp:HiddenField ID="hdnWinner5Id" runat="server" Value='<%#Bind("Winner5Id") %>'></asp:HiddenField>

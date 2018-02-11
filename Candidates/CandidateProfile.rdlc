@@ -1276,7 +1276,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Phone.Value</Value>
+                              <Value>=IIf(Fields!Type.Value="Driver",Fields!Phone.Value,"")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1312,7 +1312,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Phone.Value</Value>
+                              <Value>=IIf(Fields!Type.Value="Confidential",Fields!Phone.Value,"")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

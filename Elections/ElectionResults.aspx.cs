@@ -107,7 +107,7 @@ public partial class Candidates_ElectionResults : System.Web.UI.Page
         DBManager ObjDBManager = new DBManager();
         List<SqlParameter> parm = new List<SqlParameter>
             {
-                new SqlParameter("@ElectionId",Request.QueryString["ElecnId"].ToString()),
+                new SqlParameter("@ElectionId",ddlYear.SelectedValue),
                 new SqlParameter("@NAId",ddlNA.SelectedValue),
                 new SqlParameter("@PAId",paId),
                 new SqlParameter("@Type",rdoType.SelectedValue),
