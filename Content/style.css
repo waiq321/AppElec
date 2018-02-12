@@ -1425,6 +1425,10 @@ legend
 }
 .picture{
     border-radius:50px;border:solid 1px #ccc;background-color:#ccc;  
+    width:90px;height:90px;
+}
+.logo-both{
+    float:left;width:50%;text-align: center;
 }
 .link
 {
@@ -1485,5 +1489,41 @@ table tbody
 .td-position tr td
 {
     position:relative;
+}
+.link-Summary,.affiliated-pp
+{
+        width: 50%;    
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    background-color: aliceblue;
+    border: solid 1px #ccc;
+    border-radius:10px;height: 30px;
+}
+.link-Summary a
+{
+margin: 0 70px;cursor:pointer;font-size:18px;color: darkblue;
+ text-decoration:underline;
+}
+.affiliated-pp-sub
+{
+    width:90%;padding-left: 5px;
+}
+.affiliated-pp-sub a
+{
+    text-decoration:underline;padding-left:10px;
+}
+.winning-candidate
+{
+        margin-top: 15px;    
+}
+.winning-candidate h3
+{
+    padding: 5px;    
+    background-color:#a8f5a8c2;    
+    border-radius: 5px;
+        width: 200px;
+    white-space: nowrap;
+    text-align: center;
 }
 /*#41c17d--#00a885*/

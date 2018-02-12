@@ -58,6 +58,12 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
             }
 
+            b = (byte[])rowView["Winner1PartyLogo"];
+            base64 = Convert.ToBase64String(b);
+            WinnerPic = (Image)e.Row.FindControl("imgPartyLogo1");
+            WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+
+
             if (!string.IsNullOrEmpty(rowView["Winner2Picture"].ToString()))
             {
                 b = (byte[])rowView["Winner2Picture"];
@@ -65,6 +71,13 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 WinnerPic = (Image)e.Row.FindControl("Winner2Pic");
                 WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
             }
+
+            b = (byte[])rowView["Winner2PartyLogo"];
+            base64 = Convert.ToBase64String(b);
+            WinnerPic = (Image)e.Row.FindControl("imgPartyLogo2");
+            WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+
+
             if (!string.IsNullOrEmpty(rowView["Winner3Picture"].ToString()))
             {
                 b = (byte[])rowView["Winner3Picture"];
@@ -72,6 +85,13 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 WinnerPic = (Image)e.Row.FindControl("Winner3Pic");
                 WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
             }
+
+            b = (byte[])rowView["Winner3PartyLogo"];
+            base64 = Convert.ToBase64String(b);
+            WinnerPic = (Image)e.Row.FindControl("imgPartyLogo3");
+            WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+
+
             if (!string.IsNullOrEmpty(rowView["Winner4Picture"].ToString()))
             {
                 b = (byte[])rowView["Winner4Picture"];
@@ -80,6 +100,12 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
             }
 
+            b = (byte[])rowView["Winner4PartyLogo"];
+            base64 = Convert.ToBase64String(b);
+            WinnerPic = (Image)e.Row.FindControl("imgPartyLogo4");
+            WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
+
+
             if (!string.IsNullOrEmpty(rowView["Winner5Picture"].ToString()))
             {
                 b = (byte[])rowView["Winner5Picture"];
@@ -87,6 +113,10 @@ public partial class Elections_ElectionsSummary : System.Web.UI.Page
                 WinnerPic = (Image)e.Row.FindControl("Winner5Pic");
                 WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
             }
+            b = (byte[])rowView["Winner5PartyLogo"];
+            base64 = Convert.ToBase64String(b);
+            WinnerPic = (Image)e.Row.FindControl("imgPartyLogo5");
+            WinnerPic.ImageUrl = "data:Image/png;base64," + base64;
 
         }
     }
